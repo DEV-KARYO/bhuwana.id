@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Letkol Czi Martin Novence, S.H., M.IP.",
+    "position": "Komandan Batalyon (Danyonzipur 9)",
+    "rank": "Letkol Czi",
+    "phone": "+62 274 512345",
+    "email": "komandan@yonzipur9.mil.id",
+    "bio": "Komandan saat ini sejak Juli 2025, meneruskan kepemimpinan dari Letkol Czi Nanang Sujarwanto. Martin Novence memiliki latar belakang hukum dan administrasi publik.",
+    "tenure_start": "Juli 2025",
+    "status": "Current"
+  },
+  {
+    "id": 2,
+    "name": "Letkol Czi Nanang Sujarwanto, S.E.",
+    "position": "Komandan Batalyon (Danyonzipur 9) - Periode Sebelumnya",
+    "rank": "Letkol Czi",
+    "bio": "Komandan dari Agustus 2023 hingga Juli 2025. Menunjukkan kepemimpinan yang solid dalam memajukan satuan selama dua tahun.",
+    "tenure_start": "Agustus 2023",
+    "tenure_end": "Juli 2025",
+    "status": "Previous"
+  },
+  {
+    "id": 3,
+    "name": "Lettu Czi Lukman Hakim Baihaqi, S.T.Han., M.Han.",
+    "position": "Komandan Kizipur \"Alap-Alap\"",
+    "rank": "Lettu Czi",
+    "bio": "Komandan Kompi Zeni Tempur sejak Agustus 2024.",
+    "tenure_start": "Agustus 2024",
+    "status": "Current"
+  },
+  {
+    "id": 4,
+    "name": "Lettu Czi Fauzi Yuda Ardiansah, S.Tr.(Han)",
+    "position": "Komandan Kizipur \"Bouroq\"",
+    "rank": "Lettu Czi",
+    "bio": "Komandan Kompi Zeni Tempur sejak Agustus 2024.",
+    "tenure_start": "Agustus 2024",
+    "status": "Current"
+  },
+  {
+    "id": 5,
+    "name": "Lettu Czi Satria Andhika, S.T.Han.",
+    "position": "Komandan Kizipur \"Cenderawasih\"",
+    "rank": "Lettu Czi",
+    "bio": "Komandan Kompi Zeni Tempur sejak Agustus 2024.",
+    "tenure_start": "Agustus 2024",
+    "status": "Current"
+  },
+  {
+    "id": 6,
+    "name": "Kapten Czi Andhika Kostrada, S.T.Han., M.Han.",
+    "position": "Komandan Kizipur \"Walet\"",
+    "rank": "Kapten Czi",
+    "bio": "Komandan Kompi Zeni Tempur sejak Agustus 2024.",
+    "tenure_start": "Agustus 2024",
+    "status": "Current"
+  },
+  {
+    "id": 7,
+    "name": "Kapten Czi Dwi Putra Ummaroh, S.T.Han., M.M.",
+    "position": "Komandan Kizipur \"Manyar\"",
+    "rank": "Kapten Czi",
+    "bio": "Komandan Kompi Zeni Tempur sejak Agustus 2024.",
+    "tenure_start": "Agustus 2024",
+    "status": "Current"
+  }
+]

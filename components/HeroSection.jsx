@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Globe, ArrowUpRight } from 'lucide-react';
 import Button from './Button';
 
@@ -7,9 +8,12 @@ export default function HeroSection() {
     <section className="relative h-[95vh] flex items-center overflow-hidden bg-slate-900 pt-24">
       {/* Background Image Overlay */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2000"
-          className="w-full h-full object-cover opacity-30 scale-105 animate-slow-zoom"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-30 scale-105 animate-slow-zoom"
           alt="Formal Meeting"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-950/70 via-transparent to-slate-900"></div>

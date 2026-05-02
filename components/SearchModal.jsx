@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Search, X } from 'lucide-react';
-import { newsData } from '@/lib/data';
+import { newsData } from '@/lib/content';
 import { searchNews } from '@/lib/utils';
 
 export default function SearchModal({ onClose }) {

@@ -3,7 +3,7 @@ import { Mail, ExternalLink, User } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Badge from '@/components/Badge';
-import { leadershipData } from '@/lib/data';
+import { leadershipData } from '@/lib/content';
 
 export const metadata = {
   title: 'Pimpinan - Lang Lang Bhuwana Portal',

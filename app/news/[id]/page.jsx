@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { newsData } from '@/lib/data';
+import { newsData } from '@/lib/content';
 import NewsDetailClient from '@/components/NewsDetailClient';
 
 export function generateStaticParams() {

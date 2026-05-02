@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Badge from './Badge';
 import Button from './Button';
 import NewsCard from './NewsCard';
-import { newsData } from '@/lib/data';
+import { newsData } from '@/lib/content';
 
 export default function NewsHighlight() {
   const latestNews = newsData.slice(0, 3);

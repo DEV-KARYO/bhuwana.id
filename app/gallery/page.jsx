@@ -6,7 +6,7 @@ import { X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Badge from '@/components/Badge';
-import { galleryData } from '@/lib/data';
+import { galleryData } from '@/lib/content';
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState(null);

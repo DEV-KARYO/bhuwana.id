@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Badge from '@/components/Badge';
 import NewsCard from '@/components/NewsCard';
-import { newsData, categories } from '@/lib/data';
+import { newsData, categories } from '@/lib/content';
 import {
   filterNewsByCategory,
   sortNewsByDate,

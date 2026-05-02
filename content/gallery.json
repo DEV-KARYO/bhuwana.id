@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Upacara Bendera Hari Kemerdekaan",
+    "description": "Perayaan Hari Kemerdekaan RI dengan seluruh prajurit Batalion",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "17 Agustus 2023",
+    "category": "Upacara"
+  },
+  {
+    "id": 2,
+    "title": "Latihan Bersama Satuan Regional",
+    "description": "Simulasi operasi gabungan dengan satuan regional lainnya",
+    "image": "https://images.unsplash.com/photo-1536776871854-2e46e8b2c7fa?q=80&w=800",
+    "date": "15 Juli 2023",
+    "category": "Latihan"
+  },
+  {
+    "id": 3,
+    "title": "Pelatihan Kepemimpinan Tingkat Lanjut",
+    "description": "Program pengembangan kepemimpinan untuk para perwira",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "10 Juli 2023",
+    "category": "Pelatihan"
+  }
+]

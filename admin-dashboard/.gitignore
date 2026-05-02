@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+dist/
+build/
+.cache/
+.turbo/
+.env.local
+*.log
+*.tsbuildinfo
+.eslintcache

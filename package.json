@@ -5,8 +5,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:public": "next dev",
+    "dev:admin": "npm --prefix admin-dashboard run dev",
+    "clean": "rm -rf node_modules .next out admin-dashboard/.next admin-dashboard/node_modules",
     "build": "next build",
+    "build:public": "next build",
+    "build:admin": "npm --prefix admin-dashboard run build",
     "start": "next start",
+    "start:public": "next start",
+    "start:admin": "npm --prefix admin-dashboard run start",
     "lint": "next lint"
   },
   "dependencies": {
