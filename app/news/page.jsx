@@ -42,24 +42,24 @@ export default function NewsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="page-content">
       <Navbar />
 
       {/* Header */}
-      <div className="bg-white border-b border-slate-200 py-20 mt-20">
-        <div className="container mx-auto px-6">
+      <div className="page-header bg-white border-b border-slate-200">
+        <div className="container mx-auto section-spacing">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
               <Badge variant="primary">Pusat Warta</Badge>
-              <h1 className="text-4xl font-black text-slate-900 mt-4 mb-4 tracking-tight">
+              <h1 className="section-title mt-4 mb-4">
                 Kabar Lang Lang Bhuwana
               </h1>
-              <p className="text-slate-500 leading-relaxed">
+              <p className="section-subtitle">
                 Informasi aktual mengenai operasional, kegiatan sosial, dan
                 pencapaian resmi Batalion.
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="btn-group">
               <Button variant="secondary" className="!rounded-full">
                 <Download size={18} className="mr-2" /> Buletin
               </Button>
@@ -72,11 +72,11 @@ export default function NewsPage() {
       </div>
 
       {/* Main Content */}
-      <main className="bg-slate-50 py-12">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
+      <main className="page-section bg-slate-50">
+        <div className="container mx-auto section-spacing">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 md:gap-10">
             {/* News Feed */}
-            <div className="lg:col-span-3 space-y-8">
+            <div className="lg:col-span-3 list-spaced">
               {items.length > 0 ? (
                 <>
                   {items.map((item) => (
@@ -91,7 +91,7 @@ export default function NewsPage() {
                           setCurrentPage(Math.max(1, currentPage - 1))
                         }
                         disabled={currentPage === 1}
-                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled-style transition-all"
                       >
                         ← Sebelumnya
                       </button>
@@ -115,7 +115,7 @@ export default function NewsPage() {
                           setCurrentPage(Math.min(totalPages, currentPage + 1))
                         }
                         disabled={currentPage === totalPages}
-                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled-style transition-all"
                       >
                         Berikutnya →
                       </button>
@@ -123,7 +123,7 @@ export default function NewsPage() {
                   )}
                 </>
               ) : (
-                <div className="text-center py-16 bg-white rounded-[32px] border border-slate-100">
+                <div className="text-center py-16 card-base">
                   <div className="text-6xl mb-4">📭</div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">
                     Tidak Ada Warta
@@ -136,18 +136,18 @@ export default function NewsPage() {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-8">
+            <aside className="space-y-6 md:space-y-8">
               {/* Category Filter */}
-              <div className="bg-white p-8 rounded-3xl border border-slate-100">
+              <div className="card-elevated p-6 md:p-8">
                 <h4 className="font-black text-slate-900 mb-6">
                   Kategori Warta
                 </h4>
-                <div className="space-y-2">
+                <div className="list-spaced">
                   {['Semua', ...categories].map((cat) => (
                     <button
                       key={cat}
                       onClick={() => handleCategoryChange(cat)}
-                      className={`w-full flex items-center justify-between p-3 rounded-xl transition-all group text-left font-bold text-sm ${
+                      className={`w-full flex-between p-3 rounded-xl transition-all group text-left font-bold text-sm ${
                         selectedCategory === cat
                           ? 'bg-indigo-950 text-white'
                           : 'hover:bg-slate-50 text-slate-600'
@@ -166,9 +166,9 @@ export default function NewsPage() {
               </div>
 
               {/* Sort Filter */}
-              <div className="bg-white p-8 rounded-3xl border border-slate-100">
+              <div className="card-elevated p-6 md:p-8">
                 <h4 className="font-black text-slate-900 mb-6">Urutan</h4>
-                <div className="space-y-2">
+                <div className="list-spaced">
                   {[
                     { label: 'Terbaru', value: 'desc' },
                     { label: 'Terlama', value: 'asc' },
@@ -179,7 +179,7 @@ export default function NewsPage() {
                         setSortOrder(option.value);
                         setCurrentPage(1);
                       }}
-                      className={`w-full flex items-center justify-between p-3 rounded-xl transition-all group text-left font-bold text-sm ${
+                      className={`w-full flex-between p-3 rounded-xl transition-all group text-left font-bold text-sm ${
                         sortOrder === option.value
                           ? 'bg-indigo-950 text-white'
                           : 'hover:bg-slate-50 text-slate-600'
@@ -198,7 +198,7 @@ export default function NewsPage() {
               </div>
 
               {/* Email Subscription */}
-              <div className="bg-indigo-950 p-8 rounded-3xl text-white relative overflow-hidden">
+              <div className="bg-gradient-primary p-6 md:p-8 rounded-2xl text-white relative overflow-hidden">
                 <div className="absolute -bottom-4 -right-4 p-4 opacity-10 text-4xl">
                   📰
                 </div>
@@ -213,7 +213,7 @@ export default function NewsPage() {
                   Unduh Edisi Mei
                 </Button>
               </div>
-            </div>
+            </aside>
           </div>
         </div>
       </main>

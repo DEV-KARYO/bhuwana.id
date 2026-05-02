@@ -7,14 +7,14 @@ import NewsHighlight from '@/components/NewsHighlight';
 export const metadata = {
   title: 'Beranda - Lang Lang Bhuwana Portal',
   description:
-    'Halaman utama portalinformasi Batalion Lang Lang Bhuwana. Akses berita, struktur pimpinan, dan galeri dokumentasi resmi.',
+    'Halaman utama portal informasi Batalion Lang Lang Bhuwana. Akses berita, struktur pimpinan, dan galeri dokumentasi resmi.',
 };
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="page-content">
       <Navbar />
-      <main className="mt-20">
+      <main>
         <HeroSection />
         <ServicesSection />
         <NewsHighlight />

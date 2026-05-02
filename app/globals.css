@@ -372,19 +372,6 @@ body {
     @apply bg-slate-900/30 backdrop-blur-md border border-slate-700/20;
   }
 
-  /* Smooth hover effects */
-  .hover-lift {
-    @apply hover:-translate-y-1 transition-smooth;
-  }
-
-  .hover-scale {
-    @apply hover:scale-105 transition-smooth;
-  }
-
-  .hover-shadow {
-    @apply hover:shadow-lg transition-smooth;
-  }
-
   /* Truncate utilities */
   .line-clamp-4 {
     display: -webkit-box;
@@ -492,6 +479,201 @@ body {
 
   .container-lg {
     @apply container mx-auto px-6 max-w-6xl;
+  }
+
+  /* ========== STANDARDIZED COMPONENT STYLES ========== */
+
+  /* Page Layout - Fix spacing with navbar */
+  .page-content {
+    @apply min-h-screen bg-white font-sans;
+  }
+
+  .page-header {
+    @apply mt-20 pt-16 pb-8 md:pt-20 md:pb-12;
+  }
+
+  .page-section {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Cards */
+  .card-base {
+    @apply rounded-2xl border border-slate-100 bg-white transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply card-base hover:shadow-lg hover:border-slate-200;
+  }
+
+  .card-elevated {
+    @apply card-base shadow-md-soft hover:shadow-xl-soft;
+  }
+
+  .card-interactive {
+    @apply relative overflow-hidden cursor-pointer;
+  }
+
+  /* Filter Buttons - Standardized */
+  .filter-btn {
+    @apply px-6 py-2 rounded-full font-bold text-sm transition-all duration-300;
+  }
+
+  .filter-btn-active {
+    @apply filter-btn bg-indigo-950 text-white shadow-lg;
+  }
+
+  .filter-btn-inactive {
+    @apply filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200;
+  }
+
+  /* Section Headers */
+  .section-header {
+    @apply text-center mb-12 md:mb-16;
+  }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-black text-slate-900 tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-slate-500 leading-relaxed mt-4;
+  }
+
+  /* Gallery Items */
+  .gallery-item {
+    @apply relative h-80 rounded-2xl overflow-hidden bg-slate-100 shadow-md-soft;
+  }
+
+  .gallery-image {
+    @apply w-full h-full object-cover group-hover:scale-110 transition-transform duration-500;
+  }
+
+  .gallery-overlay {
+    @apply absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300;
+  }
+
+  /* News/Content Items */
+  .news-card {
+    @apply card-elevated p-6 md:p-8;
+  }
+
+  .news-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+  }
+
+  /* Input Fields */
+  .input-base {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-200 font-medium text-slate-900 placeholder-slate-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+  }
+
+  .input-error {
+    @apply border-red-500 focus:ring-red-500;
+  }
+
+  /* Modal/Dialog */
+  .modal-backdrop {
+    @apply fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-sm;
+  }
+
+  .modal-content {
+    @apply relative w-full max-w-2xl bg-white rounded-2xl overflow-hidden shadow-2xl;
+  }
+
+  /* Badge/Tag Styles */
+  .badge-base {
+    @apply inline-flex items-center rounded-full text-xs font-bold uppercase tracking-wider;
+  }
+
+  .badge-primary {
+    @apply badge-base bg-indigo-50 text-indigo-700;
+  }
+
+  .badge-success {
+    @apply badge-base bg-emerald-50 text-emerald-700;
+  }
+
+  .badge-warning {
+    @apply badge-base bg-amber-50 text-amber-700;
+  }
+
+  .badge-danger {
+    @apply badge-base bg-red-50 text-red-700;
+  }
+
+  /* Button Group */
+  .btn-group {
+    @apply flex flex-wrap gap-3;
+  }
+
+  .btn-group-vertical {
+    @apply flex flex-col gap-2;
+  }
+
+  /* Responsive Spacing */
+  .section-spacing {
+    @apply px-4 md:px-6 lg:px-8;
+  }
+
+  .content-spacing {
+    @apply container mx-auto gap-6 md:gap-8 lg:gap-10;
+  }
+
+  /* Overlay Effects */
+  .overlay-dark {
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent;
+  }
+
+  .overlay-light {
+    @apply absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent;
+  }
+
+  /* Text Alignment & Sizing */
+  .text-center-responsive {
+    @apply text-center md:text-left;
+  }
+
+  .text-balance {
+    @apply text-pretty;
+  }
+
+  /* Responsive Images */
+  .img-responsive {
+    @apply w-full h-auto object-cover;
+  }
+
+  .img-contain {
+    @apply w-full h-full object-contain;
+  }
+
+  /* List Styles */
+  .list-clean {
+    @apply list-none p-0 m-0;
+  }
+
+  .list-spaced {
+    @apply space-y-3 md:space-y-4;
+  }
+
+  /* Icon Styles */
+  .icon-sm {
+    @apply w-4 h-4;
+  }
+
+  .icon-md {
+    @apply w-6 h-6;
+  }
+
+  .icon-lg {
+    @apply w-8 h-8;
+  }
+
+  /* Link Hover Effects */
+  .link-hover {
+    @apply transition-colors duration-200 hover:text-indigo-600;
+  }
+
+  .link-hover-underline {
+    @apply relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full;
   }
 }
 

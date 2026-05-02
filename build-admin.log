@@ -1,0 +1,54 @@
+
+> bhuwana-id-portal@1.0.0 build:admin
+> npm --prefix admin-dashboard run build
+
+
+> bhuwana-admin-dashboard@1.0.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+
+   Creating an optimized production build ...
+
+warn - The `content` option in your Tailwind CSS configuration is missing or empty.
+warn - Configure your content sources or your generated CSS will be missing styles.
+warn - https://tailwindcss.com/docs/content-configuration
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/12) ...
+   Generating static pages (3/12) 
+   Generating static pages (6/12) 
+   Generating static pages (9/12) 
+ ✓ Generating static pages (12/12)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ƒ /                                    142 B          87.4 kB
+├ ○ /_not-found                          873 B          88.1 kB
+├ ƒ /api/auth/login                      0 B                0 B
+├ ƒ /api/auth/logout                     0 B                0 B
+├ ƒ /api/gallery                         0 B                0 B
+├ ƒ /api/gallery/[id]                    0 B                0 B
+├ ƒ /api/news                            0 B                0 B
+├ ƒ /api/news/[id]                       0 B                0 B
+├ ƒ /dashboard                           142 B          87.4 kB
+├ ƒ /dashboard/gallery                   1.17 kB        88.4 kB
+├ ƒ /dashboard/news                      1.29 kB        88.5 kB
+└ ○ /login                               823 B          88.1 kB
++ First Load JS shared by all            87.2 kB
+  ├ chunks/117-6d3152f80147ba9e.js       31.7 kB
+  ├ chunks/fd9d1056-9f91b5e418130764.js  53.6 kB
+  └ other shared chunks (total)          1.86 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
