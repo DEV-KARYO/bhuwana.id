@@ -206,7 +206,3 @@ Beberapa layanan dan program yang melibatkan masyarakat:
 | **Juli 2025 – Sekarang** | **Letkol Czi Martin Novence, S.H., M.IP.** |
 
 ---
-
-*Dokumen ini disusun berdasarkan sumber-sumber publik yang tersedia: Jurnalline.com, Klik7TV, PPID TNI AD, Kompas.com, Tribratanews Polda Jabar, Siaga Indonesia, Kalender Lari, Wikipedia Bahasa Indonesia, dan akun resmi @yonzipur9kostrad.*
-
-*Terakhir diperbarui: Mei 2026*
