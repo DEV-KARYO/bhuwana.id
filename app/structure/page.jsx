@@ -1,3 +1,6 @@
+'use client';
+
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -55,29 +58,6 @@ function LeaderAvatar({ leader, large = false }) {
   );
 }
 
-function buildFilterHref(searchParams, updates) {
-  const nextParams = new URLSearchParams();
-  const currentQuery = typeof searchParams.q === 'string' ? searchParams.q : '';
-  const currentStatus = typeof searchParams.status === 'string' ? searchParams.status : 'all';
-  const currentRank = typeof searchParams.rank === 'string' ? searchParams.rank : 'all';
-
-  const merged = {
-    q: currentQuery,
-    status: currentStatus,
-    rank: currentRank,
-    ...updates,
-  };
-
-  Object.entries(merged).forEach(([key, value]) => {
-    if (value && value !== 'all') {
-      nextParams.set(key, value);
-    }
-  });
-
-  const query = nextParams.toString();
-  return query ? `/structure?${query}` : '/structure';
-}
-
 function filterLeadership(items, query, status, rank) {
   const normalizedQuery = query.trim().toLowerCase();
 
@@ -95,17 +75,15 @@ function filterLeadership(items, query, status, rank) {
   });
 }
 
-export const metadata = {
-  title: 'Pimpinan - Lang Lang Bhuwana Portal',
-  description: 'Struktur kepemimpinan dan jajaran pimpinan Batalion Lang Lang Bhuwana.',
-};
+export default function StructurePage() {
+  const [query, setQuery] = useState('');
+  const [status, setStatus] = useState('all');
+  const [rank, setRank] = useState('all');
 
-export default function StructurePage({ searchParams = {} }) {
-  const query = typeof searchParams.q === 'string' ? searchParams.q : '';
-  const status = typeof searchParams.status === 'string' ? searchParams.status : 'all';
-  const rank = typeof searchParams.rank === 'string' ? searchParams.rank : 'all';
-
-  const filteredLeadership = filterLeadership(leadershipData, query, status, rank);
+  const filteredLeadership = useMemo(
+    () => filterLeadership(leadershipData, query, status, rank),
+    [query, status, rank]
+  );
   const filteredCurrentLeadership = filteredLeadership.filter((leader) => leader.status === 'Current');
   const filteredPreviousLeadership = filteredLeadership.filter((leader) => leader.status === 'Previous');
   const filteredCommander = filteredLeadership.find((leader) => leader.position.includes('Komandan Batalyon')) || commander;
@@ -245,20 +223,18 @@ export default function StructurePage({ searchParams = {} }) {
                 </p>
               </div>
 
-              <form className="w-full lg:max-w-xl" action="/structure" method="get">
+              <div className="w-full lg:max-w-xl">
                 <div className="relative">
                   <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                   <input
-                    name="q"
-                    defaultValue={query}
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
                     placeholder="Cari nama, jabatan, atau pangkat..."
                     className="input-base pl-11 bg-white"
                     aria-label="Cari pimpinan"
                   />
                 </div>
-                <input type="hidden" name="status" value={status} />
-                <input type="hidden" name="rank" value={rank} />
-              </form>
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-3 mt-6">
@@ -267,9 +243,10 @@ export default function StructurePage({ searchParams = {} }) {
                 { label: 'Aktif', key: 'Current' },
                 { label: 'Riwayat', key: 'Previous' },
               ].map((item) => (
-                <Link
+                <button
+                  type="button"
                   key={item.key}
-                  href={buildFilterHref(searchParams, { status: item.key })}
+                  onClick={() => setStatus(item.key)}
                   className={`px-4 py-2 rounded-full text-sm font-bold border transition-all ${
                     status === item.key
                       ? 'bg-indigo-950 text-white border-indigo-950'
@@ -277,15 +254,16 @@ export default function StructurePage({ searchParams = {} }) {
                   }`}
                 >
                   {item.label}
-                </Link>
+                </button>
               ))}
             </div>
 
             <div className="flex flex-wrap gap-2 mt-4">
               {['all', ...availableRanks].map((itemRank) => (
-                <Link
+                <button
+                  type="button"
                   key={itemRank}
-                  href={buildFilterHref(searchParams, { rank: itemRank })}
+                  onClick={() => setRank(itemRank)}
                   className={`px-3 py-2 rounded-xl text-xs md:text-sm font-bold border transition-all ${
                     rank === itemRank
                       ? 'bg-slate-900 text-white border-slate-900'
@@ -293,7 +271,7 @@ export default function StructurePage({ searchParams = {} }) {
                   }`}
                 >
                   {itemRank === 'all' ? 'Semua Pangkat' : itemRank}
-                </Link>
+                </button>
               ))}
             </div>
 
@@ -302,12 +280,17 @@ export default function StructurePage({ searchParams = {} }) {
                 <div className="text-sm text-slate-500">
                   Menampilkan <span className="font-bold text-slate-700">{stats.filtered}</span> pimpinan sesuai filter.
                 </div>
-                    <div
-                  href="/structure"
-                      className="card-elevated p-6 md:p-10 flex flex-col h-full hover:border-indigo-600 transition-all"
+                <button
+                  type="button"
+                  onClick={() => {
+                    setQuery('');
+                    setStatus('all');
+                    setRank('all');
+                  }}
+                  className="text-sm font-semibold text-indigo-700 hover:text-indigo-900 transition-colors"
                 >
                   Reset filter
-                </Link>
+                </button>
               </div>
             )}
           </div>
@@ -352,18 +335,8 @@ export default function StructurePage({ searchParams = {} }) {
                     <p className="text-slate-500 text-sm mt-1">Membangun karakter, soliditas, dan kesinambungan kepemimpinan melalui keteladanan.</p>
                   </div>
                 </div>
-                      <div className="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between gap-3">
-                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">
-                          Profil Lengkap
-                        </p>
-                        <Link
-                          href={`/structure/${leader.id}`}
-                          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-indigo-950 transition-colors"
-                        >
-                          Lihat Profil
-                          <ExternalLink size={16} />
-                        </Link>
-                      </div>
+              </div>
+            </div>
             <div className="card-elevated p-6 md:p-8 lg:p-10">
               <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
                 <div>
@@ -485,9 +458,8 @@ export default function StructurePage({ searchParams = {} }) {
 
           <div className="news-grid mb-16 md:mb-20">
             {filteredLeadership.map((leader) => (
-              <Link
+              <div
                 key={leader.id}
-                href={`/structure/${leader.id}`}
                 className="card-elevated p-6 md:p-10 flex flex-col h-full hover:border-indigo-600 transition-all"
               >
                 <LeaderAvatar leader={leader} />
@@ -552,7 +524,20 @@ export default function StructurePage({ searchParams = {} }) {
                     <ExternalLink size={18} />
                   </div>
                 </div>
-              </Link>
+
+                <div className="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">
+                    Profil Lengkap
+                  </p>
+                  <Link
+                    href={`/structure/${leader.id}`}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white font-bold text-sm hover:bg-indigo-950 transition-colors"
+                  >
+                    Lihat Profil
+                    <ExternalLink size={16} />
+                  </Link>
+                </div>
+              </div>
             ))}
           </div>
 
