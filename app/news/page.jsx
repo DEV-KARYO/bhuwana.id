@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Download, Share2, ChevronRight } from 'lucide-react';
+import { Download, Share2, SlidersHorizontal, ChevronDown } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
@@ -22,6 +22,7 @@ export default function NewsPage() {
   const [selectedMonth, setSelectedMonth] = useState('Semua');
   const [selectedYear, setSelectedYear] = useState('Semua');
   const [searchQuery, setSearchQuery] = useState('');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState('desc');
   const toast = useToast();
@@ -155,6 +156,14 @@ export default function NewsPage() {
   const handleDownload = () => {
     toast.info('Fitur unduh buletin segera tersedia.');
   };
+
+  const activeFilterCount = [
+    selectedCategory !== 'Semua',
+    selectedTag !== 'Semua',
+    selectedMonth !== 'Semua',
+    selectedYear !== 'Semua',
+    sortOrder !== 'desc',
+  ].filter(Boolean).length;
 
   return (
     <div className="page-content">
@@ -336,145 +345,111 @@ export default function NewsPage() {
                 </div>
               </div>
 
-              {/* Category Filter */}
-              <div className="card-elevated p-6 md:p-8">
-                <h4 className="font-black text-slate-900 mb-6">
-                  Kategori Warta
-                </h4>
-                <div className="list-spaced">
-                  {['Semua', ...categories].map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => handleCategoryChange(cat)}
-                      className={`w-full flex-between p-3 rounded-xl transition-all group text-left font-bold text-sm ${
-                        selectedCategory === cat
-                          ? 'bg-indigo-950 text-white'
-                          : 'hover:bg-slate-50 text-slate-600'
-                      }`}
-                    >
-                      {cat}
-                      <ChevronRight
-                        size={14}
-                        className={`group-hover:translate-x-1 transition-transform shrink-0 ${
-                          selectedCategory === cat ? 'opacity-100' : ''
-                        }`}
-                      />
-                    </button>
-                  ))}
+              <div className="card-elevated p-5 md:p-6">
+                <div className="flex items-center justify-between gap-3">
+                  <h4 className="font-black text-slate-900 text-lg">Filter Warta</h4>
+                  <button
+                    onClick={() => setIsFilterOpen((prev) => !prev)}
+                    className="lg:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold"
+                    aria-expanded={isFilterOpen}
+                  >
+                    <SlidersHorizontal size={14} />
+                    {activeFilterCount > 0 ? `(${activeFilterCount})` : ''}
+                    <ChevronDown size={14} className={`${isFilterOpen ? 'rotate-180' : ''} transition-transform`} />
+                  </button>
                 </div>
-              </div>
 
-              <div className="card-elevated p-6 md:p-8">
-                <h4 className="font-black text-slate-900 mb-6">Tag Warta</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['Semua', ...availableTags].map((tag) => (
-                    <button
-                      key={tag}
-                      onClick={() => handleTagChange(tag)}
-                      className={`px-3 py-2 rounded-full transition-all text-sm font-bold border shadow-sm ${
-                        selectedTag === tag
-                          ? 'bg-gradient-to-r from-indigo-950 to-slate-900 text-white border-indigo-950'
-                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
-                      }`}
+                <div className={`${isFilterOpen ? 'block' : 'hidden'} lg:block mt-4`}>
+                  <div className="flex items-center justify-end mb-3">
+                    {(selectedCategory !== 'Semua' || selectedTag !== 'Semua' || selectedMonth !== 'Semua' || selectedYear !== 'Semua' || sortOrder !== 'desc') && (
+                      <button
+                        onClick={() => {
+                          setSelectedCategory('Semua');
+                          setSelectedTag('Semua');
+                          setSelectedMonth('Semua');
+                          setSelectedYear('Semua');
+                          setSortOrder('desc');
+                          setCurrentPage(1);
+                        }}
+                        className="text-xs font-bold text-indigo-700 hover:text-indigo-900 transition-colors"
+                      >
+                        Reset filter sidebar
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Kategori
+                    <select
+                      value={selectedCategory}
+                      onChange={(event) => handleCategoryChange(event.target.value)}
+                      className="mt-1 w-full input-base bg-white"
                     >
-                      {tag}
-                    </button>
-                  ))}
-                </div>
-              </div>
+                      {['Semua', ...categories].map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                      ))}
+                    </select>
+                  </label>
 
-              <div className="card-elevated p-6 md:p-8">
-                <h4 className="font-black text-slate-900 mb-6">Arsip Publikasi</h4>
-                <div className="list-spaced">
-                  {['Semua', ...availableMonths].map((month) => (
-                    <button
-                      key={month}
-                      onClick={() => handleMonthChange(month)}
-                      className={`w-full flex-between p-3 rounded-2xl transition-all group text-left font-bold text-sm border ${
-                        selectedMonth === month
-                          ? 'bg-indigo-950 text-white border-indigo-950 shadow-lg shadow-indigo-950/10'
-                          : 'bg-white hover:bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300'
-                      }`}
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Tag
+                    <select
+                      value={selectedTag}
+                      onChange={(event) => handleTagChange(event.target.value)}
+                      className="mt-1 w-full input-base bg-white"
                     >
-                      {month === 'Semua' ? 'Semua Bulan' : formatNewsMonth(`${month}-01`)}
-                      <ChevronRight
-                        size={14}
-                        className={`group-hover:translate-x-1 transition-transform shrink-0 ${
-                          selectedMonth === month ? 'opacity-100' : ''
-                        }`}
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
+                      {['Semua', ...availableTags].map((tag) => (
+                        <option key={tag} value={tag}>{tag}</option>
+                      ))}
+                    </select>
+                  </label>
 
-              <div className="card-elevated p-6 md:p-8">
-                <h4 className="font-black text-slate-900 mb-6">Tahun Publikasi</h4>
-                <div className="flex flex-wrap gap-2">
-                  {['Semua', ...availableYears].map((year) => (
-                    <button
-                      key={year}
-                      onClick={() => handleYearChange(year)}
-                      className={`px-4 py-2 rounded-full transition-all text-sm font-bold border shadow-sm ${
-                        selectedYear === year
-                          ? 'bg-slate-900 text-white border-slate-900'
-                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
-                      }`}
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Bulan
+                    <select
+                      value={selectedMonth}
+                      onChange={(event) => handleMonthChange(event.target.value)}
+                      className="mt-1 w-full input-base bg-white"
                     >
-                      {year === 'Semua' ? 'Semua Tahun' : year}
-                    </button>
-                  ))}
-                </div>
-              </div>
+                      <option value="Semua">Semua Bulan</option>
+                      {availableMonths.map((month) => (
+                        <option key={month} value={month}>{formatNewsMonth(`${month}-01`)}</option>
+                      ))}
+                    </select>
+                  </label>
 
-              {/* Sort Filter */}
-              <div className="card-elevated p-6 md:p-8">
-                <h4 className="font-black text-slate-900 mb-6">Urutan</h4>
-                <div className="list-spaced">
-                  {[
-                    { label: 'Terbaru', value: 'desc' },
-                    { label: 'Terlama', value: 'asc' },
-                  ].map((option) => (
-                    <button
-                      key={option.value}
-                      onClick={() => {
-                        setSortOrder(option.value);
+                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                    Tahun
+                    <select
+                      value={selectedYear}
+                      onChange={(event) => handleYearChange(event.target.value)}
+                      className="mt-1 w-full input-base bg-white"
+                    >
+                      <option value="Semua">Semua Tahun</option>
+                      {availableYears.map((year) => (
+                        <option key={year} value={year}>{year}</option>
+                      ))}
+                    </select>
+                  </label>
+                  </div>
+
+                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mt-3">
+                    Urutan
+                    <select
+                      value={sortOrder}
+                      onChange={(event) => {
+                        setSortOrder(event.target.value);
                         setCurrentPage(1);
                       }}
-                      className={`w-full flex-between p-3 rounded-xl transition-all group text-left font-bold text-sm ${
-                        sortOrder === option.value
-                          ? 'bg-indigo-950 text-white'
-                          : 'hover:bg-slate-50 text-slate-600'
-                      }`}
+                      className="mt-1 w-full input-base bg-white"
                     >
-                      {option.label}
-                      <ChevronRight
-                        size={14}
-                        className={`group-hover:translate-x-1 transition-transform shrink-0 ${
-                          sortOrder === option.value ? 'opacity-100' : ''
-                        }`}
-                      />
-                    </button>
-                  ))}
+                      <option value="desc">Terbaru</option>
+                      <option value="asc">Terlama</option>
+                    </select>
+                  </label>
                 </div>
               </div>
-
-              {(selectedCategory !== 'Semua' || selectedTag !== 'Semua' || selectedMonth !== 'Semua' || selectedYear !== 'Semua' || searchQuery.trim()) && (
-                <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedCategory('Semua');
-                    setSelectedTag('Semua');
-                    setSelectedMonth('Semua');
-                    setSelectedYear('Semua');
-                    setSortOrder('desc');
-                    setCurrentPage(1);
-                  }}
-                  className="w-full text-left text-sm font-semibold text-indigo-700 hover:text-indigo-900 transition-colors"
-                >
-                  Reset semua filter
-                </button>
-              )}
 
               {/* Email Subscription */}
               <div className="bg-gradient-primary p-6 md:p-8 rounded-2xl text-white relative overflow-hidden">
