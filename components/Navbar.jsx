@@ -15,6 +15,7 @@ import SearchModal from './SearchModal';
 const navItems = [
   { id: 'home', label: 'Beranda', href: '/' },
   { id: 'news', label: 'Warta', href: '/news' },
+  { id: 'kegiatan', label: 'Kegiatan', href: '/kegiatan' },
   { id: 'structure', label: 'Pimpinan', href: '/structure' },
   { id: 'gallery', label: 'Galeri', href: '/gallery' },
 ];
