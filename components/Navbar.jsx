@@ -103,8 +103,8 @@ export default function Navbar() {
                 LANG LANG BHUWANA
               </span>
               <span
-                className={`hidden sm:block text-[9px] font-bold tracking-[0.3em] leading-none mt-1 ${
-                  isAtTop ? 'text-indigo-300' : 'text-indigo-600'
+                className={`hidden sm:block text-xs font-bold tracking-[0.3em] leading-none mt-1 ${
+                  isAtTop ? 'text-indigo-200' : 'text-indigo-600'
                 }`}
               >
                 PORTAL INFORMASI RESMI
@@ -173,9 +173,11 @@ export default function Navbar() {
 
             {/* Desktop Button */}
             <div className="hidden lg:block">
-              <Button variant={isAtTop ? 'white' : 'primary'} size="sm">
-                Layanan Informasi
-              </Button>
+              <Link href="/#services">
+                <Button variant={isAtTop ? 'white' : 'primary'} size="sm">
+                  Layanan Informasi
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -190,8 +192,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-indigo-950 pt-24" role="dialog" aria-modal="true" aria-label="Navigasi mobile">
-          <div id="mobile-navigation" className="container mx-auto section-spacing">
+        <div className="fixed inset-0 z-40 bg-indigo-950/80 pt-24 animate-fade-in" role="dialog" aria-modal="true" aria-label="Navigasi mobile" onClick={() => setIsMenuOpen(false)}>
+          <div id="mobile-navigation" className="container mx-auto section-spacing animate-slide-in-right" onClick={(e) => e.stopPropagation()}>
             <div className="absolute top-6 right-6">
               <button
                 onClick={() => setIsMenuOpen(false)}
@@ -202,14 +204,14 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="space-y-8 mt-12">
+            <div className="space-y-8 mt-12 stagger-children">
               {navItems.map((item) => (
                 <Link
                   key={item.id}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
                   aria-current={pathname === item.href ? 'page' : undefined}
-                  className={`block text-2xl font-black transition-colors ${
+                  className={`block text-2xl font-black transition-colors animate-fade-in ${
                     pathname === item.href ? 'text-indigo-200' : 'text-white hover:text-indigo-100'
                   }`}
                 >

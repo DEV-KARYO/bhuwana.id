@@ -11,7 +11,7 @@ export const Badge = ({ children, variant = 'default' }) => {
 
   return (
     <span
-      className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${styles[variant]}`}
+      className={`px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider ${styles[variant]}`}
     >
       {children}
     </span>

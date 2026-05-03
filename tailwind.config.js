@@ -36,6 +36,16 @@ module.exports = {
             transform: 'translateX(0)',
           },
         },
+        'slide-in-right': {
+          'from': {
+            opacity: '0',
+            transform: 'translateX(100%)',
+          },
+          'to': {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+        },
         'slide-in-up': {
           'from': {
             opacity: '0',
@@ -139,6 +149,7 @@ module.exports = {
         'slow-zoom': 'slow-zoom 20s infinite alternate ease-in-out',
         'slide-in-from-bottom': 'slide-in-from-bottom 0.7s ease-out',
         'slide-in': 'slide-in 0.3s ease-out',
+        'slide-in-right': 'slide-in-right 0.4s ease-out',
         'slide-in-up': 'slide-in-up 0.4s ease-out',
         'slide-down': 'slide-down 0.3s ease-out',
         'slide-up': 'slide-up 0.3s ease-out',

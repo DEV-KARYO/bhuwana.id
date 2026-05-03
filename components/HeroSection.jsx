@@ -49,19 +49,21 @@ export default function HeroSection() {
                 Jelajahi Warta <ArrowUpRight className="ml-2" size={20} />
               </Button>
             </Link>
-            <Button
-              variant="secondary"
-              size="lg"
-              className="w-full sm:w-auto justify-center !bg-white/10 !border-white/20 !text-white !backdrop-blur-sm hover:!bg-white/20"
-            >
-              Agenda Mendatang
-            </Button>
+            <Link href="/news" className="w-full sm:w-auto">
+              <Button
+                variant="secondary"
+                size="lg"
+                className="w-full sm:w-auto justify-center !bg-white/10 !border-white/20 !text-white !backdrop-blur-sm hover:!bg-white/20"
+              >
+                Agenda Mendatang
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Vertical Text - Hidden on mobile */}
-      <div className="absolute bottom-8 left-6 md:bottom-10 md:left-10 text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] hidden lg:block vertical-text">
+      <div className="absolute bottom-8 left-6 md:bottom-10 md:left-10 text-white text-xs md:text-sm font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] hidden lg:block vertical-text">
         EST. 1945 — INTEGRITY FIRST
       </div>
     </section>

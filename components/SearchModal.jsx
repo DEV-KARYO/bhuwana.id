@@ -50,7 +50,7 @@ export default function SearchModal({ onClose, modalId = 'search-modal' }) {
       <div className="modal-content w-full max-w-2xl animate-in zoom-in-95 duration-300">
         {/* Search Input */}
         <div className="p-4 flex items-center gap-3 md:gap-4 border-b border-slate-100">
-          <Search className="text-slate-400 shrink-0" size={20} />
+          <Search className="text-slate-600 shrink-0" size={20} />
           <input
             autoFocus
             type="text"
@@ -73,7 +73,7 @@ export default function SearchModal({ onClose, modalId = 'search-modal' }) {
           {searchQuery.trim() === '' ? (
             // Popular Searches
             <>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">
+              <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-6">
                 Pencarian Populer
               </p>
               <div className="flex flex-wrap gap-2">
@@ -91,7 +91,7 @@ export default function SearchModal({ onClose, modalId = 'search-modal' }) {
           ) : results.length > 0 ? (
             // Search Results
             <>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6">
+              <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-6">
                 {results.length} Hasil Ditemukan
               </p>
               <div className="space-y-4">

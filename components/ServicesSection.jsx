@@ -43,7 +43,7 @@ const values = [
 
 export default function ServicesSection() {
   return (
-    <section className="page-section bg-white relative">
+    <section id="services" className="page-section bg-white relative">
       <div className="container mx-auto section-spacing">
         {/* Service Cards - compact layout */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 relative z-20 reveal-up">
@@ -106,7 +106,7 @@ export default function ServicesSection() {
             </div>
             <div className="absolute -bottom-6 -right-6 bg-indigo-950 p-4 rounded-2xl text-white shadow-lg hidden md:flex flex-col items-center border-4 border-white">
               <div className="text-2xl font-extrabold mb-0">A+</div>
-              <div className="text-[10px] font-bold text-indigo-300 uppercase tracking-widest mt-1">
+              <div className="text-xs font-bold text-indigo-200 uppercase tracking-widest mt-1">
                 Akreditasi
               </div>
             </div>

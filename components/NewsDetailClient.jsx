@@ -59,11 +59,11 @@ export default function NewsDetailClient({ news, relatedNews }) {
         <div className="max-w-3xl prose-focus-indigo">
           <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-6 md:py-10 border-b border-slate-100 mb-8 md:mb-10">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-400">
+              <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-600">
                 <User size={20} />
               </div>
               <div>
-                <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">
                   Penulis
                 </p>
                 <p className="font-bold text-slate-900">{news.author}</p>
@@ -71,14 +71,14 @@ export default function NewsDetailClient({ news, relatedNews }) {
             </div>
             <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
             <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+              <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">
                 Kategori
               </p>
               <p className="font-bold text-slate-900">{news.category}</p>
             </div>
             <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
             <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+              <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">
                 Tanggal Publikasi
               </p>
               <p className="font-bold text-slate-900">{formatNewsDate(news)}</p>
@@ -99,7 +99,7 @@ export default function NewsDetailClient({ news, relatedNews }) {
 
           {Array.isArray(news.tags) && news.tags.length > 0 && (
             <div className="mt-10">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+              <p className="text-xs font-bold text-slate-600 uppercase tracking-widest mb-3">
                 Tag Warta
               </p>
               <div className="flex flex-wrap gap-2">
