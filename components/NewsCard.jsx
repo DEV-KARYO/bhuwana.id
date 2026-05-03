@@ -7,9 +7,9 @@ export default function NewsCard({ news, layout = 'grid' }) {
   if (layout === 'list') {
     return (
       <Link href={`/news/${news.id}`}>
-        <div className="bg-white rounded-[32px] overflow-hidden border border-slate-100 flex flex-col md:flex-row group cursor-pointer hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500">
+        <div className="card-hover flex flex-col md:flex-row">
           {/* Image */}
-          <div className="md:w-2/5 relative overflow-hidden h-64 md:h-auto">
+          <div className="md:w-2/5 relative overflow-hidden h-56 md:h-auto">
             <Image
               src={news.image}
               alt={news.title}
@@ -23,7 +23,7 @@ export default function NewsCard({ news, layout = 'grid' }) {
           </div>
 
           {/* Content */}
-          <div className="md:w-3/5 p-10 flex flex-col justify-between">
+          <div className="md:w-3/5 p-6 md:p-10 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-4 text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest">
                 <span className="flex items-center gap-1.5">
@@ -53,9 +53,9 @@ export default function NewsCard({ news, layout = 'grid' }) {
   // Grid Layout
   return (
     <Link href={`/news/${news.id}`}>
-      <div className="bg-white rounded-[32px] overflow-hidden border border-slate-100 group cursor-pointer hover:shadow-2xl hover:shadow-slate-200/50 transition-all duration-500 flex flex-col h-full">
+      <div className="card-hover flex flex-col h-full">
         {/* Image */}
-        <div className="h-60 relative overflow-hidden">
+        <div className="h-48 md:h-60 relative overflow-hidden">
           <Image
             src={news.image}
             alt={news.title}
@@ -69,7 +69,7 @@ export default function NewsCard({ news, layout = 'grid' }) {
         </div>
 
         {/* Content */}
-        <div className="p-8 flex-grow flex flex-col">
+        <div className="p-6 md:p-8 flex-grow flex flex-col">
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3">
             {news.date}
           </p>

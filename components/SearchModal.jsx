@@ -6,7 +6,7 @@ import { Search, X } from 'lucide-react';
 import { newsData } from '@/lib/content';
 import { searchNews } from '@/lib/utils';
 
-export default function SearchModal({ onClose }) {
+export default function SearchModal({ onClose, modalId = 'search-modal' }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState([]);
 
@@ -26,22 +26,22 @@ export default function SearchModal({ onClose }) {
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] bg-indigo-950/40 backdrop-blur-md flex items-start justify-center pt-32 px-6 animate-in fade-in duration-300">
-      <div className="bg-white w-full max-w-2xl rounded-[32px] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+    <div id={modalId} className="fixed inset-0 z-[100] bg-indigo-950/40 backdrop-blur-md flex items-start justify-center pt-16 md:pt-32 px-4 md:px-6 animate-in fade-in duration-300" role="dialog" aria-modal="true" aria-label="Pencarian konten">
+      <div className="modal-content w-full max-w-2xl animate-in zoom-in-95 duration-300">
         {/* Search Input */}
-        <div className="p-4 flex items-center gap-4 border-b border-slate-100">
-          <Search className="text-slate-400 ml-4" size={20} />
+        <div className="p-4 flex items-center gap-3 md:gap-4 border-b border-slate-100">
+          <Search className="text-slate-400 shrink-0" size={20} />
           <input
             autoFocus
             type="text"
             placeholder="Cari warta atau pengumuman..."
             value={searchQuery}
             onChange={(e) => handleSearch(e.target.value)}
-            className="w-full py-4 text-lg font-medium outline-none text-slate-900 placeholder:text-slate-300"
+            className="w-full py-3 md:py-4 text-base md:text-lg font-medium outline-none text-slate-900 placeholder:text-slate-300"
           />
           <button
             onClick={onClose}
-            className="p-3 bg-slate-50 rounded-2xl hover:bg-slate-100 transition-all text-slate-500"
+            className="p-2 md:p-3 bg-slate-50 rounded-lg md:rounded-2xl hover:bg-slate-100 transition-all text-slate-500 shrink-0"
             aria-label="Tutup pencarian"
           >
             <X size={20} />
@@ -49,7 +49,7 @@ export default function SearchModal({ onClose }) {
         </div>
 
         {/* Content */}
-        <div className="p-8 max-h-[60vh] overflow-y-auto">
+        <div className="p-4 md:p-8 max-h-[55vh] md:max-h-[60vh] overflow-y-auto custom-scrollbar">
           {searchQuery.trim() === '' ? (
             // Popular Searches
             <>

@@ -43,16 +43,16 @@ const values = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-24 bg-white relative">
-      <div className="container mx-auto px-6">
+    <section className="page-section bg-white relative">
+      <div className="container mx-auto section-spacing">
         {/* Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 -mt-32 relative z-20">
+        <div className="news-grid -mt-24 md:-mt-32 relative z-20">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
               <div
                 key={i}
-                className="bg-white p-10 rounded-[32px] shadow-2xl shadow-indigo-900/5 border border-slate-100 group hover:-translate-y-2 transition-all duration-500"
+                className="card-elevated p-6 md:p-10 hover-lift"
               >
                 <div className="w-14 h-14 bg-slate-50 text-indigo-950 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-950 group-hover:text-white transition-colors duration-500">
                   <Icon size={24} />
@@ -69,11 +69,11 @@ export default function ServicesSection() {
         </div>
 
         {/* Vision & Mission Section */}
-        <div className="mt-32 grid lg:grid-cols-2 gap-20 items-center">
+        <div className="mt-24 md:mt-32 grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
           {/* Left Column - Text */}
           <div>
             <Badge variant="primary">Visi & Misi</Badge>
-            <h2 className="text-4xl font-black text-slate-900 mt-6 mb-8 tracking-tight">
+            <h2 className="section-title mt-4 md:mt-6 mb-6 md:mb-8">
               Menjadi Pilar Utama yang Profesional & Modern
             </h2>
             <div className="space-y-6">

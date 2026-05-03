@@ -9,10 +9,10 @@ export default function NewsHighlight() {
   const latestNews = newsData.slice(0, 3);
 
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="container mx-auto px-6">
+    <section className="page-section bg-slate-50">
+      <div className="container mx-auto section-spacing">
         {/* Header */}
-        <div className="flex items-end justify-between mb-16 flex-col md:flex-row gap-6">
+        <div className="flex-between flex-col md:flex-row gap-6 mb-12 md:mb-16">
           <div>
             <Badge variant="primary">Update Terkini</Badge>
             <h2 className="text-4xl font-black text-slate-900 mt-4 tracking-tight">
@@ -27,7 +27,7 @@ export default function NewsHighlight() {
         </div>
 
         {/* News Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="news-grid">
           {latestNews.map((item) => (
             <NewsCard key={item.id} news={item} layout="grid" />
           ))}

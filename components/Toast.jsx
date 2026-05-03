@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
 
 const ToastContext = {
@@ -41,10 +41,17 @@ export const useToast = () => {
 export const ToastContainer = () => {
   const [toasts, setToasts] = useState([]);
 
-  // Subscribe to toast updates
-  if (!ToastContext.listeners.includes(setToasts)) {
-    ToastContext.listeners.push(setToasts);
-  }
+  useEffect(() => {
+    if (!ToastContext.listeners.includes(setToasts)) {
+      ToastContext.listeners.push(setToasts);
+    }
+
+    return () => {
+      ToastContext.listeners = ToastContext.listeners.filter(
+        (listener) => listener !== setToasts
+      );
+    };
+  }, []);
 
   const removeToast = (id) => {
     ToastContext.toasts = ToastContext.toasts.filter((t) => t.id !== id);
@@ -80,11 +87,13 @@ export const ToastContainer = () => {
   };
 
   return (
-    <div className="fixed top-6 right-6 z-[1000] space-y-3 max-w-sm pointer-events-none">
+    <div className="fixed top-4 right-4 left-4 md:left-auto md:top-6 md:right-6 z-[1000] space-y-3 w-[calc(100%-2rem)] md:w-auto max-w-sm pointer-events-none" role="region" aria-label="Notifikasi">
       {toasts.map((toast) => (
         <div
           key={toast.id}
           className={`${getStyles(toast.type)} flex items-start gap-3 pointer-events-auto`}
+          role="status"
+          aria-live="polite"
         >
           <div className="mt-0.5 flex-shrink-0">{getIcon(toast.type)}</div>
           <p className="flex-1 font-medium text-sm leading-relaxed">
@@ -92,7 +101,8 @@ export const ToastContainer = () => {
           </p>
           <button
             onClick={() => removeToast(toast.id)}
-            className="flex-shrink-0 text-current opacity-50 hover:opacity-100 transition-opacity"
+            className="flex-shrink-0 text-current opacity-50 hover:opacity-100 transition-opacity focus-ring-sm rounded"
+            aria-label="Tutup notifikasi"
           >
             <X size={18} />
           </button>
