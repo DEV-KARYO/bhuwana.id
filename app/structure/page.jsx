@@ -4,9 +4,7 @@ import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  Mail,
   ExternalLink,
-  Phone,
   ShieldCheck,
   ChevronRight,
   Users,
@@ -15,6 +13,11 @@ import {
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+
+export const metadata = {
+  title: 'Struktur Pimpinan - Batalyon Zeni Tempur 9 / Lang Lang Bhuwana',
+  description: 'Struktur organisasi dan daftar pimpinan Batalyon Zeni Tempur 9 / Lang Lang Bhuwana, mulai dari komandan batalyon hingga pejabat-pejabat kunci.',
+};
 import Badge from '@/components/Badge';
 import { leadershipData } from '@/lib/content';
 
@@ -110,10 +113,10 @@ export default function StructurePage() {
             <div className="max-w-2xl">
               <Badge variant="primary">Kepemimpinan Satuan</Badge>
               <h1 className="section-title mt-4 mb-5">
-                Pimpinan Batalion
+                Pimpinan Batalyon
               </h1>
               <p className="section-subtitle max-w-xl">
-                Mengenal struktur pimpinan Lang Lang Bhuwana, mulai dari komandan batalion hingga jajaran komandan kompi yang menggerakkan operasi harian satuan.
+                Mengenal struktur pimpinan Batalyon Zeni Tempur 9 / Lang Lang Bhuwana, mulai dari komandan batalyon hingga jajaran komandan kompi yang menggerakkan operasi harian satuan.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -151,7 +154,7 @@ export default function StructurePage() {
                   <div className="flex items-center justify-between gap-4 mb-6">
                     <Badge variant="success">Komandan Saat Ini</Badge>
                     <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-slate-400">
-                      <ShieldCheck size={14} /> Danyonzipur 9
+                      <ShieldCheck size={14} /> Danyonzipur 9 / LLB
                     </div>
                   </div>
 
@@ -185,22 +188,12 @@ export default function StructurePage() {
                   </div>
 
                   <div className="flex items-center justify-center gap-3 mt-6">
-                    {filteredCommander.email && (
-                      <a
-                        href={`mailto:${filteredCommander.email}`}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-950 text-white font-bold text-sm hover:bg-indigo-900 transition-colors"
-                      >
-                        <Mail size={16} /> Email
-                      </a>
-                    )}
-                    {filteredCommander.phone && (
-                      <a
-                        href={`tel:${filteredCommander.phone}`}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-slate-700 border border-slate-200 font-bold text-sm hover:bg-slate-50 transition-colors"
-                      >
-                        <Phone size={16} /> Telepon
-                      </a>
-                    )}
+                    <Link
+                      href={`/structure/${filteredCommander.id}`}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-indigo-950 text-white font-bold text-sm hover:bg-indigo-900 transition-colors"
+                    >
+                      <ExternalLink size={16} /> Hubungi
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -311,7 +304,7 @@ export default function StructurePage() {
                     <ShieldCheck size={18} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900">Komandan Batalion</h4>
+                    <h4 className="font-bold text-slate-900">Komandan Batalyon</h4>
                     <p className="text-slate-500 text-sm mt-1">Pemimpin utama yang mengarahkan kebijakan, kesiapan, dan operasi satuan.</p>
                   </div>
                 </div>
@@ -410,13 +403,13 @@ export default function StructurePage() {
                 </h2>
               </div>
               <p className="text-slate-500 max-w-2xl">
-                Garis waktu berikut memperlihatkan kesinambungan komando dan transisi kepemimpinan pada level batalion.
+                Garis waktu berikut memperlihatkan kesinambungan komando dan transisi kepemimpinan pada level batalyon.
               </p>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-6">
               {filteredPreviousLeadership
-                .filter((leader) => leader.position.includes('Komandan Batalion'))
+                .filter((leader) => leader.position.includes('Komandan Batalyon'))
                 .map((leader, index) => (
                   <Link key={leader.id} href={`/structure/${leader.id}`} className="card-elevated p-6 md:p-8 relative overflow-hidden block hover:border-indigo-300 transition-all">
                     <div className="absolute right-0 top-0 h-full w-1 bg-gradient-to-b from-indigo-600 via-indigo-300 to-transparent"></div>
@@ -500,29 +493,15 @@ export default function StructurePage() {
                 {/* Divider */}
                 <div className="border-t border-slate-100"></div>
 
-                {/* Contact Links */}
+                {/* Action Links */}
                 <div className="flex justify-center gap-3 mt-6">
-                  {leader.email ? (
-                    <a
-                      href={`mailto:${leader.email}`}
-                      className="w-10 h-10 bg-slate-50 rounded-xl flex-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
-                      title="Email"
-                    >
-                      <Mail size={18} />
-                    </a>
-                  ) : null}
-                  {leader.phone ? (
-                    <a
-                      href={`tel:${leader.phone}`}
-                      className="w-10 h-10 bg-slate-50 rounded-xl flex-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
-                      title="Telepon"
-                    >
-                      <Phone size={18} />
-                    </a>
-                  ) : null}
-                  <div className="w-10 h-10 bg-slate-50 rounded-xl flex-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300" title="Informasi Lanjut">
+                  <a
+                    href={`/structure/${leader.id}`}
+                    className="w-10 h-10 bg-slate-50 rounded-xl flex-center text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
+                    title="Lihat Profil Lengkap"
+                  >
                     <ExternalLink size={18} />
-                  </div>
+                  </a>
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between gap-3">
@@ -562,14 +541,14 @@ export default function StructurePage() {
                 Kepemimpinan Bertingkat
               </h2>
               <p className="text-slate-500 leading-relaxed mb-8">
-                Batalion Lang Lang Bhuwana memiliki struktur kepemimpinan yang
+                Batalyon Zeni Tempur 9 / Lang Lang Bhuwana memiliki struktur kepemimpinan yang
                 jelas dan profesional, dengan divisi tugas yang efisien untuk
                 memastikan operasional yang optimal.
               </p>
               <div className="list-spaced">
                 {[
                   {
-                    title: 'Komandan Batalion',
+                    title: 'Komandan Batalyon',
                     desc: 'Pemimpin utama bertanggung jawab atas seluruh operasional',
                   },
                   {
@@ -608,7 +587,7 @@ export default function StructurePage() {
                 {/* Top Level */}
                 <div className="flex justify-center">
                   <div className="bg-indigo-950 text-white px-4 md:px-6 py-3 rounded-xl font-bold text-xs md:text-sm whitespace-nowrap">
-                    Komandan Batalion
+                    Komandan Batalyon
                   </div>
                 </div>
 

@@ -42,9 +42,9 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
                 {news.excerpt}
               </p>
             </div>
-            <button className="text-indigo-950 font-bold text-sm flex items-center group-hover:gap-3 transition-all">
+            <span className="text-indigo-950 font-bold text-sm flex items-center group-hover:gap-3 transition-all">
               Selengkapnya <ArrowRight size={16} className="ml-2" />
-            </button>
+            </span>
           </div>
         </div>
       </Link>
@@ -81,9 +81,9 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
             {news.excerpt}
           </p>
           <div className={`${compact ? 'mt-4 pt-4' : 'mt-6 pt-6'} border-t border-slate-100`}> 
-            <button className="text-indigo-950 font-bold text-sm flex items-center group-hover:gap-2 transition-all">
+            <span className="text-indigo-950 font-bold text-sm flex items-center group-hover:gap-2 transition-all">
               Baca Selengkapnya <ArrowRight size={16} className="ml-2" />
-            </button>
+            </span>
           </div>
         </div>
       </div>

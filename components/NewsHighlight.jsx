@@ -14,14 +14,14 @@ export default function NewsHighlight() {
         {/* Header - compact */}
         <div className="flex-between flex-col sm:flex-row gap-4 mb-6 reveal-up">
           <div>
-            <Badge variant="primary">Update Terkini</Badge>
+            <Badge variant="primary">Jejak Kegiatan</Badge>
             <h2 className="text-2xl md:text-3xl editorial-title mt-3">
-              Lensa Lang Lang Bhuwana
+              Kegiatan Terkini Satuan
             </h2>
           </div>
           <Link href="/news">
             <Button variant="ghost">
-              Lihat Semua Warta <ArrowRight size={16} className="ml-2" />
+              Lihat Semua Berita <ArrowRight size={16} className="ml-2" />
             </Button>
           </Link>
         </div>

@@ -1,54 +1,56 @@
-import Image from 'next/image';
-import { Heart, Trophy, ShieldCheck } from 'lucide-react';
+import { CalendarDays, ShieldCheck, BadgeCheck } from 'lucide-react';
 import Badge from './Badge';
+import { leadershipData } from '@/lib/content';
 
-const services = [
+const profileHighlights = [
   {
-    icon: Heart,
-    title: 'Bakti Sosial',
+    icon: CalendarDays,
+    title: 'Dibentuk 1962',
     description:
-      'Komitmen kami untuk selalu hadir di tengah masyarakat melalui berbagai program kemanusiaan.',
-  },
-  {
-    icon: Trophy,
-    title: 'Prestasi Institusi',
-    description:
-      'Menjaga kehormatan melalui pencapaian tertinggi dalam setiap penugasan dan kompetisi.',
+      'Batalyon Zeni Tempur 9 / Lang Lang Bhuwana berdiri pada 1 Maret 1962.',
   },
   {
     icon: ShieldCheck,
-    title: 'Integritas Formal',
+    title: 'Di Bawah Kostrad',
     description:
-      'Menjalankan fungsi institusi dengan standar etika dan transparansi yang tidak tertandingi.',
+      'Satuan berada di bawah Divisi Infanteri 1 / Kostrad dengan tugas bantuan tempur zeni.',
+  },
+  {
+    icon: BadgeCheck,
+    title: 'Komandan Aktif',
+    description:
+      'Dipimpin oleh Letkol Czi Martin Novence, S.H., M.IP. sejak Juli 2025.',
   },
 ];
 
-const values = [
+const timelineEvents = [
   {
-    title: 'Kehormatan adalah Segala',
-    description:
-      'Menjaga nama baik Lang Lang Bhuwana dalam setiap langkah pelayanan publik.',
+    year: '1962',
+    title: 'Pembentukan Satuan',
+    description: 'Batalyon Zeni Tempur 9 / Lang Lang Bhuwana dibentuk pada 1 Maret 1962.',
   },
   {
-    title: 'Profesionalisme Tanpa Batas',
-    description:
-      'Peningkatan kompetensi personel secara berkelanjutan melalui pelatihan modern.',
+    year: '1987',
+    title: 'Reorganisasi Nama',
+    description: 'Satuan menetapkan penamaan Batalyon Zeni Tempur 9 Divisi Infanteri 1 Kostrad.',
   },
   {
-    title: 'Sinergi Nasional',
-    description:
-      'Membangun kolaborasi harmonis dengan instansi pemerintah dan elemen masyarakat.',
+    year: '2025',
+    title: 'Kepemimpinan Aktif',
+    description: 'Letkol Czi Martin Novence, S.H., M.IP. menjabat sebagai komandan aktif.',
   },
 ];
 
 export default function ServicesSection() {
+  const currentCommander = leadershipData.find((leader) => leader.status === 'Current' && leader.position.includes('Komandan Batalyon'));
+
   return (
     <section id="services" className="page-section bg-white relative">
       <div className="container mx-auto section-spacing">
-        {/* Service Cards - compact layout */}
+        {/* Profile Highlights - compact layout */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 relative z-20 reveal-up">
-          {services.map((service, i) => {
-            const Icon = service.icon;
+          {profileHighlights.map((highlight, i) => {
+            const Icon = highlight.icon;
             return (
               <div
                 key={i}
@@ -58,34 +60,42 @@ export default function ServicesSection() {
                   <Icon size={20} />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
-                  {service.title}
+                  {highlight.title}
                 </h3>
                 <p className="text-slate-500 text-sm leading-snug">
-                  {service.description}
+                  {highlight.description}
                 </p>
               </div>
             );
           })}
         </div>
 
-        {/* Vision & Mission Section - compact spacing */}
+        {/* Short Profile Section - compact spacing */}
         <div className="mt-12 md:mt-16 grid lg:grid-cols-2 gap-8 md:gap-12 items-start reveal-up-delayed">
           {/* Left Column - Text */}
           <div>
-            <Badge variant="primary">Visi & Misi</Badge>
+            <Badge variant="primary">Profil Singkat</Badge>
             <h2 className="section-title mt-4 md:mt-6 mb-6 md:mb-8">
-              Menjadi Pilar Utama yang Profesional & Modern
+              Sejarah Singkat dan Komandan Aktif
             </h2>
-            <div className="space-y-6">
-              {values.map((val, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="mt-1 w-5 h-5 rounded-full bg-indigo-50 border border-indigo-200 flex items-center justify-center shrink-0">
-                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-600"></div>
+            <p className="text-slate-500 leading-relaxed mb-8 max-w-xl">
+              Batalyon Zeni Tempur 9 / Lang Lang Bhuwana dibentuk pada 1 Maret 1962 dan berada di bawah Divisi Infanteri 1 / Kostrad. Satuan ini terus menjalankan tugas bantuan tempur zeni dengan dukungan kepemimpinan aktif yang menjaga kesinambungan organisasi.
+            </p>
+            <div className="space-y-4">
+              {timelineEvents.map((event, i) => (
+                <div key={i} className="flex gap-4 rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+                  <div className="min-w-16 rounded-xl bg-indigo-950 px-3 py-2 text-center text-white">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.25em] text-indigo-200">
+                      Tahun
+                    </div>
+                    <div className="text-lg font-black leading-none mt-1">
+                      {event.year}
+                    </div>
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900">{val.title}</h4>
-                    <p className="text-slate-500 text-sm mt-1">
-                      {val.description}
+                    <h4 className="font-bold text-slate-900">{event.title}</h4>
+                    <p className="text-slate-500 text-sm mt-1 leading-relaxed">
+                      {event.description}
                     </p>
                   </div>
                 </div>
@@ -93,21 +103,36 @@ export default function ServicesSection() {
             </div>
           </div>
 
-          {/* Right Column - Image (smaller) */}
+          {/* Right Column - Commander Profile */}
           <div className="relative">
-            <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg relative">
-              <Image
-                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800"
-                alt="Formal Presentation"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-            <div className="absolute -bottom-6 -right-6 bg-indigo-950 p-4 rounded-2xl text-white shadow-lg hidden md:flex flex-col items-center border-4 border-white">
-              <div className="text-2xl font-extrabold mb-0">A+</div>
-              <div className="text-xs font-bold text-indigo-200 uppercase tracking-widest mt-1">
-                Akreditasi
+            <div className="card-elevated p-6 md:p-8 lg:p-10 overflow-hidden relative">
+              <div aria-hidden className="absolute -top-20 -right-16 w-48 h-48 rounded-full bg-indigo-50 blur-3xl opacity-80" />
+              <div className="relative z-10">
+                <Badge variant="success">Komandan Aktif</Badge>
+                <h3 className="text-2xl md:text-3xl font-black text-slate-900 mt-4">
+                  {currentCommander?.name || 'Letkol Czi Martin Novence, S.H., M.IP.'}
+                </h3>
+                <p className="text-indigo-700 font-bold uppercase tracking-[0.2em] text-xs mt-2">
+                  {currentCommander?.position || 'Komandan Batalyon (Danyonzipur 9)'}
+                </p>
+
+                <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 mb-1">Sejak</p>
+                    <p className="font-bold text-slate-900">Juli 2025</p>
+                  </div>
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400 mb-1">Status</p>
+                    <p className="font-bold text-slate-900">Aktif</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 rounded-3xl bg-gradient-to-br from-indigo-950 to-slate-900 text-white p-5">
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-indigo-200 mb-2">Ringkasan Sejarah</p>
+                  <p className="text-sm leading-relaxed text-slate-200">
+                    Dari pembentukan pada 1962 hingga kepemimpinan aktif saat ini, satuan ini tetap menjaga profesionalisme, kesiapsiagaan, dan kesinambungan tradisi pengabdian.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

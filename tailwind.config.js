@@ -94,6 +94,24 @@ module.exports = {
             opacity: '1',
           },
         },
+        'fade-out': {
+          'from': {
+            opacity: '1',
+          },
+          'to': {
+            opacity: '0',
+          },
+        },
+        'slide-out-right': {
+          'from': {
+            opacity: '1',
+            transform: 'translateX(0)',
+          },
+          'to': {
+            opacity: '0',
+            transform: 'translateX(100%)',
+          },
+        },
         'bounce-soft': {
           '0%, 100%': {
             transform: 'translateY(0)',
@@ -153,8 +171,10 @@ module.exports = {
         'slide-in-up': 'slide-in-up 0.4s ease-out',
         'slide-down': 'slide-down 0.3s ease-out',
         'slide-up': 'slide-up 0.3s ease-out',
+        'slide-out-right': 'slide-out-right 0.3s ease-in',
         'scale-in': 'scale-in 0.3s ease-out',
         'fade-in': 'fade-in 0.4s ease-out',
+        'fade-out': 'fade-out 0.3s ease-in',
         'bounce-soft': 'bounce-soft 2s ease-in-out infinite',
         'pulse-ring': 'pulse-ring 1.5s ease-out infinite',
         'flip': 'flip 0.6s ease-out',
@@ -228,6 +248,22 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          /* IE and Edge */
+          '-ms-overflow-style': 'none',
+          /* Firefox */
+          'scrollbar-width': 'none',
+          /* Safari and Chrome */
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+        },
+      });
+    },
+  ],
   plugins: [
     require('@tailwindcss/typography'),
     // Custom utilities

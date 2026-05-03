@@ -4,7 +4,7 @@ import LegalPageTemplate from '@/components/LegalPageTemplate';
 
 export const metadata = {
   title: 'Kebijakan Privasi - Lang Lang Bhuwana',
-  description: 'Kebijakan privasi dan perlindungan data pribadi di portal Batalion Lang Lang Bhuwana.',
+  description: 'Kebijakan privasi dan perlindungan data pribadi di portal Batalyon Zeni Tempur 9 / Lang Lang Bhuwana.',
 };
 
 export default function PrivacyPage() {
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Pengantar</h2>
               <p className="text-slate-700 leading-relaxed">
-                Portal resmi Batalion Lang Lang Bhuwana ("kami", "Portal") berkomitmen untuk melindungi privasi dan hak-hak data pribadi setiap pengunjung. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.
+                Portal resmi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana ("kami", "Portal") berkomitmen untuk melindungi privasi dan hak-hak data pribadi setiap pengunjung. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.
               </p>
             </section>
 
@@ -115,7 +115,7 @@ export default function PrivacyPage() {
                 Jika Anda memiliki pertanyaan atau kekhawatiran tentang kebijakan privasi kami, silakan hubungi kami di:
               </p>
               <div className="mt-4 p-4 bg-slate-50 rounded-lg">
-                <p className="font-semibold text-slate-900">Batalion Lang Lang Bhuwana</p>
+                <p className="font-semibold text-slate-900">Batalyon Zeni Tempur 9 / Lang Lang Bhuwana</p>
                 <p className="text-slate-700">Ksatrian Lang Lang Bhuwana, Jakarta, Indonesia</p>
                 <p className="text-slate-700">Email: hubmas@langlangbhuwana.go.id</p>
                 <p className="text-slate-700">Telepon: +62 21 1234 5678</p>

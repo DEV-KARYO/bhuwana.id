@@ -2,25 +2,145 @@
   {
     "id": 1,
     "title": "Upacara Bendera Hari Kemerdekaan",
-    "description": "Perayaan Hari Kemerdekaan RI dengan seluruh prajurit Batalion",
+    "description": "Perayaan Hari Kemerdekaan RI dengan seluruh prajurit Batalyon dalam formasi rapi",
     "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
-    "date": "17 Agustus 2023",
+    "date": "17 Agustus 2024",
     "category": "Upacara"
   },
   {
     "id": 2,
     "title": "Latihan Bersama Satuan Regional",
-    "description": "Simulasi operasi gabungan dengan satuan regional lainnya",
+    "description": "Simulasi operasi gabungan dengan satuan regional lainnya dalam medan latihan",
     "image": "https://images.unsplash.com/photo-1536776871854-2e46e8b2c7fa?q=80&w=800",
-    "date": "15 Juli 2023",
+    "date": "15 Juli 2024",
     "category": "Latihan"
   },
   {
     "id": 3,
     "title": "Pelatihan Kepemimpinan Tingkat Lanjut",
-    "description": "Program pengembangan kepemimpinan untuk para perwira",
+    "description": "Program pengembangan kepemimpinan untuk para perwira muda Batalyon",
     "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
-    "date": "10 Juli 2023",
+    "date": "10 Juli 2024",
+    "category": "Pelatihan"
+  },
+  {
+    "id": 4,
+    "title": "Upacara Pengukuhan Perwira Baru",
+    "description": "Pengukuhan jabatan perwira baru dalam struktur organisasi Batalyon",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "22 Juni 2024",
+    "category": "Upacara"
+  },
+  {
+    "id": 5,
+    "title": "Latihan Taktis Tim Khusus",
+    "description": "Latihan taktis intensif untuk unit-unit khusus dengan standar operasional internasional",
+    "image": "https://images.unsplash.com/photo-1536776871854-2e46e8b2c7fa?q=80&w=800",
+    "date": "08 Juni 2024",
+    "category": "Latihan"
+  },
+  {
+    "id": 6,
+    "title": "Program Pengembangan SDM Terukur",
+    "description": "Sesi pelatihan pengembangan sumber daya manusia dengan metode pembelajaran modern",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "01 Juni 2024",
+    "category": "Pelatihan"
+  },
+  {
+    "id": 7,
+    "title": "Upacara Peringatan Hari Bhayangkara",
+    "description": "Peringatan 78 tahun berdirinya Bhayangkara dengan khidmat dan penuh dedikasi",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "20 Mei 2024",
+    "category": "Upacara"
+  },
+  {
+    "id": 8,
+    "title": "Latihan Ketrampilan Operasional Dasar",
+    "description": "Program latihan dasar untuk meningkatkan ketrampilan operasional seluruh personel",
+    "image": "https://images.unsplash.com/photo-1536776871854-2e46e8b2c7fa?q=80&w=800",
+    "date": "12 Mei 2024",
+    "category": "Latihan"
+  },
+  {
+    "id": 9,
+    "title": "Workshop Manajemen Strategis",
+    "description": "Workshop khusus tentang manajemen strategis dan kepemimpinan organisasi modern",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "28 April 2024",
+    "category": "Pelatihan"
+  },
+  {
+    "id": 10,
+    "title": "Upacara Pelepasan Personel",
+    "description": "Pelepasan resmi bagi personel yang telah menyelesaikan masa tugas dengan penuh dedikasi",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "15 April 2024",
+    "category": "Upacara"
+  },
+  {
+    "id": 11,
+    "title": "Latihan Logistik dan Supply Chain",
+    "description": "Latihan komprehensif sistem logistik dan manajemen rantai pasokan Batalyon",
+    "image": "https://images.unsplash.com/photo-1536776871854-2e46e8b2c7fa?q=80&w=800",
+    "date": "03 April 2024",
+    "category": "Latihan"
+  },
+  {
+    "id": 12,
+    "title": "Pelatihan Teknologi Informasi Terkini",
+    "description": "Pelatihan tentang penggunaan teknologi informasi dalam operasional organisasi",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "18 Maret 2024",
+    "category": "Pelatihan"
+  },
+  {
+    "id": 13,
+    "title": "Upacara Penegakan Disiplin",
+    "description": "Upacara resmi pengenaan hukuman disiplin dan apresiasi bagi yang berprestasi",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "25 Februari 2024",
+    "category": "Upacara"
+  },
+  {
+    "id": 14,
+    "title": "Latihan Komunikasi dan Koordinasi",
+    "description": "Latihan intensif untuk meningkatkan komunikasi dan koordinasi antar unit",
+    "image": "https://images.unsplash.com/photo-1536776871854-2e46e8b2c7fa?q=80&w=800",
+    "date": "10 Februari 2024",
+    "category": "Latihan"
+  },
+  {
+    "id": 15,
+    "title": "Program Pengembangan Karir Jangka Panjang",
+    "description": "Sesi pembimbing untuk perencanaan pengembangan karir personel jangka panjang",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "28 Januari 2024",
+    "category": "Pelatihan"
+  },
+  {
+    "id": 16,
+    "title": "Upacara Kenaikan Pangkat dan Jabatan",
+    "description": "Upacara pengukuhan kenaikan pangkat dan jabatan bagi personel yang layak",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "12 Januari 2024",
+    "category": "Upacara"
+  },
+  {
+    "id": 17,
+    "title": "Latihan Pencegahan Kecelakaan Kerja",
+    "description": "Program latihan keselamatan kerja dan pencegahan kecelakaan operasional",
+    "image": "https://images.unsplash.com/photo-1536776871854-2e46e8b2c7fa?q=80&w=800",
+    "date": "05 Januari 2024",
+    "category": "Latihan"
+  },
+  {
+    "id": 18,
+    "title": "Workshop Etika dan Integritas Organisasi",
+    "description": "Workshop mendalam tentang etika profesional dan integritas dalam bertugas",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800",
+    "date": "20 Desember 2023",
     "category": "Pelatihan"
   }
 ]

@@ -23,8 +23,19 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuClosing, setIsMenuClosing] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
+
+  const handleCloseMenu = () => {
+    setIsMenuClosing(true);
+    // Wait for animation to complete before removing from DOM
+    const timer = setTimeout(() => {
+      setIsMenuOpen(false);
+      setIsMenuClosing(false);
+    }, 300); // Matches fade-out and slide-out-right duration
+    return () => clearTimeout(timer);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,18 +53,18 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen) {
+    if (isMenuOpen && !isMenuClosing) {
       document.body.style.overflow = 'hidden';
       return;
     }
 
     document.body.style.overflow = '';
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isMenuClosing]);
 
   useEffect(() => {
     const handleEscape = (event) => {
       if (event.key === 'Escape') {
-        setIsMenuOpen(false);
+        handleCloseMenu();
         setIsSearchOpen(false);
       }
     };
@@ -63,7 +74,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    setIsMenuOpen(false);
+    handleCloseMenu();
     setIsSearchOpen(false);
   }, [pathname]);
 
@@ -96,18 +107,18 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col min-w-0">
               <span
-                className={`text-sm sm:text-base md:text-lg font-black tracking-tight leading-none truncate max-w-[9.5rem] sm:max-w-none ${
+                className={`text-sm sm:text-base md:text-lg font-black tracking-tight leading-none truncate max-w-[12rem] sm:max-w-none ${
                   isAtTop ? 'text-white' : 'text-slate-900'
                 }`}
               >
-                LANG LANG BHUWANA
+                BATALYON ZENI TEMPUR 9
               </span>
               <span
                 className={`hidden sm:block text-xs font-bold tracking-[0.3em] leading-none mt-1 ${
                   isAtTop ? 'text-indigo-200' : 'text-indigo-600'
                 }`}
               >
-                PORTAL INFORMASI RESMI
+                LANG LANG BHUWANA
               </span>
             </div>
           </Link>
@@ -163,9 +174,12 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               className="lg:hidden p-2.5 rounded-xl bg-indigo-950 text-white focus-ring-sm"
-              onClick={() => setIsMenuOpen(true)}
+              onClick={() => {
+                setIsMenuClosing(false);
+                setIsMenuOpen(true);
+              }}
               aria-label="Buka menu"
-              aria-expanded={isMenuOpen}
+              aria-expanded={isMenuOpen && !isMenuClosing}
               aria-controls="mobile-navigation"
             >
               <Menu size={20} />
@@ -191,13 +205,31 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-indigo-950/80 pt-24 animate-fade-in" role="dialog" aria-modal="true" aria-label="Navigasi mobile" onClick={() => setIsMenuOpen(false)}>
-          <div id="mobile-navigation" className="container mx-auto section-spacing animate-slide-in-right" onClick={(e) => e.stopPropagation()}>
+      {(isMenuOpen || isMenuClosing) && (
+        <div 
+          className={`fixed inset-0 z-40 pt-24 backdrop-blur-sm ${
+            isMenuClosing
+              ? 'bg-indigo-950/0 animate-fade-out'
+              : 'bg-indigo-950/80 animate-fade-in'
+          }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigasi mobile"
+          onClick={() => handleCloseMenu()}
+        >
+          <div 
+            id="mobile-navigation"
+            className={`container mx-auto section-spacing ${
+              isMenuClosing
+                ? 'animate-slide-out-right'
+                : 'animate-slide-in-right'
+            }`}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="absolute top-6 right-6">
               <button
-                onClick={() => setIsMenuOpen(false)}
-                className="p-2.5 bg-white/10 rounded-xl text-white focus-ring-sm"
+                onClick={() => handleCloseMenu()}
+                className="p-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-white focus-ring-sm transition-colors"
                 aria-label="Tutup menu"
               >
                 <X size={20} />
@@ -205,15 +237,18 @@ export default function Navbar() {
             </div>
 
             <div className="space-y-8 mt-12 stagger-children">
-              {navItems.map((item) => (
+              {navItems.map((item, index) => (
                 <Link
                   key={item.id}
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => handleCloseMenu()}
                   aria-current={pathname === item.href ? 'page' : undefined}
-                  className={`block text-2xl font-black transition-colors animate-fade-in ${
+                  className={`block text-2xl font-black transition-colors ${
                     pathname === item.href ? 'text-indigo-200' : 'text-white hover:text-indigo-100'
                   }`}
+                  style={{
+                    animation: !isMenuClosing ? `fade-in 0.4s ease-out forwards ${0.1 * (index + 1)}s` : 'none',
+                  }}
                 >
                   {item.label}
                 </Link>

@@ -11,6 +11,8 @@
     "build": "next build",
     "build:public": "next build",
     "build:admin": "npm --prefix admin-dashboard run build",
+    "smoke:quick": "node scripts/smoke.mjs",
+    "smoke": "npm run smoke:quick && npm run build:public && npm run build:admin",
     "start": "next start",
     "start:public": "next start",
     "start:admin": "npm --prefix admin-dashboard run start",

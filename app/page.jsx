@@ -5,9 +5,9 @@ import ServicesSection from '@/components/ServicesSection';
 import NewsHighlight from '@/components/NewsHighlight';
 
 export const metadata = {
-  title: 'Beranda - Lang Lang Bhuwana Portal',
+  title: 'Beranda - Batalyon Zeni Tempur 9 / Lang Lang Bhuwana',
   description:
-    'Halaman utama portal informasi Batalion Lang Lang Bhuwana. Akses berita, struktur pimpinan, dan galeri dokumentasi resmi.',
+    'Halaman utama portal informasi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana. Akses berita, struktur pimpinan, dan galeri dokumentasi resmi.',
 };
 
 export default function Home() {

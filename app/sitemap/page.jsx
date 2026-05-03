@@ -5,7 +5,7 @@ import { MapPin, ChevronRight } from 'lucide-react';
 
 export const metadata = {
   title: 'Sitemap - Lang Lang Bhuwana',
-  description: 'Peta situs portal Batalion Lang Lang Bhuwana. Navigasi lengkap untuk mengakses semua halaman dan fitur.',
+  description: 'Peta situs portal Batalyon Zeni Tempur 9 / Lang Lang Bhuwana. Navigasi lengkap untuk mengakses semua halaman dan fitur.',
 };
 
 export default function SitemapPage() {
@@ -61,7 +61,7 @@ export default function SitemapPage() {
               Peta Situs
             </h1>
             <p className="text-lg md:text-xl text-indigo-100 max-w-2xl">
-              Navigasi lengkap semua halaman dan fitur yang tersedia di portal Batalion Lang Lang Bhuwana
+              Navigasi lengkap semua halaman dan fitur yang tersedia di portal Batalyon Zeni Tempur 9 / Lang Lang Bhuwana
             </p>
           </div>
         </div>

@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import NewsCard from '@/components/NewsCard';
 import Badge from '@/components/Badge';
+import Breadcrumb from '@/components/Breadcrumb';
 import { copyToClipboard, formatNewsDate, getShareUrl } from '@/lib/utils';
 
 export default function NewsDetailClient({ news, relatedNews }) {
@@ -29,6 +30,13 @@ export default function NewsDetailClient({ news, relatedNews }) {
   return (
     <div className="page-content">
       <Navbar />
+
+      <Breadcrumb
+        items={[
+          { label: 'Warta', href: '/news' },
+          { label: news.title },
+        ]}
+      />
 
       <div className="relative h-[50vh] md:h-[60vh] overflow-hidden">
         <Image

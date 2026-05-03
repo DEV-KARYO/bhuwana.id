@@ -808,6 +808,11 @@ body {
 
 /* ========== PRINT STYLES ========== */
 @media print {
+  @page {
+    size: A4 landscape;
+    margin: 10mm;
+  }
+
   /* Hide interactive elements */
   nav, footer, .no-print, button, .navbar, .search-modal {
     @apply hidden;
@@ -838,5 +843,41 @@ body {
   /* Remove colors and shadows */
   * {
     @apply shadow-none;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .magazine-print-shell {
+    @apply bg-white text-slate-900;
+  }
+
+  .magazine-print-cover,
+  .magazine-print-summary,
+  .magazine-print-issue {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .magazine-print-cover {
+    @apply border border-slate-300 rounded-3xl bg-white;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .magazine-print-issue {
+    @apply border border-slate-300 bg-white text-slate-900;
+  }
+
+  .magazine-print-gradient,
+  .magazine-print-dark {
+    background: white !important;
+    color: #0f172a !important;
+  }
+
+  .magazine-print-gradient *,
+  .magazine-print-dark * {
+    color: #0f172a !important;
   }
 }

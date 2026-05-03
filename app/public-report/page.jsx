@@ -5,7 +5,7 @@ import { FileText, Download, Calendar, BarChart3 } from 'lucide-react';
 
 export const metadata = {
   title: 'Laporan Publik - Lang Lang Bhuwana',
-  description: 'Laporan kinerja, keuangan, dan aktivitas institusi Batalion Lang Lang Bhuwana yang diumumkan kepada publik.',
+  description: 'Laporan kinerja, keuangan, dan aktivitas institusi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana yang diumumkan kepada publik.',
 };
 
 export default function PublicReportPage() {
@@ -14,7 +14,7 @@ export default function PublicReportPage() {
       title: 'Laporan Tahunan 2025',
       type: 'Laporan Tahunan',
       date: 'Desember 2025',
-      description: 'Ringkasan komprehensif aktivitas operasional, pencapaian strategis, dan tantangan yang dihadapi Batalion pada tahun 2025.',
+      description: 'Ringkasan komprehensif aktivitas operasional, pencapaian strategis, dan tantangan yang dihadapi Batalyon pada tahun 2025.',
       icon: FileText,
     },
     {
@@ -53,7 +53,7 @@ export default function PublicReportPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Komitmen pada Akuntabilitas</h2>
               <p className="text-slate-700 leading-relaxed">
-                Batalion Lang Lang Bhuwana secara rutin menyampaikan laporan kinerja, keuangan, dan aktivitas kepada publik sebagai bentuk akuntabilitas dan transparansi. Laporan-laporan ini mencerminkan dedikasi kami pada keunggulan operasional, pengelolaan keuangan yang bertanggung jawab, dan pelayanan kepada masyarakat.
+                Batalyon Zeni Tempur 9 / Lang Lang Bhuwana secara rutin menyampaikan laporan kinerja, keuangan, dan aktivitas kepada publik sebagai bentuk akuntabilitas dan transparansi. Laporan-laporan ini mencerminkan dedikasi kami pada keunggulan operasional, pengelolaan keuangan yang bertanggung jawab, dan pelayanan kepada masyarakat.
               </p>
             </section>
 
@@ -189,7 +189,7 @@ export default function PublicReportPage() {
                     <FileText className="text-indigo-600 flex-shrink-0 mt-1" size={20} />
                     <div>
                       <p className="font-semibold text-slate-900">Perpustakaan Institusi</p>
-                      <p className="text-slate-700 text-sm">Koleksi lengkap laporan fisik tersimpan di perpustakaan batallion</p>
+                      <p className="text-slate-700 text-sm">Koleksi lengkap laporan fisik tersimpan di perpustakaan batalyon</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
@@ -213,7 +213,7 @@ export default function PublicReportPage() {
                 <ul className="space-y-1 text-slate-700 text-sm">
                   <li>Email: informasi.publik@langlangbhuwana.go.id</li>
                   <li>Telepon: +62 21 1234 5678 (ext. 1500)</li>
-                  <li>Kantor: Batalion Lang Lang Bhuwana, Lantai 3, Jakarta</li>
+                  <li>Kantor: Batalyon Zeni Tempur 9 / Lang Lang Bhuwana, Lantai 3, Jakarta</li>
                 </ul>
               </div>
             </section>

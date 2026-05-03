@@ -1,12 +1,16 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Download, Share2, SlidersHorizontal, ChevronDown } from 'lucide-react';
+import { Download, Share2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Badge from '@/components/Badge';
+import EMagazineSection from '@/components/EMagazineSection';
 import NewsCard from '@/components/NewsCard';
+import NewsFilterPanel from '@/components/NewsFilterPanel';
+import QuickCategoryFilter from '@/components/QuickCategoryFilter';
+import PopularCategoriesWidget from '@/components/PopularCategoriesWidget';
 import { useToast } from '@/components/Toast';
 import { newsData, categories } from '@/lib/content';
 import {
@@ -16,33 +20,23 @@ import {
   paginateArray,
 } from '@/lib/utils';
 
+export const metadata = {
+  title: 'Kabar & Berita - Batalyon Zeni Tempur 9 / Lang Lang Bhuwana',
+  description: 'Informasi aktual mengenai operasional, kegiatan sosial, dokumentasi, dan publikasi digital Batalyon Zeni Tempur 9 / Lang Lang Bhuwana.',
+};
+
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState('Semua');
   const [selectedTag, setSelectedTag] = useState('Semua');
   const [selectedMonth, setSelectedMonth] = useState('Semua');
   const [selectedYear, setSelectedYear] = useState('Semua');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState('desc');
   const toast = useToast();
   const itemsPerPage = 6;
 
-  const latestNews = useMemo(() => {
-    return sortNewsByDate(newsData, 'desc')[0] || null;
-  }, []);
 
-  const newsStats = useMemo(() => {
-    const totalItems = newsData.length;
-    const totalCategories = new Set(newsData.map((item) => item.category)).size;
-    const totalTags = new Set(newsData.flatMap((item) => item.tags || [])).size;
-
-    return {
-      totalItems,
-      totalCategories,
-      totalTags,
-    };
-  }, []);
 
   const availableTags = useMemo(() => {
     const tags = newsData.flatMap((item) => item.tags || []);
@@ -157,14 +151,6 @@ export default function NewsPage() {
     toast.info('Fitur unduh buletin segera tersedia.');
   };
 
-  const activeFilterCount = [
-    selectedCategory !== 'Semua',
-    selectedTag !== 'Semua',
-    selectedMonth !== 'Semua',
-    selectedYear !== 'Semua',
-    sortOrder !== 'desc',
-  ].filter(Boolean).length;
-
   return (
     <div className="page-content">
       <Navbar />
@@ -179,8 +165,7 @@ export default function NewsPage() {
                 Kabar Lang Lang Bhuwana
               </h1>
               <p className="section-subtitle">
-                Informasi aktual mengenai operasional, kegiatan sosial, dan
-                pencapaian resmi Batalion.
+                Informasi aktual mengenai operasional, kegiatan sosial, dokumentasi, dan publikasi digital Batalyon Zeni Tempur 9 / Lang Lang Bhuwana.
               </p>
             </div>
             <div className="btn-group">
@@ -192,44 +177,64 @@ export default function NewsPage() {
               </Button>
             </div>
           </div>
-
-          <div className="mt-6 max-w-xl">
-            <input
-              value={searchQuery}
-              onChange={(event) => {
-                setSearchQuery(event.target.value);
-                setCurrentPage(1);
-              }}
-              placeholder="Cari judul atau isi warta..."
-              className="input-base bg-white"
-              aria-label="Cari warta"
-            />
-
-            {(searchQuery.trim() || selectedCategory !== 'Semua' || selectedTag !== 'Semua' || selectedMonth !== 'Semua' || selectedYear !== 'Semua' || sortOrder !== 'desc') && (
-              <div className="mt-3">
-                <button
-                  onClick={() => {
-                    setSearchQuery('');
-                    setSelectedCategory('Semua');
-                    setSelectedTag('Semua');
-                    setSelectedMonth('Semua');
-                    setSelectedYear('Semua');
-                    setSortOrder('desc');
-                    setCurrentPage(1);
-                  }}
-                  className="text-sm font-semibold text-indigo-700 hover:text-indigo-900 transition-colors"
-                >
-                  Reset pencarian dan filter
-                </button>
-              </div>
-            )}
-          </div>
         </div>
       </div>
 
       {/* Main Content */}
       <main className="page-section bg-slate-50">
         <div className="container mx-auto section-spacing">
+          <EMagazineSection />
+
+          {/* Quick Category Filter for Mobile */}
+          <QuickCategoryFilter
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={handleCategoryChange}
+          />
+
+          {/* Consolidated Filter Panel */}
+          <NewsFilterPanel
+            searchQuery={searchQuery}
+            onSearchChange={(value) => {
+              setSearchQuery(value);
+              setCurrentPage(1);
+            }}
+            selectedCategory={selectedCategory}
+            onCategoryChange={handleCategoryChange}
+            selectedTag={selectedTag}
+            onTagChange={handleTagChange}
+            selectedMonth={selectedMonth}
+            onMonthChange={handleMonthChange}
+            selectedYear={selectedYear}
+            onYearChange={handleYearChange}
+            sortOrder={sortOrder}
+            onSortChange={(order) => {
+              setSortOrder(order);
+              setCurrentPage(1);
+            }}
+            categories={categories}
+            availableTags={availableTags}
+            availableMonths={availableMonths}
+            availableYears={availableYears}
+            onReset={() => {
+              setSearchQuery('');
+              setSelectedCategory('Semua');
+              setSelectedTag('Semua');
+              setSelectedMonth('Semua');
+              setSelectedYear('Semua');
+              setSortOrder('desc');
+              setCurrentPage(1);
+            }}
+            hasActiveFilters={
+              searchQuery.trim() ||
+              selectedCategory !== 'Semua' ||
+              selectedTag !== 'Semua' ||
+              selectedMonth !== 'Semua' ||
+              selectedYear !== 'Semua' ||
+              sortOrder !== 'desc'
+            }
+          />
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 md:gap-10">
             {/* News Feed */}
             <div className="lg:col-span-3 list-spaced stagger-children">
@@ -315,158 +320,14 @@ export default function NewsPage() {
 
             {/* Sidebar */}
             <aside className="space-y-6 md:space-y-8 lg:sticky lg:top-28 h-fit">
-              <div className="bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-950 text-white rounded-3xl p-6 md:p-8 relative overflow-hidden shadow-xl shadow-indigo-950/10">
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.35),_transparent_40%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.35),_transparent_45%)]"></div>
-                <div className="relative z-10">
-                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-indigo-200 mb-3">
-                    Statistik Warta
-                  </p>
-                  <h4 className="text-xl font-black leading-tight mb-4">
-                    Ringkasan publikasi terkini
-                  </h4>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
-                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Total</p>
-                      <p className="text-2xl font-black">{newsStats.totalItems}</p>
-                    </div>
-                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
-                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Kategori</p>
-                      <p className="text-2xl font-black">{newsStats.totalCategories}</p>
-                    </div>
-                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
-                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Tag</p>
-                      <p className="text-2xl font-black">{newsStats.totalTags}</p>
-                    </div>
-                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
-                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Terbaru</p>
-                      <p className="text-sm font-bold leading-tight">{latestNews ? formatNewsMonth(latestNews.publishedAt || latestNews.dateObj || latestNews.date) : '-'}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="card-elevated p-5 md:p-6">
-                <div className="flex items-center justify-between gap-3">
-                  <h4 className="font-black text-slate-900 text-lg">Filter Warta</h4>
-                  <button
-                    onClick={() => setIsFilterOpen((prev) => !prev)}
-                    className="lg:hidden inline-flex items-center gap-2 px-3 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-bold"
-                    aria-expanded={isFilterOpen}
-                  >
-                    <SlidersHorizontal size={14} />
-                    {activeFilterCount > 0 ? `(${activeFilterCount})` : ''}
-                    <ChevronDown size={14} className={`${isFilterOpen ? 'rotate-180' : ''} transition-transform`} />
-                  </button>
-                </div>
-
-                <div className={`${isFilterOpen ? 'block' : 'hidden'} lg:block mt-4`}>
-                  <div className="flex items-center justify-end mb-3">
-                    {(selectedCategory !== 'Semua' || selectedTag !== 'Semua' || selectedMonth !== 'Semua' || selectedYear !== 'Semua' || sortOrder !== 'desc') && (
-                      <button
-                        onClick={() => {
-                          setSelectedCategory('Semua');
-                          setSelectedTag('Semua');
-                          setSelectedMonth('Semua');
-                          setSelectedYear('Semua');
-                          setSortOrder('desc');
-                          setCurrentPage(1);
-                        }}
-                        className="text-xs font-bold text-indigo-700 hover:text-indigo-900 transition-colors"
-                      >
-                        Reset filter sidebar
-                      </button>
-                    )}
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Kategori
-                    <select
-                      value={selectedCategory}
-                      onChange={(event) => handleCategoryChange(event.target.value)}
-                      className="mt-1 w-full input-base bg-white"
-                    >
-                      {['Semua', ...categories].map((cat) => (
-                        <option key={cat} value={cat}>{cat}</option>
-                      ))}
-                    </select>
-                  </label>
-
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Tag
-                    <select
-                      value={selectedTag}
-                      onChange={(event) => handleTagChange(event.target.value)}
-                      className="mt-1 w-full input-base bg-white"
-                    >
-                      {['Semua', ...availableTags].map((tag) => (
-                        <option key={tag} value={tag}>{tag}</option>
-                      ))}
-                    </select>
-                  </label>
-
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Bulan
-                    <select
-                      value={selectedMonth}
-                      onChange={(event) => handleMonthChange(event.target.value)}
-                      className="mt-1 w-full input-base bg-white"
-                    >
-                      <option value="Semua">Semua Bulan</option>
-                      {availableMonths.map((month) => (
-                        <option key={month} value={month}>{formatNewsMonth(`${month}-01`)}</option>
-                      ))}
-                    </select>
-                  </label>
-
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Tahun
-                    <select
-                      value={selectedYear}
-                      onChange={(event) => handleYearChange(event.target.value)}
-                      className="mt-1 w-full input-base bg-white"
-                    >
-                      <option value="Semua">Semua Tahun</option>
-                      {availableYears.map((year) => (
-                        <option key={year} value={year}>{year}</option>
-                      ))}
-                    </select>
-                  </label>
-                  </div>
-
-                  <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mt-3">
-                    Urutan
-                    <select
-                      value={sortOrder}
-                      onChange={(event) => {
-                        setSortOrder(event.target.value);
-                        setCurrentPage(1);
-                      }}
-                      className="mt-1 w-full input-base bg-white"
-                    >
-                      <option value="desc">Terbaru</option>
-                      <option value="asc">Terlama</option>
-                    </select>
-                  </label>
-                </div>
-              </div>
-
-              {/* Email Subscription */}
-              <div className="bg-gradient-primary p-6 md:p-8 rounded-2xl text-white relative overflow-hidden">
-                <div className="absolute -bottom-4 -right-4 p-4 opacity-10 text-4xl">
-                  📰
-                </div>
-                <h4 className="font-bold text-lg mb-4 relative z-10">
-                  E-Magazine
-                </h4>
-                <p className="text-indigo-200 text-xs leading-relaxed mb-6 relative z-10">
-                  Unduh majalah digital bulanan kami untuk ulasan kegiatan
-                  mendalam.
-                </p>
-                <Button variant="white" size="sm" className="w-full">
-                  Unduh Edisi Mei
-                </Button>
-              </div>
+              <PopularCategoriesWidget
+                categories={categories}
+                newsData={newsData}
+                onCategorySelect={(category) => {
+                  handleCategoryChange(category);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
             </aside>
           </div>
         </div>

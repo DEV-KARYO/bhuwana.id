@@ -5,7 +5,7 @@ import { BarChart3, FileText, AlertCircle, CheckCircle } from 'lucide-react';
 
 export const metadata = {
   title: 'Transparansi - Lang Lang Bhuwana',
-  description: 'Komitmen Batalion Lang Lang Bhuwana pada transparansi dan akuntabilitas publik.',
+  description: 'Komitmen Batalyon Zeni Tempur 9 / Lang Lang Bhuwana pada transparansi dan akuntabilitas publik.',
 };
 
 export default function TransparencyPage() {
@@ -22,7 +22,7 @@ export default function TransparencyPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Prinsip Transparansi</h2>
               <p className="text-slate-700 leading-relaxed">
-                Batalion Lang Lang Bhuwana berkomitmen penuh pada transparansi dalam setiap aspek operasional institusi. Kami percaya bahwa keterbukaan informasi adalah fondasi kepercayaan publik dan akuntabilitas profesional.
+                Batalyon Zeni Tempur 9 / Lang Lang Bhuwana berkomitmen penuh pada transparansi dalam setiap aspek operasional institusi. Kami percaya bahwa keterbukaan informasi adalah fondasi kepercayaan publik dan akuntabilitas profesional.
               </p>
             </section>
 
@@ -138,7 +138,7 @@ export default function TransparencyPage() {
                 <ul className="space-y-2 text-slate-700">
                   <li><strong>Email:</strong> pengaduan@langlangbhuwana.go.id</li>
                   <li><strong>Telepon:</strong> +62 21 1234 5678 (ext. 2000)</li>
-                  <li><strong>Surat:</strong> Kantor Pengaduan, Batalion Lang Lang Bhuwana, Jakarta</li>
+                  <li><strong>Surat:</strong> Kantor Pengaduan, Batalyon Zeni Tempur 9 / Lang Lang Bhuwana, Jakarta</li>
                   <li><strong>Form Online:</strong> Tersedia di menu "Hubungi Kami" portal</li>
                 </ul>
               </div>
@@ -147,7 +147,7 @@ export default function TransparencyPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Komitmen Berkelanjutan</h2>
               <p className="text-slate-700 leading-relaxed">
-                Batalion Lang Lang Bhuwana berkomitmen untuk terus meningkatkan transparansi dan akuntabilitas. Kami secara rutin mengevaluasi praktik kami dan menerapkan standar internasional terbaik dalam governance dan transparansi publik.
+                Batalyon Zeni Tempur 9 / Lang Lang Bhuwana berkomitmen untuk terus meningkatkan transparansi dan akuntabilitas. Kami secara rutin mengevaluasi praktik kami dan menerapkan standar internasional terbaik dalam governance dan transparansi publik.
               </p>
             </section>
 

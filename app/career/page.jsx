@@ -5,7 +5,7 @@ import { Briefcase, Users, Award, ArrowRight } from 'lucide-react';
 
 export const metadata = {
   title: 'Karir & Penerimaan - Lang Lang Bhuwana',
-  description: 'Informasi karir, penerimaan, dan pengembangan sumber daya manusia Batalion Lang Lang Bhuwana.',
+  description: 'Informasi karir, penerimaan, dan pengembangan sumber daya manusia Batalyon Zeni Tempur 9 / Lang Lang Bhuwana.',
 };
 
 export default function CareerPage() {
@@ -15,14 +15,14 @@ export default function CareerPage() {
       <main>
         <LegalPageTemplate 
           title="Karir & Penerimaan" 
-          subtitle="Bergabunglah dengan Batalion Lang Lang Bhuwana dan berkontribusi bagi bangsa"
+          subtitle="Bergabunglah dengan Batalyon Zeni Tempur 9 / Lang Lang Bhuwana dan berkontribusi bagi bangsa"
           breadcrumb="Karir & Penerimaan"
         >
           <div className="space-y-8">
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Peluang Karir Kami</h2>
               <p className="text-slate-700 leading-relaxed">
-                Batalion Lang Lang Bhuwana adalah institusi yang mengembangkan talenta terbaik bangsa. Kami mencari individu berdedikasi tinggi yang siap memberikan pengabdian profesional dan berbakti untuk kemajuan institusi dan negara.
+                Batalyon Zeni Tempur 9 / Lang Lang Bhuwana adalah institusi yang mengembangkan talenta terbaik bangsa. Kami mencari individu berdedikasi tinggi yang siap memberikan pengabdian profesional dan berbakti untuk kemajuan institusi dan negara.
               </p>
             </section>
 
@@ -213,7 +213,7 @@ export default function CareerPage() {
                   </li>
                   <li className="flex items-start gap-3">
                     <ArrowRight className="text-indigo-600 flex-shrink-0 mt-1" size={20} />
-                    <span className="text-slate-700">Kantor HR: Batallion Lang Lang Bhuwana, Jakarta</span>
+                    <span className="text-slate-700">Kantor HR: Batalyon Zeni Tempur 9 / Lang Lang Bhuwana, Jakarta</span>
                   </li>
                 </ul>
               </div>
@@ -221,7 +221,7 @@ export default function CareerPage() {
 
             <div className="mt-8 p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
               <p className="text-sm text-slate-700">
-                <strong>Terima kasih telah mempertimbangkan Batalion Lang Lang Bhuwana sebagai tempat mengembangkan karir Anda. Kami menunggu kedatangan talenta-talenta terbaik!</strong>
+                <strong>Terima kasih telah mempertimbangkan Batalyon Zeni Tempur 9 / Lang Lang Bhuwana sebagai tempat mengembangkan karir Anda. Kami menunggu kedatangan talenta-talenta terbaik!</strong>
               </p>
             </div>
           </div>

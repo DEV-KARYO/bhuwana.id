@@ -26,19 +26,21 @@ const playfairDisplay = Playfair_Display({
 export const metadata = {
   title: 'Lang Lang Bhuwana - Portal Informasi Resmi',
   description:
-    'Portal resmi Batalion Lang Lang Bhuwana. Berkomitmen pada profesionalisme, transparansi publik, dan kemajuan bangsa melalui integritas tinggi.',
+    'Portal resmi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana. Berkomitmen pada profesionalisme, transparansi publik, dan kemajuan bangsa melalui integritas tinggi.',
   keywords: [
-    'Batalion Lang Lang Bhuwana',
+    'Batalyon Zeni Tempur 9',
+    'Lang Lang Bhuwana',
+    'Yonzipur 9',
     'Institusi Militer',
     'Portal Resmi',
-    'Warta Batalion',
+    'Warta Batalyon',
     'Transparansi Publik',
   ],
   authors: [{ name: 'Tim Penerangan Satuan' }],
   openGraph: {
     title: 'Lang Lang Bhuwana - Portal Informasi Resmi',
     description:
-      'Portal resmi Batalion Lang Lang Bhuwana. Berkomitmen pada profesionalisme, transparansi publik, dan kemajuan bangsa melalui integritas tinggi.',
+      'Portal resmi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana. Berkomitmen pada profesionalisme, transparansi publik, dan kemajuan bangsa melalui integritas tinggi.',
     type: 'website',
     locale: 'id_ID',
   },

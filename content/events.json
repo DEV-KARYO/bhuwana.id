@@ -1,0 +1,221 @@
+[
+  {
+    "id": 1,
+    "title": "Latihan Taktis Kompi Zeni Tempur",
+    "category": "Latihan",
+    "date": "2026-05-15",
+    "startDate": "2026-05-15",
+    "endDate": "2026-05-17",
+    "time": "08:00 - 16:00 WIB",
+    "location": "Markas Batalyon, Jakarta",
+    "excerpt": "Latihan taktis tingkat kompi untuk meningkatkan kemampuan operasional zeni tempur satuan.",
+    "description": "Latihan taktis mempersiapkan personel dalam menjalankan operasi zeni tempur dengan standar profesional tinggi. Acara ini melibatkan koordinasi antar level kepemimpinan dan praktik lapangan intensif.",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+    "status": "Mendatang",
+    "capacity": 150,
+    "registered": 108,
+    "isFeatured": true,
+    "agenda": [
+      {
+        "day": 1,
+        "date": "15 Mei 2026",
+        "activities": [
+          { "time": "08:00 - 09:00", "activity": "Registrasi dan Briefing Umum" },
+          { "time": "09:00 - 12:00", "activity": "Teori Operasi Zeni Tempur" },
+          { "time": "13:00 - 16:00", "activity": "Sesi Diskusi dan Tanya Jawab" }
+        ]
+      },
+      {
+        "day": 2,
+        "date": "16 Mei 2026",
+        "activities": [
+          { "time": "07:00 - 08:00", "activity": "Apel Pagi" },
+          { "time": "08:00 - 12:00", "activity": "Praktik Lapangan - Fase I" },
+          { "time": "13:00 - 16:00", "activity": "Praktik Lapangan - Fase II" }
+        ]
+      },
+      {
+        "day": 3,
+        "date": "17 Mei 2026",
+        "activities": [
+          { "time": "07:00 - 11:00", "activity": "Evaluasi dan Assessment Praktik" },
+          { "time": "11:30 - 12:00", "activity": "Penutupan dan Pemberian Sertifikat" }
+        ]
+      }
+    ],
+    "requirements": [
+      "Sehat jasmani dan rohani",
+      "Tidak sedang cuti atau izin",
+      "Membawa peralatan pribadi yang diperlukan",
+      "Berkomitmen untuk hadir penuh selama latihan"
+    ],
+    "speakers": [
+      {
+        "name": "Letkol Czi Martin Novence, S.H., M.IP.",
+        "position": "Komandan Batalyon Zeni Tempur 9",
+        "bio": "Komandan dengan pengalaman operasional lebih dari 20 tahun di berbagai tingkatan kepemimpinan."
+      },
+      {
+        "name": "Mayor Inf Budi Santoso",
+        "position": "Kasubdit Operasi",
+        "bio": "Spesialis dalam perencanaan dan eksekusi operasi zeni tempur terpadu."
+      }
+    ],
+    "contact": {
+      "name": "Tim Operasi Batalyon",
+      "email": "operasi@langlangbhuwana.go.id",
+      "phone": "+62 21 1234 5678"
+    }
+  },
+  {
+    "id": 2,
+    "title": "Webinar: Transparansi dan Akuntabilitas Institusi",
+    "category": "Webinar",
+    "date": "2026-05-20",
+    "startDate": "2026-05-20",
+    "endDate": "2026-05-20",
+    "time": "15:00 - 17:00 WIB",
+    "location": "Platform Online (Zoom)",
+    "excerpt": "Webinar diskusi tentang penerapan transparansi dan akuntabilitas dalam institusi militer modern.",
+    "description": "Sesi webinar terbuka untuk umum yang menghadirkan pembicara ahli dalam bidang governance dan transparansi institusional. Diskusi akan mencakup praktik terbaik, tantangan implementasi, dan relevansi terhadap tugas-tugas satuan.",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+    "status": "Mendatang",
+    "capacity": 500,
+    "registered": 287,
+    "isFeatured": false,
+    "agenda": [
+      {
+        "day": 1,
+        "date": "20 Mei 2026",
+        "activities": [
+          { "time": "15:00 - 15:15", "activity": "Pembukaan dan Selamat Datang" },
+          { "time": "15:15 - 15:50", "activity": "Presentasi Utama: Transparansi Institusional" },
+          { "time": "15:50 - 16:35", "activity": "Sesi Diskusi Panel" },
+          { "time": "16:35 - 17:00", "activity": "Sesi Tanya Jawab dan Penutupan" }
+        ]
+      }
+    ],
+    "requirements": [
+      "Memiliki akses internet yang stabil",
+      "Aplikasi Zoom sudah terinstall",
+      "Formulir pendaftaran sudah diisi lengkap",
+      "Aktif berpartisipasi dalam diskusi"
+    ],
+    "speakers": [
+      {
+        "name": "Prof. Dr. Ahmad Syaiful",
+        "position": "Pakar Governance Institusional",
+        "bio": "Akademisi dengan puluhan publikasi tentang transparansi dan akuntabilitas institusi publik."
+      },
+      {
+        "name": "Letkol Czi Martin Novence, S.H., M.IP.",
+        "position": "Komandan Batalyon Zeni Tempur 9",
+        "bio": "Praktisi langsung dalam implementasi transparansi di tingkat satuan."
+      }
+    ],
+    "contact": {
+      "name": "Tim Humas",
+      "email": "humas@langlangbhuwana.go.id",
+      "phone": "+62 21 1234 5678"
+    }
+  },
+  {
+    "id": 3,
+    "title": "Sosialisasi Program Pembinaan Personel 2026",
+    "category": "Sosialisasi",
+    "date": "2026-05-25",
+    "startDate": "2026-05-25",
+    "endDate": "2026-05-25",
+    "time": "10:00 - 12:00 WIB",
+    "location": "Gedung Serbaguna Markas Batalyon, Jakarta",
+    "excerpt": "Sosialisasi program pembinaan personel tahunan yang mencakup pengembangan SDM, kesejahteraan, dan karir.",
+    "description": "Program sosialisasi internal yang dirancang untuk menginformasikan seluruh jajaran tentang program pembinaan personel tahun 2026, termasuk mekanisme pengembangan karir, pelatihan, kesejahteraan keluarga, dan dukungan kesehatan mental.",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+    "status": "Mendatang",
+    "capacity": 200,
+    "registered": 156,
+    "isFeatured": true,
+    "agenda": [
+      {
+        "day": 1,
+        "date": "25 Mei 2026",
+        "activities": [
+          { "time": "10:00 - 10:30", "activity": "Pembukaan oleh Komandan" },
+          { "time": "10:30 - 11:00", "activity": "Presentasi Program Pembinaan Umum" },
+          { "time": "11:00 - 11:30", "activity": "Sesi Tanya Jawab" },
+          { "time": "11:30 - 12:00", "activity": "Penutupan dan Konsultasi Individual" }
+        ]
+      }
+    ],
+    "requirements": [
+      "Seluruh personel batalyon atau perwakilan dari setiap unit",
+      "Membawa catatan untuk mencatat poin-poin penting",
+      "Berpakaian rapi sesuai ketentuan",
+      "Hadir 10 menit sebelum acara dimulai"
+    ],
+    "speakers": [
+      {
+        "name": "Letkol Czi Martin Novence, S.H., M.IP.",
+        "position": "Komandan Batalyon Zeni Tempur 9",
+        "bio": "Memimpin inisiatif pembinaan personel yang komprehensif dan berkelanjutan."
+      },
+      {
+        "name": "Kapten Inf Siti Nurhaliza",
+        "position": "Kepala Divisi Personel",
+        "bio": "Mengelola semua aspek pengembangan SDM dan kesejahteraan personel."
+      }
+    ],
+    "contact": {
+      "name": "Divisi Personel",
+      "email": "personel@langlangbhuwana.go.id",
+      "phone": "+62 21 1234 5678"
+    }
+  },
+  {
+    "id": 4,
+    "title": "Acara Penutupan Tahun Anggaran 2025",
+    "category": "Penutupan",
+    "date": "2026-04-30",
+    "startDate": "2026-04-30",
+    "endDate": "2026-04-30",
+    "time": "14:00 - 17:00 WIB",
+    "location": "Lapangan Markas Batalyon, Jakarta",
+    "excerpt": "Acara resmi penutupan tahun anggaran 2025 dengan presentasi capaian dan apresiasi personel.",
+    "description": "Acara penutupan tahunan yang menampilkan pencapaian satuan selama tahun anggaran 2025, presentasi statistik kinerja, pemberian penghargaan kepada personel berprestasi, dan pengumuman agenda tahun depan.",
+    "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1200",
+    "status": "Berlangsung",
+    "capacity": 250,
+    "registered": 245,
+    "isFeatured": false,
+    "agenda": [
+      {
+        "day": 1,
+        "date": "30 April 2026",
+        "activities": [
+          { "time": "14:00 - 14:30", "activity": "Pembukaan dan Laporan Komandan" },
+          { "time": "14:30 - 15:15", "activity": "Presentasi Capaian dan Statistik Kinerja" },
+          { "time": "15:15 - 16:00", "activity": "Pemberian Penghargaan dan Apresiasi" },
+          { "time": "16:00 - 17:00", "activity": "Penutupan dan Resepsi Informal" }
+        ]
+      }
+    ],
+    "requirements": [
+      "Seluruh jajaran pimpinan dan personel satuan",
+      "Berpakaian dinas formal",
+      "Hadir tepat waktu untuk ketertiban acara",
+      "Taat protokol dan disiplin"
+    ],
+    "speakers": [
+      {
+        "name": "Letkol Czi Martin Novence, S.H., M.IP.",
+        "position": "Komandan Batalyon Zeni Tempur 9",
+        "bio": "Memberikan laporan komprehensif tentang pencapaian tahun anggaran 2025."
+      }
+    ],
+    "contact": {
+      "name": "Tim Sekretariat",
+      "email": "sekretariat@langlangbhuwana.go.id",
+      "phone": "+62 21 1234 5678"
+    }
+  }
+]

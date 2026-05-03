@@ -8,6 +8,21 @@ export function generateStaticParams() {
   }));
 }
 
+export function generateMetadata({ params }) {
+  const news = newsData.find((item) => item.id === parseInt(params.id, 10));
+
+  if (!news) {
+    return {
+      title: 'Artikel Tidak Ditemukan - Batalyon Zeni Tempur 9 / Lang Lang Bhuwana',
+    };
+  }
+
+  return {
+    title: `${news.title} - Batalyon Zeni Tempur 9 / Lang Lang Bhuwana`,
+    description: news.excerpt || news.content.substring(0, 160),
+  };
+}
+
 export default function NewsDetailPage({ params }) {
   const news = newsData.find((item) => item.id === parseInt(params.id, 10));
 

@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, Mail, Phone, ShieldCheck, CalendarDays, BadgeCheck } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, CalendarDays, BadgeCheck } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
+import ContactForm from '@/components/ContactForm';
 import { leadershipData } from '@/lib/content';
 
 function getInitials(name) {
@@ -37,10 +39,10 @@ export function generateMetadata({ params }) {
   const leader = leadershipData.find((item) => String(item.id) === String(params.id));
 
   return {
-    title: leader ? `${leader.name} - Pimpinan` : 'Pimpinan - Lang Lang Bhuwana Portal',
+    title: leader ? `${leader.name} - Pimpinan` : 'Pimpinan - Batalyon Zeni Tempur 9 / Lang Lang Bhuwana',
     description: leader
       ? `Profil pimpinan ${leader.name}, ${leader.position}.`
-      : 'Profil pimpinan Lang Lang Bhuwana.',
+      : 'Profil pimpinan Batalyon Zeni Tempur 9 / Lang Lang Bhuwana.',
   };
 }
 
@@ -56,6 +58,13 @@ export default function LeaderDetailPage({ params }) {
   return (
     <div className="page-content">
       <Navbar />
+
+      <Breadcrumb
+        items={[
+          { label: 'Pimpinan', href: '/structure' },
+          { label: leader.name },
+        ]}
+      />
 
       <div className="page-header bg-white border-b border-slate-100 overflow-hidden">
         <div className="container mx-auto section-spacing py-16 md:py-20 relative">
@@ -146,33 +155,10 @@ export default function LeaderDetailPage({ params }) {
             </div>
 
             <div className="space-y-6">
-              <div className="card-elevated p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-6">
-                  <ShieldCheck className="text-indigo-700" size={20} />
-                  <h3 className="font-black text-slate-900 text-xl">Kontak Resmi</h3>
-                </div>
-
-                <div className="space-y-4">
-                  {leader.email && (
-                    <a href={`mailto:${leader.email}`} className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 hover:bg-indigo-50 transition-colors">
-                      <Mail size={18} className="text-indigo-700" />
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">Email</p>
-                        <p className="font-bold text-slate-900">{leader.email}</p>
-                      </div>
-                    </a>
-                  )}
-                  {leader.phone && (
-                    <a href={`tel:${leader.phone}`} className="flex items-center gap-3 p-4 rounded-2xl bg-slate-50 hover:bg-indigo-50 transition-colors">
-                      <Phone size={18} className="text-indigo-700" />
-                      <div>
-                        <p className="text-xs font-bold uppercase tracking-[0.25em] text-slate-400">Telepon</p>
-                        <p className="font-bold text-slate-900">{leader.phone}</p>
-                      </div>
-                    </a>
-                  )}
-                </div>
-              </div>
+              <ContactForm 
+                recipientName={leader.name}
+                recipientRole={leader.position}
+              />
 
               <div className="card-elevated p-6 md:p-8">
                 <h3 className="font-black text-slate-900 text-xl mb-4">Pimpinan Terkait</h3>

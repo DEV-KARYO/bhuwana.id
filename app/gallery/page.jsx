@@ -8,6 +8,11 @@ import Footer from '@/components/Footer';
 import Badge from '@/components/Badge';
 import { galleryData } from '@/lib/content';
 
+export const metadata = {
+  title: 'Galeri Dokumentasi - Batalyon Zeni Tempur 9 / Lang Lang Bhuwana',
+  description: 'Koleksi dokumentasi visual kegiatan, acara, dan momen bersejarah Batalyon Zeni Tempur 9 / Lang Lang Bhuwana yang mencerminkan dedikasi dan profesionalisme satuan.',
+};
+
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -95,11 +100,10 @@ export default function GalleryPage() {
           <div className="section-header max-w-2xl mx-auto">
             <Badge variant="primary">Dokumentasi Visual</Badge>
             <h1 className="section-title mt-4 mb-6">
-              Galeri Lang Lang Bhuwana
+              Galeri Dokumentasi Satuan
             </h1>
             <p className="section-subtitle">
-              Koleksi dokumentasi kegiatan, acara, dan momen bersejarah Batalion
-              Lang Lang Bhuwana yang mencerminkan dedikasi dan profesionalisme.
+              Koleksi dokumentasi visual kegiatan, acara, dan momen bersejarah Batalyon Zeni Tempur 9 / Lang Lang Bhuwana yang mencerminkan dedikasi dan profesionalisme.
             </p>
           </div>
 

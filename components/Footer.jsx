@@ -37,12 +37,12 @@ export default function Footer() {
                 <ShieldCheck className="text-indigo-950" size={22} />
               </div>
               <div>
-                <span className="text-lg font-black tracking-tight leading-none">LANG LANG BHUWANA</span>
-                <div className="text-xs font-bold tracking-[0.25em] text-indigo-400 mt-0.5 uppercase">Republik Indonesia</div>
+                <span className="text-lg font-black tracking-tight leading-none">BATALYON ZENI TEMPUR 9</span>
+                <div className="text-xs font-bold tracking-[0.25em] text-indigo-400 mt-0.5 uppercase">Lang Lang Bhuwana</div>
               </div>
             </div>
 
-            <p className="footer-muted mb-6">Portal resmi Batalion Lang Lang Bhuwana. Menjaga kedaulatan, integritas, dan pengabdian melalui profesionalisme tinggi.</p>
+            <p className="footer-muted mb-6">Portal resmi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana. Menjaga kedaulatan, integritas, dan pengabdian melalui profesionalisme tinggi.</p>
 
             <div className="flex gap-3" role="list">
               {social.map((s) => (
@@ -112,7 +112,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] font-semibold text-slate-600 uppercase tracking-[0.08em] md:tracking-widest text-center md:text-left">
-          <p className="max-w-md text-sm">© {currentYear} BATALION LANG LANG BHUWANA. ALL RIGHTS RESERVED.</p>
+          <p className="max-w-md text-sm">© {currentYear} BATALYON ZENI TEMPUR 9. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-4 md:gap-6">
             <Link href="/disclaimer" className="hover:text-indigo-200 transition-colors focus-ring-sm rounded px-1 py-0.5">Disclaimer</Link>
             <Link href="/sitemap" className="hover:text-indigo-200 transition-colors focus-ring-sm rounded px-1 py-0.5">Sitemap</Link>

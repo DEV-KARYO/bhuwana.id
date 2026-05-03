@@ -4,7 +4,7 @@ import LegalPageTemplate from '@/components/LegalPageTemplate';
 
 export const metadata = {
   title: 'Disclaimer - Lang Lang Bhuwana',
-  description: 'Disclaimer dan penafian tanggung jawab portal Batalion Lang Lang Bhuwana.',
+  description: 'Disclaimer dan penafian tanggung jawab portal Batalyon Zeni Tempur 9 / Lang Lang Bhuwana.',
 };
 
 export default function DisclaimerPage() {
@@ -21,7 +21,7 @@ export default function DisclaimerPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">Penafian Umum</h2>
               <p className="text-slate-700 leading-relaxed">
-                Portal resmi Batalion Lang Lang Bhuwana ("Portal") disediakan "sebagaimana adanya" tanpa jaminan dalam bentuk apapun. Kami tidak memberikan jaminan, baik tersurat maupun tersirat, mengenai keakuratan, kelengkapan, atau kesesuaian konten untuk tujuan tertentu.
+                Portal resmi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana ("Portal") disediakan "sebagaimana adanya" tanpa jaminan dalam bentuk apapun. Kami tidak memberikan jaminan, baik tersurat maupun tersirat, mengenai keakuratan, kelengkapan, atau kesesuaian konten untuk tujuan tertentu.
               </p>
             </section>
 
@@ -44,7 +44,7 @@ export default function DisclaimerPage() {
                 <div>
                   <h3 className="text-lg font-semibold text-slate-800 mb-2">1.2 Keterbatasan Tanggung Jawab Hukum</h3>
                   <p className="text-slate-700 leading-relaxed">
-                    Dalam keadaan apapun, Batalion Lang Lang Bhuwana tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, konsekuensial, atau kerugian apa pun yang timbul dari penggunaan Portal ini.
+                    Dalam keadaan apapun, Batalyon Zeni Tempur 9 / Lang Lang Bhuwana tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, konsekuensial, atau kerugian apa pun yang timbul dari penggunaan Portal ini.
                   </p>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function DisclaimerPage() {
             <section>
               <h2 className="text-2xl font-bold text-slate-900 mb-4">7. Pernyataan Pemerintah</h2>
               <p className="text-slate-700 leading-relaxed">
-                Portal kami adalah representasi resmi Batalion Lang Lang Bhuwana. Informasi yang disajikan telah diverifikasi dan disahkan oleh otoritas yang berwenang. Namun, kami tetap tidak ada jaminan mengenai relevansi informasi untuk situasi tertentu Anda.
+                Portal kami adalah representasi resmi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana. Informasi yang disajikan telah diverifikasi dan disahkan oleh otoritas yang berwenang. Namun, kami tetap tidak ada jaminan mengenai relevansi informasi untuk situasi tertentu Anda.
               </p>
             </section>
 
@@ -125,7 +125,7 @@ export default function DisclaimerPage() {
                 Jika Anda memiliki pertanyaan tentang disclaimer ini, silakan hubungi:
               </p>
               <div className="mt-4 p-4 bg-slate-50 rounded-lg">
-                <p className="font-semibold text-slate-900">Batalion Lang Lang Bhuwana</p>
+                <p className="font-semibold text-slate-900">Batalyon Zeni Tempur 9 / Lang Lang Bhuwana</p>
                 <p className="text-slate-700">Ksatrian Lang Lang Bhuwana, Jakarta, Indonesia</p>
                 <p className="text-slate-700">Email: hubmas@langlangbhuwana.go.id</p>
                 <p className="text-slate-700">Telepon: +62 21 1234 5678</p>
