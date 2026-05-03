@@ -156,7 +156,7 @@ export default function NewsPage() {
               {items.length > 0 ? (
                 <>
                   {items.map((item) => (
-                    <NewsCard key={item.id} news={item} layout="list" />
+                    <NewsCard key={item.id} news={item} layout="list" compact />
                   ))}
 
                   {/* Pagination */}

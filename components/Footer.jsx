@@ -1,70 +1,89 @@
 import Link from 'next/link';
-import {
-  MapPin,
-  Phone,
-  Mail,
-  ChevronRight,
-  ShieldCheck,
-} from 'lucide-react';
+import { MapPin, Phone, Mail, ChevronRight, ShieldCheck } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const social = [
+    { href: '#', label: 'Twitter' },
+    { href: '#', label: 'Facebook' },
+    { href: '#', label: 'Instagram' },
+  ];
+
+  const infoLinks = [
+    { label: 'Laporan Publik', href: '#' },
+    { label: 'Kebijakan Privasi', href: '#' },
+    { label: 'Transparansi', href: '#' },
+    { label: 'Karir & Penerimaan', href: '#' },
+  ];
+
+  const navLinks = [
+    { label: 'Beranda', href: '/' },
+    { label: 'Warta & Pengumuman', href: '/news' },
+    { label: 'Struktur Pimpinan', href: '/structure' },
+    { label: 'Galeri Dokumentasi', href: '/gallery' },
+  ];
+
   return (
-    <footer className="bg-slate-950 text-white pt-20 md:pt-32 pb-12 overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-1/3 h-1/2 bg-indigo-500/5 blur-[100px] rounded-full"></div>
+    <footer className="bg-slate-950 text-white pt-12 md:pt-20 pb-8 overflow-hidden relative">
+      <div aria-hidden className="absolute top-0 right-0 w-1/3 h-1/2 bg-indigo-500/5 blur-[100px] rounded-full" />
 
       <div className="container mx-auto section-spacing relative z-10">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-16 mb-16 md:mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 mb-10 md:mb-16">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-xl">
-                <ShieldCheck className="text-indigo-950" size={26} />
+          <div>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md">
+                <ShieldCheck className="text-indigo-950" size={22} />
               </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-black tracking-tight leading-none">
-                  LANG LANG BHUWANA
-                </span>
-                <span className="text-[10px] font-bold tracking-[0.3em] leading-none text-indigo-400 mt-1 uppercase">
-                  Republik Indonesia
-                </span>
+              <div>
+                <span className="text-lg font-black tracking-tight leading-none">LANG LANG BHUWANA</span>
+                <div className="text-[10px] font-bold tracking-[0.25em] text-indigo-400 mt-0.5 uppercase">Republik Indonesia</div>
               </div>
             </div>
-            <p className="text-slate-400 leading-relaxed mb-10 text-sm">
-              Portal resmi Batalion Lang Lang Bhuwana. Menjaga kedaulatan,
-              integritas, dan pengabdian melalui profesionalisme tinggi.
+
+            <p className="text-slate-400 leading-relaxed mb-6 text-sm">
+              Portal resmi Batalion Lang Lang Bhuwana. Menjaga kedaulatan, integritas, dan pengabdian melalui profesionalisme tinggi.
             </p>
-            <div className="flex gap-3">
-              {[1, 2, 3].map((x) => (
-                <button
-                  key={x}
-                  className="w-11 h-11 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center hover:bg-indigo-600 transition-all cursor-pointer group focus-ring-sm"
-                  aria-label={`Tautan sosial ${x}`}
+
+            <div className="flex gap-3" role="list">
+              {social.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  role="listitem"
+                  aria-label={`Tautan sosial ${s.label}`}
+                  className="w-9 h-9 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center hover:bg-indigo-600 transition-all group focus-ring-sm"
                 >
-                  <div className="w-5 h-5 bg-white/20 rounded-lg group-hover:bg-white transition-colors"></div>
-                </button>
+                  <span className="w-4 h-4 bg-white/20 rounded-sm group-hover:bg-white transition-colors" aria-hidden />
+                </a>
               ))}
             </div>
           </div>
 
           {/* Navigation */}
-          <div>
-            <h4 className="font-bold text-lg mb-8">Navigasi</h4>
-            <ul className="space-y-4 text-sm font-medium text-slate-400">
-              {[
-                { label: 'Beranda', href: '/' },
-                { label: 'Warta & Pengumuman', href: '/news' },
-                { label: 'Struktur Pimpinan', href: '/structure' },
-                { label: 'Galeri Dokumentasi', href: '/gallery' },
-              ].map((link) => (
+          <nav aria-label="Footer Navigation">
+            <h4 className="font-bold text-base mb-4">Navigasi</h4>
+            <ul className="space-y-3 text-sm font-medium text-slate-400">
+              {navLinks.map((link) => (
                 <li key={link.href} className="text-slate-300 transition-colors flex items-center group">
-                  <ChevronRight
-                    size={14}
-                    className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all"
-                  />
+                  <ChevronRight size={14} className="mr-2 opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all" />
                   <Link href={link.href} className="link-hover hover:text-white focus-ring-sm rounded px-1 py-0.5">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Informasi */}
+          <div>
+            <h4 className="font-bold text-base mb-4">Informasi</h4>
+            <ul className="space-y-3 text-sm font-medium text-slate-300">
+              {infoLinks.map((link) => (
+                <li key={link.label} className="transition-colors flex items-center group">
+                  <ChevronRight size={14} className="mr-2 opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                  <Link href={link.href} className="text-slate-300 hover:text-white focus-ring-sm rounded px-1 py-0.5">
                     {link.label}
                   </Link>
                 </li>
@@ -72,64 +91,31 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Information */}
-          <div>
-            <h4 className="font-bold text-lg mb-8">Informasi</h4>
-            <ul className="space-y-4 text-sm font-medium text-slate-300">
-              {[
-                'Laporan Publik',
-                'Kebijakan Privasi',
-                'Transparansi',
-                'Karir & Penerimaan',
-              ].map((link) => (
-                <li
-                  key={link}
-                  className="transition-colors flex items-center group"
-                >
-                  <ChevronRight
-                    size={14}
-                    className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all"
-                  />
-                  <button className="text-slate-300 hover:text-white focus-ring-sm rounded px-1 py-0.5">
-                    {link}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact */}
           <div>
-            <h4 className="font-bold text-lg mb-8">Hubungi Kami</h4>
-            <div className="space-y-6 text-sm text-slate-300">
-              <div className="flex gap-4">
-                <MapPin className="text-indigo-400 shrink-0" size={20} />
-                <p className="leading-relaxed">
-                  Ksatrian Lang Lang Bhuwana, Jakarta, Indonesia
-                </p>
+            <h4 className="font-bold text-base mb-4">Hubungi Kami</h4>
+            <address className="not-italic space-y-4 text-sm text-slate-300">
+              <div className="flex gap-3 items-start">
+                <MapPin className="text-indigo-400 shrink-0 mt-1" size={18} />
+                <p className="leading-relaxed">Ksatrian Lang Lang Bhuwana, Jakarta, Indonesia</p>
               </div>
-              <div className="flex gap-4">
-                <Phone className="text-indigo-400 shrink-0" size={20} />
-                <p>+62 21 1234 5678</p>
+              <div className="flex gap-3 items-center">
+                <Phone className="text-indigo-400 shrink-0" size={18} />
+                <a href="tel:+622112345678" className="hover:text-white link-hover">+62 21 1234 5678</a>
               </div>
-              <div className="flex gap-4">
-                <Mail className="text-indigo-400 shrink-0" size={20} />
-                <p>hubmas@langlangbhuwana.go.id</p>
+              <div className="flex gap-3 items-center">
+                <Mail className="text-indigo-400 shrink-0" size={18} />
+                <a href="mailto:hubmas@langlangbhuwana.go.id" className="hover:text-white link-hover">hubmas@langlangbhuwana.go.id</a>
               </div>
-            </div>
+            </address>
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-bold text-slate-400 uppercase tracking-[0.12em] md:tracking-widest text-center md:text-left">
-          <p className="max-w-md">© {currentYear} BATALION LANG LANG BHUWANA. ALL RIGHTS RESERVED.</p>
-          <div className="flex gap-6 md:gap-10">
-            <button className="hover:text-indigo-300 transition-colors focus-ring-sm rounded px-1 py-0.5">
-              Disclaimer
-            </button>
-            <button className="hover:text-indigo-300 transition-colors focus-ring-sm rounded px-1 py-0.5">
-              Sitemap
-            </button>
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] font-semibold text-slate-400 uppercase tracking-[0.08em] md:tracking-widest text-center md:text-left">
+          <p className="max-w-md text-sm">© {currentYear} BATALION LANG LANG BHUWANA. ALL RIGHTS RESERVED.</p>
+          <div className="flex gap-4 md:gap-6">
+            <Link href="#" className="hover:text-indigo-300 transition-colors focus-ring-sm rounded px-1 py-0.5">Disclaimer</Link>
+            <Link href="#" className="hover:text-indigo-300 transition-colors focus-ring-sm rounded px-1 py-0.5">Sitemap</Link>
           </div>
         </div>
       </div>

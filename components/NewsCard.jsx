@@ -7,25 +7,25 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
   if (layout === 'list') {
     return (
       <Link href={`/news/${news.id}`}>
-        <div className="card-hover group flex flex-col md:flex-row">
+        <div className={`${compact ? 'card-compact' : 'card-hover'} group flex flex-col md:flex-row items-start`}>
           {/* Image */}
-          <div className="md:w-2/5 relative overflow-hidden h-56 md:h-auto">
+          <div className={`${compact ? 'md:w-1/3 h-40' : 'md:w-2/5 h-56 md:h-auto'} relative overflow-hidden`}>
             <Image
               src={news.image}
               alt={news.title}
               fill
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
+              className={`object-cover ${compact ? 'group-hover:scale-105 duration-700' : 'group-hover:scale-105 transition-transform duration-700'}`}
               sizes="(max-width: 768px) 100vw, 40vw"
             />
-            <div className="absolute top-6 left-6">
+            <div className="absolute top-4 left-4">
               <Badge variant="primary">{news.category}</Badge>
             </div>
           </div>
 
           {/* Content */}
-          <div className="md:w-3/5 p-6 md:p-10 flex flex-col justify-between">
+          <div className={`${compact ? 'md:w-2/3 p-4 md:p-6' : 'md:w-3/5 p-6 md:p-10'} flex flex-col justify-between`}> 
             <div>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold text-slate-400 mb-4 uppercase tracking-widest">
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-bold text-slate-400 mb-3 uppercase tracking-widest">
                 <span className="flex items-center gap-1.5">
                   <Calendar size={14} /> {news.date}
                 </span>
@@ -34,10 +34,10 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
                   <User size={14} /> {news.author}
                 </span>
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-indigo-700 transition-colors tracking-tight">
+              <h3 className={`${compact ? 'text-xl' : 'text-2xl'} font-black text-slate-900 mb-3 group-hover:text-indigo-700 transition-colors tracking-tight`}> 
                 {news.title}
               </h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6">
+              <p className={`${compact ? 'text-sm leading-snug mb-4' : 'text-slate-500 text-sm leading-relaxed mb-6'}`}>
                 {news.excerpt}
               </p>
             </div>

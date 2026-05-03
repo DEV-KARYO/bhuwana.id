@@ -734,6 +734,35 @@ body {
   .stagger-children > *:nth-child(6) { animation-delay: 340ms; }
 }
 
+  /* Footer utilities - compact and accessible footer styles */
+  .footer-compact {
+    @apply py-8 md:py-10 bg-slate-950 text-white;
+  }
+
+  .footer-container {
+    @apply container mx-auto px-4 md:px-6;
+  }
+
+  .footer-brand {
+    @apply flex items-center gap-3 mb-4;
+  }
+
+  .footer-brand .logo-sm {
+    @apply w-10 h-10 rounded-lg flex items-center justify-center bg-white text-indigo-950 shadow-md;
+  }
+
+  .footer-link {
+    @apply text-slate-300 hover:text-white transition-colors text-sm;
+  }
+
+  .footer-muted {
+    @apply text-slate-400 text-sm leading-relaxed;
+  }
+
+  .footer-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8;
+  }
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
