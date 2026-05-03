@@ -37,10 +37,9 @@ export default function HeroSection() {
 
           {/* Description */}
           <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 md:mb-12 leading-relaxed max-w-2xl animate-slide-in-from-bottom [animation-delay:200ms]">
-            Wadah informasi resmi Batalyon Zeni Tempur 9 / Lang Lang Bhuwana yang
-            dibentuk pada 1 Maret 1962, kini dipimpin Letkol Czi Martin Novence,
-            S.H., M.IP., dan terus menjalankan tugas bantuan tempur zeni dengan
-            profesionalisme, transparansi publik, dan integritas tinggi.
+            Portal informasi resmi yang menghadirkan transparansi, integritas
+            kepemimpinan, dan dokumentasi kegiatan satuan dengan standar profesional
+            untuk pemberdayaan institusi dan public engagement.
           </p>
 
           {/* Buttons */}
