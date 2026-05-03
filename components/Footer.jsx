@@ -25,14 +25,14 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-slate-950 text-white pt-12 md:pt-20 pb-8 overflow-hidden relative">
+    <footer className="footer-compact" role="contentinfo">
       <div aria-hidden className="absolute top-0 right-0 w-1/3 h-1/2 bg-indigo-500/5 blur-[100px] rounded-full" />
 
-      <div className="container mx-auto section-spacing relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 mb-10 md:mb-16">
+      <div className="footer-container relative z-10">
+        <div className="footer-grid mb-10 md:mb-16">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="footer-brand">
               <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-md">
                 <ShieldCheck className="text-indigo-950" size={22} />
               </div>
@@ -42,9 +42,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <p className="text-slate-400 leading-relaxed mb-6 text-sm">
-              Portal resmi Batalion Lang Lang Bhuwana. Menjaga kedaulatan, integritas, dan pengabdian melalui profesionalisme tinggi.
-            </p>
+            <p className="footer-muted mb-6">Portal resmi Batalion Lang Lang Bhuwana. Menjaga kedaulatan, integritas, dan pengabdian melalui profesionalisme tinggi.</p>
 
             <div className="flex gap-3" role="list">
               {social.map((s) => (
@@ -68,7 +66,7 @@ export default function Footer() {
               {navLinks.map((link) => (
                 <li key={link.href} className="text-slate-300 transition-colors flex items-center group">
                   <ChevronRight size={14} className="mr-2 opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                  <Link href={link.href} className="link-hover hover:text-white focus-ring-sm rounded px-1 py-0.5">
+                  <Link href={link.href} className="footer-link link-hover hover:text-white focus-ring-sm rounded px-1 py-0.5">
                     {link.label}
                   </Link>
                 </li>
@@ -83,7 +81,7 @@ export default function Footer() {
               {infoLinks.map((link) => (
                 <li key={link.label} className="transition-colors flex items-center group">
                   <ChevronRight size={14} className="mr-2 opacity-0 -ml-3 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-                  <Link href={link.href} className="text-slate-300 hover:text-white focus-ring-sm rounded px-1 py-0.5">
+                  <Link href={link.href} className="footer-link text-slate-300 hover:text-white focus-ring-sm rounded px-1 py-0.5">
                     {link.label}
                   </Link>
                 </li>
@@ -101,11 +99,11 @@ export default function Footer() {
               </div>
               <div className="flex gap-3 items-center">
                 <Phone className="text-indigo-400 shrink-0" size={18} />
-                <a href="tel:+622112345678" className="hover:text-white link-hover">+62 21 1234 5678</a>
+                <a href="tel:+622112345678" className="footer-link hover:text-white">+62 21 1234 5678</a>
               </div>
               <div className="flex gap-3 items-center">
                 <Mail className="text-indigo-400 shrink-0" size={18} />
-                <a href="mailto:hubmas@langlangbhuwana.go.id" className="hover:text-white link-hover">hubmas@langlangbhuwana.go.id</a>
+                <a href="mailto:hubmas@langlangbhuwana.go.id" className="footer-link hover:text-white">hubmas@langlangbhuwana.go.id</a>
               </div>
             </address>
           </div>
