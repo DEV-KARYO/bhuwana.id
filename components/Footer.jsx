@@ -121,9 +121,9 @@ export default function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
-          <p>© {currentYear} BATALION LANG LANG BHUWANA. ALL RIGHTS RESERVED.</p>
-          <div className="flex gap-10">
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-bold text-slate-400 uppercase tracking-[0.12em] md:tracking-widest text-center md:text-left">
+          <p className="max-w-md">© {currentYear} BATALION LANG LANG BHUWANA. ALL RIGHTS RESERVED.</p>
+          <div className="flex gap-6 md:gap-10">
             <button className="hover:text-indigo-300 transition-colors focus-ring-sm rounded px-1 py-0.5">
               Disclaimer
             </button>

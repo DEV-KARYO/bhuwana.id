@@ -81,7 +81,7 @@ export default function Navbar() {
       >
         <div className="container mx-auto section-spacing flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 md:gap-4 group">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 md:gap-4 group min-w-0">
             <div
               className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg ${
                 isAtTop
@@ -94,9 +94,9 @@ export default function Navbar() {
                 size={24}
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col min-w-0">
               <span
-                className={`text-base md:text-lg font-black tracking-tight leading-none ${
+                className={`text-sm sm:text-base md:text-lg font-black tracking-tight leading-none truncate max-w-[9.5rem] sm:max-w-none ${
                   isAtTop ? 'text-white' : 'text-slate-900'
                 }`}
               >
@@ -145,7 +145,7 @@ export default function Navbar() {
           </div>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setIsSearchOpen(true)}
               className={`p-2.5 rounded-xl transition-colors focus-ring-sm ${

@@ -28,7 +28,7 @@ export default function HeroSection() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 md:mb-8 animate-slide-in-from-bottom [animation-delay:100ms] tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6 md:mb-8 animate-slide-in-from-bottom [animation-delay:100ms] tracking-tight">
             Lang Lang <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-white">
               Bhuwana.
@@ -36,7 +36,7 @@ export default function HeroSection() {
           </h1>
 
           {/* Description */}
-          <p className="text-lg md:text-xl text-slate-300 mb-8 md:mb-12 leading-relaxed max-w-2xl animate-slide-in-from-bottom [animation-delay:200ms]">
+          <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 md:mb-12 leading-relaxed max-w-2xl animate-slide-in-from-bottom [animation-delay:200ms]">
             Wadah informasi resmi Batalion Lang Lang Bhuwana. Berkomitmen pada
             profesionalisme, transparansi publik, dan kemajuan bangsa melalui
             integritas tinggi.
@@ -44,15 +44,15 @@ export default function HeroSection() {
 
           {/* Buttons */}
           <div className="btn-group animate-slide-in-from-bottom [animation-delay:300ms]">
-            <Link href="/news">
-              <Button size="lg">
+            <Link href="/news" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto justify-center">
                 Jelajahi Warta <ArrowUpRight className="ml-2" size={20} />
               </Button>
             </Link>
             <Button
               variant="secondary"
               size="lg"
-              className="!bg-white/10 !border-white/20 !text-white !backdrop-blur-sm hover:!bg-white/20"
+              className="w-full sm:w-auto justify-center !bg-white/10 !border-white/20 !text-white !backdrop-blur-sm hover:!bg-white/20"
             >
               Agenda Mendatang
             </Button>

@@ -96,7 +96,7 @@ export default function NewsDetailClient({ news, relatedNews }) {
             ))}
           </article>
 
-          <div className="mt-12 pt-8 border-t border-slate-100 flex items-center gap-4">
+          <div className="mt-12 pt-8 border-t border-slate-100 flex flex-wrap items-center gap-4">
             <span className="text-sm font-bold text-slate-600 uppercase tracking-wider">
               Bagikan Warta
             </span>

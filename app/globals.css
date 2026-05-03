@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  @apply font-sans;
+  @apply font-sans overflow-x-hidden;
 }
 
 /* ========== ANIMATIONS ========== */
@@ -520,6 +520,19 @@ body {
     @apply card-base shadow-md-soft hover:shadow-xl-soft;
   }
 
+  /* Compact card styles for denser layouts */
+  .card-compact {
+    @apply card-base p-3 md:p-4 rounded-lg shadow-sm-soft;
+  }
+
+  .card-compact-title {
+    @apply text-base font-semibold text-slate-900 mb-1;
+  }
+
+  .card-compact-desc {
+    @apply text-slate-500 text-sm leading-snug;
+  }
+
   .card-interactive {
     @apply relative overflow-hidden cursor-pointer;
   }
@@ -570,6 +583,11 @@ body {
 
   .news-grid {
     @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8;
+  }
+
+  /* Compact variant of news grid for homepage summary sections */
+  .news-grid-compact {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6;
   }
 
   /* Input Fields */

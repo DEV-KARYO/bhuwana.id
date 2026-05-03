@@ -45,22 +45,22 @@ export default function ServicesSection() {
   return (
     <section className="page-section bg-white relative">
       <div className="container mx-auto section-spacing">
-        {/* Service Cards */}
-        <div className="news-grid -mt-24 md:-mt-32 relative z-20 stagger-children">
+        {/* Service Cards - compact layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 relative z-20 reveal-up">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
               <div
                 key={i}
-                className="card-elevated p-6 md:p-10 hover-lift"
+                className="card-elevated p-4 md:p-6 hover-lift flex flex-col items-start"
               >
-                <div className="w-14 h-14 bg-slate-50 text-indigo-950 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-indigo-950 group-hover:text-white transition-colors duration-500">
-                  <Icon size={24} />
+                <div className="w-12 h-12 bg-slate-50 text-indigo-950 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-950 group-hover:text-white transition-colors duration-300">
+                  <Icon size={20} />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">
+                <h3 className="text-lg font-semibold text-slate-900 mb-2">
                   {service.title}
                 </h3>
-                <p className="text-slate-500 leading-relaxed text-sm">
+                <p className="text-slate-500 text-sm leading-snug">
                   {service.description}
                 </p>
               </div>
@@ -68,8 +68,8 @@ export default function ServicesSection() {
           })}
         </div>
 
-        {/* Vision & Mission Section */}
-        <div className="mt-24 md:mt-32 grid lg:grid-cols-2 gap-12 md:gap-20 items-start reveal-up-delayed">
+        {/* Vision & Mission Section - compact spacing */}
+        <div className="mt-12 md:mt-16 grid lg:grid-cols-2 gap-8 md:gap-12 items-start reveal-up-delayed">
           {/* Left Column - Text */}
           <div>
             <Badge variant="primary">Visi & Misi</Badge>
@@ -93,9 +93,9 @@ export default function ServicesSection() {
             </div>
           </div>
 
-          {/* Right Column - Image */}
+          {/* Right Column - Image (smaller) */}
           <div className="relative">
-            <div className="aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl relative">
+            <div className="aspect-[3/4] rounded-xl overflow-hidden shadow-lg relative">
               <Image
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800"
                 alt="Formal Presentation"
@@ -104,10 +104,10 @@ export default function ServicesSection() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <div className="absolute -bottom-10 -right-10 bg-indigo-950 p-8 rounded-3xl text-white shadow-2xl hidden md:block border-8 border-white">
-              <div className="text-4xl font-black mb-1">A+</div>
-              <div className="text-[10px] font-bold text-indigo-300 uppercase tracking-widest">
-                Akreditasi Pelayanan
+            <div className="absolute -bottom-6 -right-6 bg-indigo-950 p-4 rounded-2xl text-white shadow-lg hidden md:flex flex-col items-center border-4 border-white">
+              <div className="text-2xl font-extrabold mb-0">A+</div>
+              <div className="text-[10px] font-bold text-indigo-300 uppercase tracking-widest mt-1">
+                Akreditasi
               </div>
             </div>
           </div>
