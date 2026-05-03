@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { Users, Zap, Heart } from 'lucide-react';
+import { Users, Zap, Heart, Calendar, MapPin, Users2 } from 'lucide-react';
 import Badge from './Badge';
-import { leadershipData } from '@/lib/content';
+import { leadershipData, eventsData } from '@/lib/content';
 
 const profileHighlights = [
   {
@@ -102,40 +102,68 @@ export default function ServicesSection() {
             </div>
           </div>
 
-          {/* Right Column - Portal Features */}
+          {/* Right Column - Upcoming Events */}
           <div className="relative">
             <div className="card-elevated p-6 md:p-8 lg:p-10 overflow-hidden relative">
               <div aria-hidden className="absolute -top-20 -right-16 w-48 h-48 rounded-full bg-indigo-50 blur-3xl opacity-80" />
               <div className="relative z-10">
-                <Badge variant="primary">Jelajahi Portal</Badge>
+                <Badge variant="primary">Jadwal Kegiatan</Badge>
                 <h3 className="text-2xl md:text-3xl font-black text-slate-900 mt-4">
-                  Akses Informasi Lengkap
+                  Event Mendatang
                 </h3>
                 <p className="text-slate-500 mt-2 text-sm">
-                  Platform kami menyediakan berbagai informasi untuk transparansi dan engagement dengan publik.
+                  Informasi kegiatan dan acara yang sedang atau akan berlangsung di satuan kami.
                 </p>
 
                 <div className="mt-6 space-y-3">
-                  <Link href="/news" className="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 transition-all group">
-                    <p className="text-xs font-bold uppercase text-slate-500 group-hover:text-indigo-700 mb-1">📰 Berita & Warta</p>
-                    <p className="text-sm font-semibold text-slate-900">Kegiatan Terkini</p>
-                  </Link>
-
-                  <Link href="/structure" className="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 transition-all group">
-                    <p className="text-xs font-bold uppercase text-slate-500 group-hover:text-indigo-700 mb-1">👥 Struktur Pimpinan</p>
-                    <p className="text-sm font-semibold text-slate-900">Profil Komandan</p>
-                  </Link>
-
-                  <Link href="/gallery" className="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 transition-all group">
-                    <p className="text-xs font-bold uppercase text-slate-500 group-hover:text-indigo-700 mb-1">📸 Galeri & Dokumentasi</p>
-                    <p className="text-sm font-semibold text-slate-900">Visual Kegiatan</p>
-                  </Link>
-
-                  <Link href="/kegiatan" className="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 transition-all group">
-                    <p className="text-xs font-bold uppercase text-slate-500 group-hover:text-indigo-700 mb-1">🎯 Kegiatan & Acara</p>
-                    <p className="text-sm font-semibold text-slate-900">Jadwal Terkini</p>
-                  </Link>
+                  {eventsData
+                    .filter(event => event.status === 'Mendatang' || event.status === 'Berlangsung')
+                    .slice(0, 3)
+                    .map(event => (
+                      <Link 
+                        key={event.id}
+                        href={`/kegiatan/${event.id}`} 
+                        className="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 transition-all group"
+                      >
+                        <div className="flex items-start justify-between gap-2 mb-2">
+                          <div className="flex-1">
+                            <h4 className="text-sm font-bold text-slate-900 group-hover:text-indigo-700 mb-1 line-clamp-2">
+                              {event.title}
+                            </h4>
+                          </div>
+                          <span className={`text-xs font-semibold px-2 py-1 rounded-full whitespace-nowrap ${
+                            event.status === 'Berlangsung' 
+                              ? 'bg-green-100 text-green-700' 
+                              : 'bg-blue-100 text-blue-700'
+                          }`}>
+                            {event.status}
+                          </span>
+                        </div>
+                        
+                        <div className="space-y-1 text-xs text-slate-600">
+                          <div className="flex items-center gap-1.5">
+                            <Calendar size={12} className="text-indigo-600" />
+                            <span>{new Date(event.startDate).toLocaleDateString('id-ID', { day: '2-digit', month: 'short' })}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <MapPin size={12} className="text-indigo-600" />
+                            <span className="line-clamp-1">{event.location}</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <Users2 size={12} className="text-indigo-600" />
+                            <span>{event.registered}/{event.capacity} peserta</span>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
                 </div>
+
+                <Link 
+                  href="/kegiatan"
+                  className="mt-4 block text-center py-2 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-900 font-semibold text-sm transition-colors border border-indigo-200"
+                >
+                  Lihat Semua Kegiatan →
+                </Link>
               </div>
             </div>
           </div>
