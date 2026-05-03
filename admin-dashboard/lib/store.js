@@ -3,6 +3,11 @@ import path from 'path';
 
 const NEWS_FILE = path.join(process.cwd(), '..', 'content', 'news.json');
 const GALLERY_FILE = path.join(process.cwd(), '..', 'content', 'gallery.json');
+const dateFormatter = new Intl.DateTimeFormat('id-ID', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 
 async function readJson(filePath) {
   const raw = await fs.readFile(filePath, 'utf8');
@@ -13,9 +18,40 @@ async function writeJson(filePath, value) {
   await fs.writeFile(filePath, JSON.stringify(value, null, 2), 'utf8');
 }
 
+function toIsoDate(value) {
+  if (!value) {
+    return '';
+  }
+
+  if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return value;
+  }
+
+  const parsedDate = new Date(value);
+  if (Number.isNaN(parsedDate.getTime())) {
+    return '';
+  }
+
+  return parsedDate.toISOString().slice(0, 10);
+}
+
+function formatPublicationDate(value) {
+  const isoDate = toIsoDate(value);
+
+  if (!isoDate) {
+    return '';
+  }
+
+  const parsedDate = new Date(`${isoDate}T00:00:00.000Z`);
+  return dateFormatter.format(parsedDate);
+}
+
 function withDateObj(item) {
-  const dateObj = item.dateObj || new Date(item.date).toISOString();
-  return { ...item, dateObj };
+  const publishedAt = item.publishedAt || item.dateObj?.slice(0, 10) || toIsoDate(item.date);
+  const dateObj = item.dateObj || (publishedAt ? new Date(`${publishedAt}T00:00:00.000Z`).toISOString() : new Date().toISOString());
+  const date = item.date || formatPublicationDate(publishedAt || dateObj);
+
+  return { ...item, publishedAt, date, dateObj };
 }
 
 export async function getNews() {

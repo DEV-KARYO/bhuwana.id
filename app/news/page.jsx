@@ -11,17 +11,58 @@ import { useToast } from '@/components/Toast';
 import { newsData, categories } from '@/lib/content';
 import {
   filterNewsByCategory,
+  formatNewsMonth,
   sortNewsByDate,
   paginateArray,
 } from '@/lib/utils';
 
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState('Semua');
+  const [selectedTag, setSelectedTag] = useState('Semua');
+  const [selectedMonth, setSelectedMonth] = useState('Semua');
+  const [selectedYear, setSelectedYear] = useState('Semua');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOrder, setSortOrder] = useState('desc');
   const toast = useToast();
   const itemsPerPage = 6;
+
+  const latestNews = useMemo(() => {
+    return sortNewsByDate(newsData, 'desc')[0] || null;
+  }, []);
+
+  const newsStats = useMemo(() => {
+    const totalItems = newsData.length;
+    const totalCategories = new Set(newsData.map((item) => item.category)).size;
+    const totalTags = new Set(newsData.flatMap((item) => item.tags || [])).size;
+
+    return {
+      totalItems,
+      totalCategories,
+      totalTags,
+    };
+  }, []);
+
+  const availableTags = useMemo(() => {
+    const tags = newsData.flatMap((item) => item.tags || []);
+    return [...new Set(tags)].slice(0, 12);
+  }, []);
+
+  const availableMonths = useMemo(() => {
+    const months = newsData
+      .map((item) => (item.publishedAt || item.dateObj || item.date || '').slice(0, 7))
+      .filter(Boolean);
+
+    return [...new Set(months)].sort((a, b) => b.localeCompare(a));
+  }, []);
+
+  const availableYears = useMemo(() => {
+    const years = newsData
+      .map((item) => (item.publishedAt || item.dateObj || item.date || '').slice(0, 4))
+      .filter(Boolean);
+
+    return [...new Set(years)].sort((a, b) => b.localeCompare(a));
+  }, []);
 
   // Filter and sort
   const filteredNews = useMemo(() => {
@@ -41,8 +82,24 @@ export default function NewsPage() {
       );
     }
 
+    if (selectedTag !== 'Semua') {
+      result = result.filter((item) => (item.tags || []).includes(selectedTag));
+    }
+
+    if (selectedMonth !== 'Semua') {
+      result = result.filter((item) =>
+        (item.publishedAt || item.dateObj || item.date || '').startsWith(selectedMonth)
+      );
+    }
+
+    if (selectedYear !== 'Semua') {
+      result = result.filter((item) =>
+        (item.publishedAt || item.dateObj || item.date || '').startsWith(selectedYear)
+      );
+    }
+
     return sortNewsByDate(result, sortOrder);
-  }, [selectedCategory, sortOrder, searchQuery]);
+  }, [selectedCategory, selectedMonth, selectedTag, selectedYear, sortOrder, searchQuery]);
 
   // Paginate
   const { items, totalPages } = useMemo(() => {
@@ -51,6 +108,21 @@ export default function NewsPage() {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handleTagChange = (tag) => {
+    setSelectedTag(tag);
+    setCurrentPage(1);
+  };
+
+  const handleMonthChange = (month) => {
+    setSelectedMonth(month);
+    setCurrentPage(1);
+  };
+
+  const handleYearChange = (year) => {
+    setSelectedYear(year);
     setCurrentPage(1);
   };
 
@@ -124,12 +196,15 @@ export default function NewsPage() {
               aria-label="Cari warta"
             />
 
-            {(searchQuery.trim() || selectedCategory !== 'Semua' || sortOrder !== 'desc') && (
+            {(searchQuery.trim() || selectedCategory !== 'Semua' || selectedTag !== 'Semua' || selectedMonth !== 'Semua' || selectedYear !== 'Semua' || sortOrder !== 'desc') && (
               <div className="mt-3">
                 <button
                   onClick={() => {
                     setSearchQuery('');
                     setSelectedCategory('Semua');
+                    setSelectedTag('Semua');
+                    setSelectedMonth('Semua');
+                    setSelectedYear('Semua');
                     setSortOrder('desc');
                     setCurrentPage(1);
                   }}
@@ -151,6 +226,24 @@ export default function NewsPage() {
             <div className="lg:col-span-3 list-spaced stagger-children">
               <div className="text-sm text-slate-500 bg-white border border-slate-100 rounded-xl px-4 py-3">
                 Menampilkan <span className="font-bold text-slate-700">{filteredNews.length}</span> warta dalam kategori <span className="font-bold text-slate-700">{selectedCategory}</span>
+                {selectedTag !== 'Semua' && (
+                  <>
+                    {' '}
+                    dengan tag <span className="font-bold text-slate-700">{selectedTag}</span>
+                  </>
+                )}
+                {selectedMonth !== 'Semua' && (
+                  <>
+                    {' '}
+                    pada arsip <span className="font-bold text-slate-700">{formatNewsMonth(`${selectedMonth}-01`)}</span>
+                  </>
+                )}
+                {selectedYear !== 'Semua' && (
+                  <>
+                    {' '}
+                    di tahun <span className="font-bold text-slate-700">{selectedYear}</span>
+                  </>
+                )}
               </div>
 
               {items.length > 0 ? (
@@ -213,6 +306,36 @@ export default function NewsPage() {
 
             {/* Sidebar */}
             <aside className="space-y-6 md:space-y-8 lg:sticky lg:top-28 h-fit">
+              <div className="bg-gradient-to-br from-indigo-950 via-indigo-900 to-slate-950 text-white rounded-3xl p-6 md:p-8 relative overflow-hidden shadow-xl shadow-indigo-950/10">
+                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.35),_transparent_40%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.35),_transparent_45%)]"></div>
+                <div className="relative z-10">
+                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-indigo-200 mb-3">
+                    Statistik Warta
+                  </p>
+                  <h4 className="text-xl font-black leading-tight mb-4">
+                    Ringkasan publikasi terkini
+                  </h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
+                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Total</p>
+                      <p className="text-2xl font-black">{newsStats.totalItems}</p>
+                    </div>
+                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
+                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Kategori</p>
+                      <p className="text-2xl font-black">{newsStats.totalCategories}</p>
+                    </div>
+                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
+                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Tag</p>
+                      <p className="text-2xl font-black">{newsStats.totalTags}</p>
+                    </div>
+                    <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-4 border border-white/10">
+                      <p className="text-xs uppercase tracking-widest text-indigo-200 mb-1">Terbaru</p>
+                      <p className="text-sm font-bold leading-tight">{latestNews ? formatNewsMonth(latestNews.publishedAt || latestNews.dateObj || latestNews.date) : '-'}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Category Filter */}
               <div className="card-elevated p-6 md:p-8">
                 <h4 className="font-black text-slate-900 mb-6">
@@ -236,6 +359,69 @@ export default function NewsPage() {
                           selectedCategory === cat ? 'opacity-100' : ''
                         }`}
                       />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="card-elevated p-6 md:p-8">
+                <h4 className="font-black text-slate-900 mb-6">Tag Warta</h4>
+                <div className="flex flex-wrap gap-2">
+                  {['Semua', ...availableTags].map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => handleTagChange(tag)}
+                      className={`px-3 py-2 rounded-full transition-all text-sm font-bold border shadow-sm ${
+                        selectedTag === tag
+                          ? 'bg-gradient-to-r from-indigo-950 to-slate-900 text-white border-indigo-950'
+                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="card-elevated p-6 md:p-8">
+                <h4 className="font-black text-slate-900 mb-6">Arsip Publikasi</h4>
+                <div className="list-spaced">
+                  {['Semua', ...availableMonths].map((month) => (
+                    <button
+                      key={month}
+                      onClick={() => handleMonthChange(month)}
+                      className={`w-full flex-between p-3 rounded-2xl transition-all group text-left font-bold text-sm border ${
+                        selectedMonth === month
+                          ? 'bg-indigo-950 text-white border-indigo-950 shadow-lg shadow-indigo-950/10'
+                          : 'bg-white hover:bg-slate-50 text-slate-600 border-slate-200 hover:border-slate-300'
+                      }`}
+                    >
+                      {month === 'Semua' ? 'Semua Bulan' : formatNewsMonth(`${month}-01`)}
+                      <ChevronRight
+                        size={14}
+                        className={`group-hover:translate-x-1 transition-transform shrink-0 ${
+                          selectedMonth === month ? 'opacity-100' : ''
+                        }`}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="card-elevated p-6 md:p-8">
+                <h4 className="font-black text-slate-900 mb-6">Tahun Publikasi</h4>
+                <div className="flex flex-wrap gap-2">
+                  {['Semua', ...availableYears].map((year) => (
+                    <button
+                      key={year}
+                      onClick={() => handleYearChange(year)}
+                      className={`px-4 py-2 rounded-full transition-all text-sm font-bold border shadow-sm ${
+                        selectedYear === year
+                          ? 'bg-slate-900 text-white border-slate-900'
+                          : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50 hover:border-slate-300'
+                      }`}
+                    >
+                      {year === 'Semua' ? 'Semua Tahun' : year}
                     </button>
                   ))}
                 </div>
@@ -272,6 +458,23 @@ export default function NewsPage() {
                   ))}
                 </div>
               </div>
+
+              {(selectedCategory !== 'Semua' || selectedTag !== 'Semua' || selectedMonth !== 'Semua' || selectedYear !== 'Semua' || searchQuery.trim()) && (
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('Semua');
+                    setSelectedTag('Semua');
+                    setSelectedMonth('Semua');
+                    setSelectedYear('Semua');
+                    setSortOrder('desc');
+                    setCurrentPage(1);
+                  }}
+                  className="w-full text-left text-sm font-semibold text-indigo-700 hover:text-indigo-900 transition-colors"
+                >
+                  Reset semua filter
+                </button>
+              )}
 
               {/* Email Subscription */}
               <div className="bg-gradient-primary p-6 md:p-8 rounded-2xl text-white relative overflow-hidden">

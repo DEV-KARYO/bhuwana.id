@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import Badge from './Badge';
+import { formatNewsDate } from '@/lib/utils';
 
 export default function NewsCard({ news, layout = 'grid', compact = false }) {
   if (layout === 'list') {
@@ -27,7 +28,7 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
             <div>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-bold text-slate-400 mb-3 uppercase tracking-widest">
                 <span className="flex items-center gap-1.5">
-                  <Calendar size={14} /> {news.date}
+                  <Calendar size={14} /> {formatNewsDate(news)}
                 </span>
                 <span className="w-1 h-1 bg-slate-200 rounded-full"></span>
                 <span className="flex items-center gap-1.5">
@@ -71,7 +72,7 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
         {/* Content */}
         <div className={`${compact ? 'p-4 md:p-6' : 'p-6 md:p-8'} flex-grow flex flex-col`}>
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
-            {news.date}
+            {formatNewsDate(news)}
           </p>
           <h3 className={`${compact ? 'text-lg' : 'text-xl'} font-bold text-slate-900 mb-3 group-hover:text-indigo-700 transition-colors line-clamp-2`}>
             {news.title}

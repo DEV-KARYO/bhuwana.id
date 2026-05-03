@@ -3,8 +3,13 @@ import { createNews, getNews } from '@/lib/store';
 import { isAuthorized } from '@/lib/guards';
 
 function validate(body) {
-  const required = ['title', 'excerpt', 'content', 'date', 'category', 'author', 'image'];
+  const required = ['title', 'excerpt', 'content', 'category', 'author', 'image'];
   const missing = required.filter((key) => !body?.[key]);
+
+  if (!body?.publishedAt && !body?.date) {
+    missing.push('publishedAt');
+  }
+
   return { ok: missing.length === 0, missing };
 }
 

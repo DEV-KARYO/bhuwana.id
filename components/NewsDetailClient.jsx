@@ -7,7 +7,8 @@ import { ChevronLeft, User, Copy } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import NewsCard from '@/components/NewsCard';
-import { copyToClipboard, getShareUrl } from '@/lib/utils';
+import Badge from '@/components/Badge';
+import { copyToClipboard, formatNewsDate, getShareUrl } from '@/lib/utils';
 
 export default function NewsDetailClient({ news, relatedNews }) {
   const [isCopied, setIsCopied] = useState(false);
@@ -78,9 +79,9 @@ export default function NewsDetailClient({ news, relatedNews }) {
             <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
             <div>
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-                Tanggal Terbit
+                Tanggal Publikasi
               </p>
-              <p className="font-bold text-slate-900">{news.date}</p>
+              <p className="font-bold text-slate-900">{formatNewsDate(news)}</p>
             </div>
           </div>
 
@@ -95,6 +96,21 @@ export default function NewsDetailClient({ news, relatedNews }) {
               </p>
             ))}
           </article>
+
+          {Array.isArray(news.tags) && news.tags.length > 0 && (
+            <div className="mt-10">
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">
+                Tag Warta
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {news.tags.map((tag) => (
+                  <Badge key={tag} variant="default">
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="mt-12 pt-8 border-t border-slate-100 flex flex-wrap items-center gap-4">
             <span className="text-sm font-bold text-slate-600 uppercase tracking-wider">

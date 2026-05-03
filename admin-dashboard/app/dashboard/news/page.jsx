@@ -6,7 +6,7 @@ const initialForm = {
   title: '',
   excerpt: '',
   content: '',
-  date: '',
+  publishedAt: '',
   category: '',
   author: '',
   image: '',
@@ -78,7 +78,7 @@ export default function NewsManagerPage() {
       title: item.title || '',
       excerpt: item.excerpt || '',
       content: item.content || '',
-      date: item.date || '',
+      publishedAt: item.publishedAt || item.dateObj?.slice(0, 10) || '',
       category: item.category || '',
       author: item.author || '',
       image: item.image || '',
@@ -108,13 +108,15 @@ export default function NewsManagerPage() {
           </div>
 
           <div className="field">
-            <label>Tanggal</label>
+            <label>Tanggal Publikasi</label>
             <input
-              value={form.date}
+              type="date"
+              value={form.publishedAt}
               onChange={(event) =>
-                setForm((prev) => ({ ...prev, date: event.target.value }))
+                setForm((prev) => ({ ...prev, publishedAt: event.target.value }))
               }
             />
+            <small>Tanggal ini dipakai untuk urutan tampil dan label publikasi.</small>
           </div>
 
           <div className="field">

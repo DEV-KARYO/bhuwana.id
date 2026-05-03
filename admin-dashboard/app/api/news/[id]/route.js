@@ -7,6 +7,17 @@ function parseId(params) {
   return Number.isFinite(id) ? id : null;
 }
 
+function validate(body) {
+  const required = ['title', 'excerpt', 'content', 'category', 'author', 'image'];
+  const missing = required.filter((key) => !body?.[key]);
+
+  if (!body?.publishedAt && !body?.date) {
+    missing.push('publishedAt');
+  }
+
+  return { ok: missing.length === 0, missing };
+}
+
 export async function PUT(request, { params }) {
   if (!isAuthorized(request)) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -20,6 +31,14 @@ export async function PUT(request, { params }) {
   const body = await request.json().catch(() => null);
   if (!body) {
     return NextResponse.json({ message: 'Payload tidak valid.' }, { status: 400 });
+  }
+
+  const result = validate(body);
+  if (!result.ok) {
+    return NextResponse.json(
+      { message: `Field wajib: ${result.missing.join(', ')}` },
+      { status: 400 }
+    );
   }
 
   const item = await updateNews(id, {
