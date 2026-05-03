@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Search, X } from 'lucide-react';
 import { newsData } from '@/lib/content';
@@ -25,8 +25,28 @@ export default function SearchModal({ onClose, modalId = 'search-modal' }) {
     'Inovasi Digital',
   ];
 
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
+
   return (
-    <div id={modalId} className="fixed inset-0 z-[100] bg-indigo-950/40 backdrop-blur-md flex items-start justify-center pt-16 md:pt-32 px-4 md:px-6 animate-in fade-in duration-300" role="dialog" aria-modal="true" aria-label="Pencarian konten">
+    <div id={modalId} className="fixed inset-0 z-[100] bg-indigo-950/40 backdrop-blur-md flex items-start justify-center pt-16 md:pt-32 px-4 md:px-6 animate-in fade-in duration-300" role="dialog" aria-modal="true" aria-label="Pencarian konten" onClick={(event) => {
+      if (event.target === event.currentTarget) {
+        onClose();
+      }
+    }}>
       <div className="modal-content w-full max-w-2xl animate-in zoom-in-95 duration-300">
         {/* Search Input */}
         <div className="p-4 flex items-center gap-3 md:gap-4 border-b border-slate-100">

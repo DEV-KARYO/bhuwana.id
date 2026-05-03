@@ -177,6 +177,17 @@ body {
   }
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ========== UTILITY CLASSES ========== */
 @layer utilities {
   /* Animations */
@@ -674,6 +685,54 @@ body {
 
   .link-hover-underline {
     @apply relative pb-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full;
+  }
+
+  .skip-link {
+    @apply fixed left-4 top-4 z-[2000] -translate-y-20 opacity-0 px-4 py-2 rounded-lg bg-indigo-950 text-white text-sm font-semibold transition-all;
+  }
+
+  .skip-link:focus {
+    @apply translate-y-0 opacity-100;
+  }
+
+  /* Motion utilities */
+  .reveal-up {
+    animation: fadeUp 0.55s ease-out both;
+  }
+
+  .reveal-up-delayed {
+    animation: fadeUp 0.7s ease-out both;
+  }
+
+  .stagger-children > * {
+    animation: fadeUp 0.55s ease-out both;
+  }
+
+  .stagger-children > *:nth-child(1) { animation-delay: 40ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 100ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 160ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 220ms; }
+  .stagger-children > *:nth-child(5) { animation-delay: 280ms; }
+  .stagger-children > *:nth-child(6) { animation-delay: 340ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-up,
+  .reveal-up-delayed,
+  .stagger-children > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

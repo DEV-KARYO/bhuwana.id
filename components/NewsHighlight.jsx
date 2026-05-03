@@ -12,7 +12,7 @@ export default function NewsHighlight() {
     <section className="page-section bg-slate-50">
       <div className="container mx-auto section-spacing">
         {/* Header */}
-        <div className="flex-between flex-col md:flex-row gap-6 mb-12 md:mb-16">
+        <div className="flex-between flex-col md:flex-row gap-6 mb-12 md:mb-16 reveal-up">
           <div>
             <Badge variant="primary">Update Terkini</Badge>
             <h2 className="text-4xl font-black text-slate-900 mt-4 tracking-tight">
@@ -27,7 +27,7 @@ export default function NewsHighlight() {
         </div>
 
         {/* News Grid */}
-        <div className="news-grid">
+        <div className="news-grid stagger-children">
           {latestNews.map((item) => (
             <NewsCard key={item.id} news={item} layout="grid" />
           ))}

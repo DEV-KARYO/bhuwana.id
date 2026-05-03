@@ -21,12 +21,22 @@ const navItems = [
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+
+      const maxScroll =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+      setScrollProgress(Math.min(100, Math.max(0, progress)));
+    };
+
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -39,6 +49,23 @@ export default function Navbar() {
 
     document.body.style.overflow = '';
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setIsMenuOpen(false);
+        setIsSearchOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setIsSearchOpen(false);
+  }, [pathname]);
 
   const isHome = pathname === '/';
   const isAtTop = !isScrolled && isHome;
@@ -93,6 +120,7 @@ export default function Navbar() {
                 <Link
                   key={item.id}
                   href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`text-sm font-bold transition-all relative py-1 ${
                     isActive
                       ? isAtTop
@@ -151,6 +179,13 @@ export default function Navbar() {
             </div>
           </div>
         </div>
+
+        <div className="absolute left-0 right-0 -bottom-px h-[2px] bg-slate-200/40">
+          <div
+            className="h-full bg-gradient-to-r from-indigo-600 to-blue-500 transition-all duration-150"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
       </nav>
 
       {/* Mobile Menu */}
@@ -173,7 +208,10 @@ export default function Navbar() {
                   key={item.id}
                   href={item.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block text-2xl font-black text-white hover:text-indigo-100"
+                  aria-current={pathname === item.href ? 'page' : undefined}
+                  className={`block text-2xl font-black transition-colors ${
+                    pathname === item.href ? 'text-indigo-200' : 'text-white hover:text-indigo-100'
+                  }`}
                 >
                   {item.label}
                 </Link>

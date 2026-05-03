@@ -84,13 +84,15 @@ export default function Footer() {
               ].map((link) => (
                 <li
                   key={link}
-                  className="hover:text-white transition-colors cursor-pointer flex items-center group"
+                  className="transition-colors flex items-center group"
                 >
                   <ChevronRight
                     size={14}
                     className="mr-2 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all"
                   />
-                  {link}
+                  <button className="text-slate-300 hover:text-white focus-ring-sm rounded px-1 py-0.5">
+                    {link}
+                  </button>
                 </li>
               ))}
             </ul>
@@ -122,12 +124,12 @@ export default function Footer() {
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
           <p>© {currentYear} BATALION LANG LANG BHUWANA. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-10">
-            <span className="hover:text-indigo-300 cursor-pointer transition-colors">
+            <button className="hover:text-indigo-300 transition-colors focus-ring-sm rounded px-1 py-0.5">
               Disclaimer
-            </span>
-            <span className="hover:text-indigo-300 cursor-pointer transition-colors">
+            </button>
+            <button className="hover:text-indigo-300 transition-colors focus-ring-sm rounded px-1 py-0.5">
               Sitemap
-            </span>
+            </button>
           </div>
         </div>
       </div>

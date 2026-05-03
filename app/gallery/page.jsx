@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Badge from '@/components/Badge';
@@ -10,15 +10,80 @@ import { galleryData } from '@/lib/content';
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
   const uniqueCategories = [...new Set(galleryData.map((item) => item.category))];
 
   const categories = ['Semua', ...uniqueCategories];
   const [activeCategory, setActiveCategory] = useState('Semua');
 
-  const filteredGallery =
-    activeCategory === 'Semua'
-      ? galleryData
-      : galleryData.filter((item) => item.category === activeCategory);
+  const filteredGallery = useMemo(() => {
+    const categoryFiltered =
+      activeCategory === 'Semua'
+        ? galleryData
+        : galleryData.filter((item) => item.category === activeCategory);
+
+    if (!searchQuery.trim()) {
+      return categoryFiltered;
+    }
+
+    const query = searchQuery.toLowerCase();
+    return categoryFiltered.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query)
+    );
+  }, [activeCategory, searchQuery]);
+
+  const currentIndex = selectedImage
+    ? filteredGallery.findIndex((item) => item.id === selectedImage.id)
+    : -1;
+
+  const showPrevImage = useCallback(() => {
+    if (!filteredGallery.length || currentIndex < 0) {
+      return;
+    }
+
+    const prevIndex =
+      currentIndex === 0 ? filteredGallery.length - 1 : currentIndex - 1;
+    setSelectedImage(filteredGallery[prevIndex]);
+  }, [currentIndex, filteredGallery]);
+
+  const showNextImage = useCallback(() => {
+    if (!filteredGallery.length || currentIndex < 0) {
+      return;
+    }
+
+    const nextIndex =
+      currentIndex === filteredGallery.length - 1 ? 0 : currentIndex + 1;
+    setSelectedImage(filteredGallery[nextIndex]);
+  }, [currentIndex, filteredGallery]);
+
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setSelectedImage(null);
+      }
+
+      if (event.key === 'ArrowLeft') {
+        showPrevImage();
+      }
+
+      if (event.key === 'ArrowRight') {
+        showNextImage();
+      }
+    };
+
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [selectedImage, showNextImage, showPrevImage]);
 
   return (
     <div className="page-content">
@@ -49,14 +114,40 @@ export default function GalleryPage() {
                 {cat}
               </button>
             ))}
+
+            {(activeCategory !== 'Semua' || searchQuery.trim()) && (
+              <button
+                onClick={() => {
+                  setActiveCategory('Semua');
+                  setSearchQuery('');
+                }}
+                className="filter-btn-inactive"
+              >
+                Reset Filter
+              </button>
+            )}
           </div>
 
+          <div className="max-w-xl mx-auto mb-8 md:mb-10">
+            <input
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              placeholder="Cari foto, kategori, atau deskripsi..."
+              className="input-base"
+              aria-label="Cari galeri"
+            />
+          </div>
+
+          <p className="text-center text-sm text-slate-500 mb-6">
+            Menampilkan <span className="font-bold text-slate-700">{filteredGallery.length}</span> dari <span className="font-bold text-slate-700">{galleryData.length}</span> dokumentasi
+          </p>
+
           {/* Gallery Grid */}
-          <div className="news-grid">
+          <div className="news-grid stagger-children">
             {filteredGallery.map((item) => (
               <div
                 key={item.id}
-                className="card-interactive"
+                className="card-interactive group"
                 onClick={() => setSelectedImage(item)}
               >
                 <div className="gallery-item">
@@ -103,12 +194,36 @@ export default function GalleryPage() {
         <div
           className="modal-backdrop"
           onClick={() => setSelectedImage(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Pratinjau galeri"
         >
-          <div className="modal-content">
+          <div className="modal-content" onClick={(event) => event.stopPropagation()}>
+            {filteredGallery.length > 1 && (
+              <>
+                <button
+                  onClick={showPrevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 rounded-full flex-center hover:bg-white transition-all shadow-lg"
+                  aria-label="Gambar sebelumnya"
+                >
+                  <ChevronLeft size={20} className="text-slate-900" />
+                </button>
+
+                <button
+                  onClick={showNextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 rounded-full flex-center hover:bg-white transition-all shadow-lg"
+                  aria-label="Gambar berikutnya"
+                >
+                  <ChevronRight size={20} className="text-slate-900" />
+                </button>
+              </>
+            )}
+
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
               className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex-center hover:bg-slate-100 transition-all shadow-lg"
+              aria-label="Tutup pratinjau"
             >
               <X size={20} className="text-slate-900" />
             </button>
@@ -138,6 +253,11 @@ export default function GalleryPage() {
                   {selectedImage.category}
                 </span>
                 <span>{selectedImage.date}</span>
+                {currentIndex >= 0 && (
+                  <span className="font-semibold text-slate-700">
+                    {currentIndex + 1}/{filteredGallery.length}
+                  </span>
+                )}
               </div>
             </div>
           </div>

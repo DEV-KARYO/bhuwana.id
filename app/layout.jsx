@@ -38,8 +38,11 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#1e293b" />
       </head>
       <body className="min-h-screen bg-white font-sans">
+        <a href="#konten-utama" className="skip-link">
+          Lewati ke konten utama
+        </a>
         <ToastContainer />
-        {children}
+        <div id="konten-utama">{children}</div>
       </body>
     </html>
   );

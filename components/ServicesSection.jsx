@@ -46,7 +46,7 @@ export default function ServicesSection() {
     <section className="page-section bg-white relative">
       <div className="container mx-auto section-spacing">
         {/* Service Cards */}
-        <div className="news-grid -mt-24 md:-mt-32 relative z-20">
+        <div className="news-grid -mt-24 md:-mt-32 relative z-20 stagger-children">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
@@ -69,7 +69,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Vision & Mission Section */}
-        <div className="mt-24 md:mt-32 grid lg:grid-cols-2 gap-12 md:gap-20 items-start">
+        <div className="mt-24 md:mt-32 grid lg:grid-cols-2 gap-12 md:gap-20 items-start reveal-up-delayed">
           {/* Left Column - Text */}
           <div>
             <Badge variant="primary">Visi & Misi</Badge>
