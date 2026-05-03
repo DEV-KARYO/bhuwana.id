@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, BookOpenText, CalendarDays, Download, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, BookOpen, CalendarDays, Download, ShieldCheck } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Badge from '@/components/Badge';
@@ -64,7 +64,7 @@ export default function MagazineIssuePage({ params }) {
                 <div className="absolute -top-24 -right-16 w-64 h-64 rounded-full bg-indigo-50 blur-3xl opacity-80" aria-hidden />
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-indigo-600 mb-4">
-                    <BookOpenText size={14} /> Edisi Lengkap
+                    <BookOpen size={14} /> Edisi Lengkap
                   </div>
                   <h2 className="text-2xl md:text-4xl font-black text-slate-900 leading-tight max-w-2xl">
                     Jejak Pengabdian dan Pembinaan Satuan

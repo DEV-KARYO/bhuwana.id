@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowLeft, BookOpenText, CalendarDays, Download, Sparkles } from 'lucide-react';
+import { ArrowLeft, BookOpen, CalendarDays, Download, Sparkles } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Badge from '@/components/Badge';
@@ -76,7 +76,7 @@ export default function MagazineArchivePage() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.10),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(99,102,241,0.35),transparent_45%)]" aria-hidden />
                 <div className="relative z-10">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.25em] text-indigo-200 mb-4">
-                    <BookOpenText size={14} /> Sorotan Isi
+                    <BookOpen size={14} /> Sorotan Isi
                   </div>
                   <h2 className="text-2xl font-black">Isi yang Dapat Dibaca</h2>
                   <div className="space-y-4 mt-6">

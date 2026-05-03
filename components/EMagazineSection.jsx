@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpenText, CalendarDays, Download, Sparkles } from 'lucide-react';
+import { BookOpen, CalendarDays, Download, Sparkles } from 'lucide-react';
 import Button from './Button';
 import Badge from './Badge';
 import { newsData } from '@/lib/content';
@@ -99,7 +99,7 @@ export default function EMagazineSection() {
                   <div className="relative z-10 flex h-full flex-col justify-between min-h-[22rem]">
                     <div>
                       <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.25em] text-indigo-100 mb-6">
-                        <BookOpenText size={14} /> Issue 01
+                        <BookOpen size={14} /> Issue 01
                       </div>
                       <h3 className="text-3xl md:text-4xl font-black leading-tight max-w-sm">
                         Jejak Pengabdian dan Pembinaan Satuan
