@@ -35,10 +35,10 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
                   <User size={14} /> {news.author}
                 </span>
               </div>
-              <h3 className={`${compact ? 'text-xl' : 'text-2xl'} font-black text-slate-900 mb-3 group-hover:text-indigo-700 transition-colors tracking-tight`}> 
+              <h3 className={`${compact ? 'text-lg md:text-xl' : 'text-xl md:text-2xl'} editorial-title mb-3 group-hover:text-indigo-700 transition-colors`}> 
                 {news.title}
               </h3>
-              <p className={`${compact ? 'text-sm leading-snug mb-4' : 'text-slate-500 text-sm leading-relaxed mb-6'}`}>
+              <p className={`${compact ? 'text-sm leading-snug mb-4' : 'text-sm mb-6'} editorial-body`}>
                 {news.excerpt}
               </p>
             </div>
@@ -74,10 +74,10 @@ export default function NewsCard({ news, layout = 'grid', compact = false }) {
           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
             {formatNewsDate(news)}
           </p>
-          <h3 className={`${compact ? 'text-lg' : 'text-xl'} font-bold text-slate-900 mb-3 group-hover:text-indigo-700 transition-colors line-clamp-2`}>
+          <h3 className={`${compact ? 'text-base md:text-lg' : 'text-lg md:text-xl'} editorial-title mb-3 group-hover:text-indigo-700 transition-colors line-clamp-2`}>
             {news.title}
           </h3>
-          <p className={`${compact ? 'text-sm' : 'text-slate-500 text-sm'} line-clamp-2 leading-snug flex-grow`}>
+          <p className={`${compact ? 'text-sm' : 'text-sm'} editorial-body line-clamp-2 leading-snug flex-grow`}>
             {news.excerpt}
           </p>
           <div className={`${compact ? 'mt-4 pt-4' : 'mt-6 pt-6'} border-t border-slate-100`}> 

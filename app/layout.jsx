@@ -1,4 +1,4 @@
-import { Inter } from 'next/font/google';
+import { Inter, Playfair_Display, Source_Serif_4 } from 'next/font/google';
 import { ToastContainer } from '@/components/Toast';
 import './globals.css';
 
@@ -7,6 +7,20 @@ const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   weight: ['400', '500', '600', '700', '800', '900'],
+});
+
+const sourceSerif = Source_Serif_4({
+  variable: '--font-editorial',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: '--font-editorial-heading',
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['600', '700'],
 });
 
 export const metadata = {
@@ -32,7 +46,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className={inter.variable}>
+    <html
+      lang="id"
+      className={`${inter.variable} ${sourceSerif.variable} ${playfairDisplay.variable}`}
+    >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#1e293b" />

@@ -15,7 +15,7 @@ export default function NewsHighlight() {
         <div className="flex-between flex-col sm:flex-row gap-4 mb-6 reveal-up">
           <div>
             <Badge variant="primary">Update Terkini</Badge>
-            <h2 className="text-2xl md:text-3xl font-black text-slate-900 mt-3 tracking-tight">
+            <h2 className="text-2xl md:text-3xl editorial-title mt-3">
               Lensa Lang Lang Bhuwana
             </h2>
           </div>

@@ -48,7 +48,7 @@ export default function NewsDetailClient({ news, relatedNews }) {
                 <ChevronLeft size={16} className="mr-2" /> Kembali
               </button>
             </Link>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-slate-900 max-w-4xl tracking-tight leading-[1.1]">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl editorial-title max-w-4xl leading-[1.1]">
               {news.title}
             </h1>
           </div>
@@ -85,13 +85,13 @@ export default function NewsDetailClient({ news, relatedNews }) {
             </div>
           </div>
 
-          <article className="prose prose-slate max-w-none">
-            <div className="text-lg md:text-xl font-medium text-slate-900 mb-6 md:mb-8 leading-relaxed">
+          <article className="prose prose-slate max-w-none prose-headings:font-display prose-p:font-serif">
+            <div className="text-lg md:text-xl editorial-body mb-6 md:mb-8">
               {news.excerpt}
             </div>
 
             {news.content.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-slate-700 mb-4 md:mb-6 text-base md:text-lg leading-relaxed">
+              <p key={index} className="editorial-body mb-4 md:mb-6 text-base md:text-lg">
                 {paragraph}
               </p>
             ))}
@@ -128,7 +128,7 @@ export default function NewsDetailClient({ news, relatedNews }) {
 
         {relatedNews.length > 0 && (
           <div className="mt-16 md:mt-24">
-            <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 md:mb-8 tracking-tight">
+            <h3 className="text-2xl md:text-3xl editorial-title mb-6 md:mb-8">
               Warta Terkait
             </h3>
             <div className="news-grid">

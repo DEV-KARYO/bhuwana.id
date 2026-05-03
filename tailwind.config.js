@@ -7,7 +7,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-editorial)', 'Georgia', 'serif'],
+        display: ['var(--font-editorial-heading)', 'Georgia', 'serif'],
       },
       keyframes: {
         'slow-zoom': {

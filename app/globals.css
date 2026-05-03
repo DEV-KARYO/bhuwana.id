@@ -476,7 +476,15 @@ body {
   }
 
   .prose-focus-indigo {
-    @apply prose prose-slate prose-lg text-slate-700 leading-relaxed;
+    @apply prose prose-slate prose-lg text-slate-700 leading-relaxed prose-headings:font-display prose-p:font-serif;
+  }
+
+  .editorial-title {
+    @apply font-display font-semibold tracking-tight text-slate-900 leading-[1.2] md:leading-[1.15];
+  }
+
+  .editorial-body {
+    @apply font-serif text-slate-800 leading-8 md:leading-[1.9] antialiased;
   }
 
   /* Container utilities */

@@ -175,7 +175,7 @@ export default function NewsPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
               <Badge variant="primary">Pusat Warta</Badge>
-              <h1 className="section-title mt-4 mb-4">
+              <h1 className="section-title editorial-title mt-4 mb-4">
                 Kabar Lang Lang Bhuwana
               </h1>
               <p className="section-subtitle">
@@ -303,7 +303,7 @@ export default function NewsPage() {
               ) : (
                 <div className="text-center py-16 card-base">
                   <div className="text-6xl mb-4">📭</div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                  <h3 className="text-2xl editorial-title mb-2">
                     Tidak Ada Warta
                   </h3>
                   <p className="text-slate-500">
