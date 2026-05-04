@@ -85,7 +85,7 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-smooth duration-500 ${
           isAtTop
             ? 'bg-transparent py-6'
             : 'bg-white/80 backdrop-blur-xl border-b border-slate-100 py-4 shadow-sm'
@@ -95,7 +95,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3 md:gap-4 group min-w-0">
             <div
-              className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-500 shadow-lg ${
+              className={`w-11 h-11 rounded-xl flex items-center justify-center transition-smooth duration-500 shadow-lg ${
                 isAtTop
                   ? 'bg-white/20 rotate-[-5deg] group-hover:rotate-0'
                   : 'bg-indigo-950'
@@ -133,7 +133,7 @@ export default function Navbar() {
                   key={item.id}
                   href={item.href}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`text-sm font-bold transition-all relative py-1 ${
+                  className={`text-sm font-bold transition-smooth relative py-1 ${
                     isActive
                       ? isAtTop
                         ? 'text-white'
@@ -160,7 +160,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={() => setIsSearchOpen(true)}
-              className={`p-2.5 rounded-xl transition-colors focus-ring-sm ${
+              className={`p-2.5 rounded-xl transition-smooth focus-ring-sm ${
                 isAtTop
                   ? 'bg-white/10 text-white hover:bg-white/20'
                   : 'bg-slate-100 text-slate-600 hover:bg-slate-200'

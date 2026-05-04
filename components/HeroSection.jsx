@@ -13,7 +13,7 @@ export default function HeroSection() {
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-30 scale-105 animate-slow-zoom"
+          className="object-cover opacity-30 animate-float-gentle scale-100 group-hover:scale-110 transition-smooth duration-700"
           alt="Formal Meeting"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-950/70 via-transparent to-slate-900"></div>

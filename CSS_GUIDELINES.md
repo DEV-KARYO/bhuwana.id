@@ -115,28 +115,82 @@ xl:           - Wide (1280px+)
 
 ## Animations & Effects
 
-### Available Animations
+### Performance-Optimized Transitions
+All transitions use cubic-bezier easing for smooth, elegant motion:
+
+**Smooth Cubic-Bezier Transitions**
 ```css
-.animate-slide-in
-.animate-slide-in-up
-.animate-fade-in
-.animate-scale-in
-.animate-bounce-soft
-.animate-pulse-ring
-.animate-glow
-.hover-lift
-.hover-grow
-.hover-glow
+.transition-smooth        - All transitions with cubic-bezier(0.4, 0, 0.2, 1) - 300ms
+.transition-smooth-fast   - Fast transitions - 200ms
+.transition-smooth-slow   - Slow transitions - 500ms
+.transition-bounce        - Bouncy animations - cubic-bezier(0.34, 1.56, 0.64, 1)
+.transition-elastic       - Elastic animations - cubic-bezier(0.175, 0.885, 0.32, 1.275)
 ```
 
-### Hover Effects
-Jangan hardcode hover effects, gunakan classes:
+**Prefer smooth transitions over hardcoded ones:**
 ```jsx
 // ❌ SALAH
-<div className="hover:shadow-xl hover:scale-105">
+<div className="transition-all duration-300">
 
 // ✅ BENAR
-<div className="hover-lift">
+<div className="transition-smooth">
+```
+
+### Available Animations
+```css
+/* Entrance Animations */
+.animate-slide-in         - Smooth slide from left with cubic-bezier easing
+.animate-slide-in-up      - Slide up with smooth cubic-bezier easing
+.animate-fade-in          - Smooth fade in with cubic-bezier easing
+.animate-scale-in         - Smooth scale with bounce easing
+.animate-reveal-up        - Elegant reveal from bottom (0.6s cubic-bezier)
+
+/* Floating Effects */
+.animate-float-gentle     - Gentle floating animation (6s ease-in-out)
+.animate-slow-zoom        - Subtle background zoom (16s ease-in-out)
+
+/* Exit Animations */
+.animate-fade-out         - Exit fade (0.3s ease-out)
+.animate-slide-out-right  - Mobile menu exit (0.35s ease-out)
+
+/* Additional */
+.animate-bounce-soft      - Soft bounce effect
+.animate-pulse-ring       - Expanding ring pulse
+.animate-glow             - Glow effect
+```
+
+### Hover Effects - Enhanced Version
+Prefer semantic hover utilities:
+```jsx
+// ✅ BENAR - Using unified smooth transitions
+<div className="hover-lift">              // -2px translate + shadow
+<div className="hover-lift-sm">           // -1px translate + shadow
+<div className="hover-grow">              // 105% scale
+<div className="hover-grow-sm">           // 102% scale
+<div className="hover-glow">              // Shadow glow effect
+<div className="hover-brightness-up">     // Brightness +10%
+<div className="hover-scale-image">       // 110% scale (500ms)
+
+// ❌ SALAH - Don't hardcode
+<div className="hover:shadow-xl hover:scale-105">
+```
+
+### Stagger Animations (Lists)
+Apply `.stagger-children` to parent for cascaded animations:
+```jsx
+// ✅ BENAR - Auto-cascade up to 8 children
+<div className="grid stagger-children">
+  {items.map(item => <div key={item.id}>{item.name}</div>)}
+</div>
+
+// Cascading delays: 50ms, 100ms, 150ms, 200ms, 250ms, 300ms, 350ms, 400ms
+
+// ❌ SALAH - Don't manually set animation delays on children
+<div className="grid">
+  {items.map((item, i) => (
+    <div style={{animationDelay: `${i * 100}ms`}}>{item}</div>
+  ))}
+</div>
 ```
 
 ## Color Palette
@@ -244,6 +298,174 @@ Gunakan `.input-base` untuk consistency:
 2. **Use CSS Classes** - Faster than inline styles
 3. **Remove Unused Classes** - Tailwind purges unused CSS
 4. **Avoid Deep Selectors** - Keep specificity low
+
+## Image Optimization
+
+### Lazy Loading Images
+Use built-in utilities for smooth image loading experience:
+
+```jsx
+// ✅ BENAR - With loading state
+<div className="img-container">
+  <img 
+    src={src} 
+    className="img-fade-in" 
+    alt="description"
+    loading="lazy"
+  />
+</div>
+
+// ✅ Using Next Image with optimization
+<Image
+  src={imageUrl}
+  alt="description"
+  width={800}
+  height={600}
+  loading="lazy"
+  placeholder="blur"
+  blurDataURL={...}
+/>
+```
+
+### Image Utilities
+```css
+.img-lazy          - Placeholder while loading (bg-slate-100 + animate-pulse)
+.img-loading       - Shimmer loading animation (background animation)
+.img-fade-in       - Smooth fade-in after load (0.6s cubic-bezier)
+.img-container     - Responsive container with overflow handling
+```
+
+### Gallery Images with Fallback
+```jsx
+// Always provide dimensions to prevent layout shift
+<picture>
+  <img 
+    src={fallback} 
+    className="w-full h-full object-cover hover-scale-image"
+    alt="gallery item"
+  />
+</picture>
+```
+
+## Accessibility & Reduced Motion
+
+### Respects User Preferences
+The CSS automatically respects `prefers-reduced-motion`:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+**This means:**
+- Users with motion sensitivity won't see animations
+- All page transitions remain instant for accessibility
+- No CSS changes needed per component
+
+## GPU Acceleration Classes
+
+### Use for Heavy Animations
+```jsx
+// For floating elements, animated backgrounds, etc.
+<div className="animate-float-gentle accelerate-gpu">
+  {/* Will use GPU for smooth 60fps animations */}
+</div>
+```
+
+### Available Classes
+```css
+.accelerate-gpu        - Enable GPU acceleration (transform3d + backface-visibility)
+.animate-float-gentle  - Already optimized for GPU (6s infinite)
+.animate-slow-zoom     - Already optimized for GPU (16s infinite)
+```
+
+## Easing Functions Reference
+
+```
+cubic-bezier(0.4, 0, 0.2, 1)           - Standard smooth easing (Material Design)
+cubic-bezier(0.34, 1.56, 0.64, 1)      - Bounce/spring easing
+cubic-bezier(0.175, 0.885, 0.32, 1.275) - Elastic easing
+ease-out                                 - Deceleration curve
+ease-in-out                             - Smooth both directions
+```
+
+## Typography
+
+### Text Balance (Improved Multi-line Rendering)
+```jsx
+<h1 className="text-4xl text-balance">
+  Long titles that wrap nicely now
+</h1>
+```
+
+### Line Clamping
+```jsx
+<p className="truncate-lines-2">              // Exactly 2 lines
+<p className="truncate-lines-3">              // Exactly 3 lines
+<p className="line-clamp-4">                  // Exactly 4 lines
+<p className="line-clamp-5">                  // Exactly 5 lines
+```
+
+## Scrollbar Styling
+
+### Custom Scrollbar
+```jsx
+<div className="custom-scrollbar h-96 overflow-y-auto">
+  {/* Content with smooth themed scrollbar */}
+</div>
+```
+
+Scrollbar uses `rgba(79, 70, 229, 0.5)` color with smooth transitions on hover.
+
+## Glass Morphism
+
+### Frosted Glass Effect
+```jsx
+// Light glass
+<div className="glass">
+  {/* Semi-transparent white with blur */}
+</div>
+
+// Dark glass
+<div className="glass-dark">
+  {/* Semi-transparent dark with blur */}
+</div>
+
+// With hover effect
+<div className="glass-hover">
+  {/* Changes opacity on hover smoothly */}
+</div>
+```
+
+## Page Transitions
+
+### Smooth Page Entry/Exit
+```css
+.transition-page-in     - Fade + slide in from bottom (0.4-0.5s)
+.transition-page-out    - Fade out only (0.3s)
+```
+
+Use in page wrappers for consistent transitions:
+```jsx
+<main className="transition-page-in">
+  {/* Page content */}
+</main>
+```
+
+## Testing & Validation
+
+### Performance Checklist
+- [ ] No inline styles for layout/spacing
+- [ ] Using standardized utility classes
+- [ ] Images have alt text and loading="lazy"
+- [ ] No hardcoded colors (use Tailwind palette)
+- [ ] Animations respect prefers-reduced-motion
+- [ ] CSS build passes (npm run build)
+- [ ] No unused classes in output
 
 ## When to Create Custom CSS
 

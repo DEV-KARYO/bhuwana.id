@@ -61,7 +61,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   role="listitem"
                   aria-label={`Tautan sosial ${s.label}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition-all hover:-translate-y-0.5 hover:border-indigo-400/30 hover:bg-indigo-500/15 hover:text-white focus-ring-sm"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-slate-200 transition-smooth hover:-translate-y-0.5 hover:border-indigo-400/30 hover:bg-indigo-500/15 hover:text-white focus-ring-sm"
                 >
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10 text-[10px] font-black uppercase text-white/90" aria-hidden>
                     {s.label.slice(0, 1)}
@@ -78,8 +78,8 @@ export default function Footer() {
             <h4 className="font-bold text-base">Navigasi</h4>
             <ul className="grid gap-2 text-sm font-medium text-slate-300 sm:grid-cols-2 lg:grid-cols-1">
               {navLinks.map((link) => (
-                <li key={link.href} className="group flex items-center rounded-xl border border-white/5 bg-white/[0.03] px-3 py-2 transition-colors hover:border-white/10 hover:bg-white/[0.05]">
-                  <ChevronRight size={14} className="mr-2 shrink-0 text-indigo-300 transition-transform group-hover:translate-x-0.5" />
+                <li key={link.href} className="group flex items-center rounded-xl border border-white/5 bg-white/[0.03] px-3 py-2 transition-smooth hover:border-white/10 hover:bg-white/[0.05]">
+                  <ChevronRight size={14} className="mr-2 shrink-0 text-indigo-300 transition-smooth group-hover:translate-x-0.5" />
                   <Link href={link.href} className="footer-link flex-1 rounded px-1 py-0.5 hover:text-white focus-ring-sm">
                     {link.label}
                   </Link>
@@ -93,8 +93,8 @@ export default function Footer() {
             <h4 className="font-bold text-base">Informasi & Kontak</h4>
             <ul className="space-y-2 text-sm font-medium text-slate-300">
               {infoLinks.map((link) => (
-                <li key={link.label} className="group flex items-center rounded-xl px-0 py-1 transition-colors hover:text-white">
-                  <ChevronRight size={14} className="mr-2 shrink-0 text-indigo-300 transition-transform group-hover:translate-x-0.5" />
+                <li key={link.label} className="group flex items-center rounded-xl px-0 py-1 transition-smooth hover:text-white">
+                  <ChevronRight size={14} className="mr-2 shrink-0 text-indigo-300 transition-smooth group-hover:translate-x-0.5" />
                   <Link href={link.href} className="footer-link text-slate-300 hover:text-white focus-ring-sm rounded px-1 py-0.5">
                     {link.label}
                   </Link>
