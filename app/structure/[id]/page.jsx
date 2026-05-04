@@ -1,33 +1,13 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ShieldCheck, CalendarDays, BadgeCheck } from 'lucide-react';
+import { ArrowLeft, CalendarDays, BadgeCheck } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
 import ContactForm from '@/components/ContactForm';
+import LeaderAvatar from '@/components/LeaderAvatar';
 import { leadershipData } from '@/lib/content';
-
-function getInitials(name) {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join('');
-}
-
-function LeaderMark({ leader }) {
-  const initials = getInitials(leader.name);
-
-  return (
-    <div className="w-28 h-28 md:w-36 md:h-36 rounded-[2rem] bg-gradient-to-br from-indigo-100 via-white to-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden shadow-lg shadow-indigo-950/5">
-      <span className="text-2xl md:text-4xl font-black text-slate-400 tracking-tight">
-        {initials}
-      </span>
-    </div>
-  );
-}
 
 export function generateStaticParams() {
   return leadershipData.map((leader) => ({
@@ -79,7 +59,7 @@ export default function LeaderDetailPage({ params }) {
             </Link>
 
             <div className="grid lg:grid-cols-[auto_1fr] gap-8 lg:gap-10 items-center">
-              <LeaderMark leader={leader} />
+              <LeaderAvatar leader={leader} size="lg" />
 
               <div>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -138,20 +118,7 @@ export default function LeaderDetailPage({ params }) {
                 </p>
               </div>
 
-              <div className="mt-8 grid sm:grid-cols-2 gap-4">
-                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
-                  <div className="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-[0.25em] mb-2">
-                    <CalendarDays size={14} /> Masa Jabatan
-                  </div>
-                  <p className="font-bold text-slate-900">{leader.tenure_start}{leader.tenure_end ? ` - ${leader.tenure_end}` : ''}</p>
-                </div>
-                <div className="rounded-2xl bg-slate-50 p-4 border border-slate-100">
-                  <div className="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-[0.25em] mb-2">
-                    <BadgeCheck size={14} /> Status
-                  </div>
-                  <p className="font-bold text-slate-900">{leader.status === 'Current' ? 'Sedang menjabat' : 'Masa sebelumnya'}</p>
-                </div>
-              </div>
+
             </div>
 
             <div className="space-y-6">
@@ -161,14 +128,29 @@ export default function LeaderDetailPage({ params }) {
               />
 
               <div className="card-elevated p-6 md:p-8">
-                <h3 className="font-black text-slate-900 text-xl mb-4">Pimpinan Terkait</h3>
+                <h3 className="font-black text-slate-900 text-xl mb-4 flex items-center gap-2">
+                  <span className="w-1 h-6 bg-indigo-600 rounded-full"></span>
+                  Pimpinan Terkait
+                </h3>
                 <div className="space-y-3">
-                  {relatedLeaders.map((item) => (
-                    <Link key={item.id} href={`/structure/${item.id}`} className="block rounded-2xl border border-slate-200 p-4 hover:border-indigo-300 hover:bg-slate-50 transition-all">
-                      <p className="font-bold text-slate-900">{item.name}</p>
-                      <p className="text-sm text-slate-500 mt-1">{item.position}</p>
-                    </Link>
-                  ))}
+                  {relatedLeaders.length > 0 ? (
+                    relatedLeaders.map((item) => (
+                      <Link key={item.id} href={`/structure/${item.id}`} className="group rounded-2xl border border-slate-200 p-4 hover:border-indigo-300 hover:bg-gradient-to-r hover:from-slate-50 hover:to-indigo-50 transition-all">
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <p className="font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">{item.name}</p>
+                            <p className="text-sm text-slate-500/80 mt-1">{item.position}</p>
+                            <Badge variant={item.status === 'Current' ? 'success' : 'warning'} className="mt-2">
+                              {item.status === 'Current' ? 'Aktif' : 'Riwayat'}
+                            </Badge>
+                          </div>
+                          <ArrowLeft size={16} className="text-slate-300 group-hover:text-indigo-600 group-hover:rotate-180 transition-all mt-1" />
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    <p className="text-slate-500 text-center py-4">Tidak ada pimpinan terkait</p>
+                  )}
                 </div>
               </div>
             </div>
