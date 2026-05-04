@@ -42,41 +42,38 @@ export default function Home() {
         <HeroSection />
 
         <section className="bg-slate-50 border-b border-slate-200">
-          <div className="container mx-auto section-spacing py-10 md:py-12">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-8">
-              <div className="max-w-2xl">
+          <div className="container mx-auto section-spacing py-8 md:py-10">
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between mb-6">
+              <div>
                 <p className="text-xs font-black uppercase tracking-[0.3em] text-indigo-700">
                   Mulai dari sini
                 </p>
-                <h2 className="mt-3 text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
-                  Jalur cepat untuk menemukan informasi yang dibutuhkan
+                <h2 className="mt-2 text-xl md:text-2xl font-black text-slate-900 tracking-tight">
+                  Pintu utama untuk menemukan informasi
                 </h2>
-                <p className="mt-3 text-slate-500 leading-relaxed">
-                  Pengunjung sering datang dengan tujuan yang berbeda. Tiga sampai empat pintu masuk utama ini membantu mereka langsung ke halaman yang tepat tanpa harus menebak.
-                </p>
               </div>
               <Link
                 href="/sitemap"
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-950"
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-indigo-300 hover:bg-indigo-50 hover:text-indigo-950 whitespace-nowrap"
               >
-                Lihat peta situs
+                Peta situs →
               </Link>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
               {quickLinks.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="group rounded-3xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-indigo-200 hover:shadow-lg"
+                  className="group rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-indigo-200 hover:shadow-md"
                 >
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-slate-900 text-white transition group-hover:bg-indigo-950">
-                    <span className="text-sm font-black">0{quickLinks.indexOf(item) + 1}</span>
+                  <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-slate-900 text-white transition group-hover:bg-indigo-950">
+                    <span className="text-xs font-black">0{quickLinks.indexOf(item) + 1}</span>
                   </div>
-                  <h3 className="text-lg font-black text-slate-900">
+                  <h3 className="text-sm font-bold text-slate-900">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-slate-500">
+                  <p className="mt-1 text-xs leading-snug text-slate-500 line-clamp-2">
                     {item.description}
                   </p>
                 </Link>
