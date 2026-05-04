@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
+import PopularCategoriesWidget from '@/components/PopularCategoriesWidget';
 import { galleryData } from '@/lib/content';
 
 export default function GalleryPageClient() {
@@ -147,36 +148,51 @@ export default function GalleryPageClient() {
             Menampilkan <span className="font-bold text-slate-700">{filteredGallery.length}</span> dari <span className="font-bold text-slate-700">{galleryData.length}</span> dokumentasi
           </p>
 
-          {/* Gallery Grid */}
-          <div className="news-grid stagger-children">
-            {filteredGallery.map((item) => (
-              <div
-                key={item.id}
-                className="card-interactive group"
-                onClick={() => setSelectedImage(item)}
-              >
-                <div className="gallery-item">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    className="gallery-image"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  />
-                  <div className="gallery-overlay"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              {/* Gallery Grid */}
+              <div className="news-grid stagger-children">
+                {filteredGallery.map((item) => (
+                  <div
+                    key={item.id}
+                    className="card-interactive group"
+                    onClick={() => setSelectedImage(item)}
+                  >
+                    <div className="gallery-item">
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="gallery-image"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      />
+                      <div className="gallery-overlay"></div>
 
-                  {/* Overlay Content */}
-                  <div className="overlay-dark flex flex-col justify-end p-6">
-                    <h3 className="text-white font-bold text-lg truncate">
-                      {item.title}
-                    </h3>
-                    <p className="text-white/80 text-sm mt-1">
-                      {item.date}
-                    </p>
+                      {/* Overlay Content */}
+                      <div className="overlay-dark flex flex-col justify-end p-6">
+                        <h3 className="text-white font-bold text-lg truncate">
+                          {item.title}
+                        </h3>
+                        <p className="text-white/80 text-sm mt-1">
+                          {item.date}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <aside className="space-y-6 md:space-y-8 lg:sticky lg:top-28 h-fit">
+              <PopularCategoriesWidget
+                categories={categories}
+                newsData={galleryData}
+                onCategorySelect={(category) => {
+                  setActiveCategory(category);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </aside>
           </div>
 
           {/* Empty State */}

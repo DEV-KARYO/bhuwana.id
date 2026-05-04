@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
+import PopularCategoriesWidget from '@/components/PopularCategoriesWidget';
 import { eventsData } from '@/lib/content';
 
 function EventCard({ event, featured = false }) {
@@ -277,22 +278,37 @@ export default function KegiatanPageClient() {
             </p>
           </div>
 
-          {/* Events Grid */}
-          {regularEvents.length > 0 ? (
-            <div className="news-grid">
-              {regularEvents.map((event) => (
-                <EventCard key={event.id} event={event} />
-              ))}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              {/* Events Grid */}
+              {regularEvents.length > 0 ? (
+                <div className="news-grid">
+                  {regularEvents.map((event) => (
+                    <EventCard key={event.id} event={event} />
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-20 card-elevated rounded-2xl">
+                  <div className="text-6xl mb-4">📅</div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Tidak Ada Kegiatan</h3>
+                  <p className="text-slate-500">
+                    Tidak ada kegiatan yang sesuai dengan filter Anda. Coba ubah filter atau kategori.
+                  </p>
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="text-center py-20 card-elevated rounded-2xl">
-              <div className="text-6xl mb-4">📅</div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-2">Tidak Ada Kegiatan</h3>
-              <p className="text-slate-500">
-                Tidak ada kegiatan yang sesuai dengan filter Anda. Coba ubah filter atau kategori.
-              </p>
-            </div>
-          )}
+
+            <aside className="space-y-6 md:space-y-8 lg:sticky lg:top-28 h-fit">
+              <PopularCategoriesWidget
+                categories={categories}
+                newsData={eventsData}
+                onCategorySelect={(category) => {
+                  setSelectedCategory(category);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
+            </aside>
+          </div>
         </div>
       </main>
 
