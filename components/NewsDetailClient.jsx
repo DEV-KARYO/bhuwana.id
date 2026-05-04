@@ -48,15 +48,17 @@ export default function NewsDetailClient({ news, relatedNews }) {
           sizes="100vw"
         />
         <div className="overlay-light"></div>
+        <div aria-hidden className="absolute -top-20 right-6 h-56 w-56 rounded-full bg-white/10 blur-3xl animate-float-gentle" />
+        <div aria-hidden className="absolute bottom-8 left-6 h-40 w-40 rounded-full bg-indigo-400/10 blur-3xl animate-float-gentle [animation-delay:1.1s]" />
 
-        <div className="absolute bottom-6 md:bottom-10 left-0 right-0">
+        <div className="absolute bottom-6 md:bottom-10 left-0 right-0 reveal-up">
           <div className="container mx-auto section-spacing">
             <Link href="/news">
-              <button className="inline-flex items-center text-indigo-950 font-bold text-sm mb-4 md:mb-6 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full hover:bg-white transition-all">
+              <button className="inline-flex items-center text-indigo-950 font-bold text-sm mb-4 md:mb-6 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full hover:bg-white transition-all hover-lift">
                 <ChevronLeft size={16} className="mr-2" /> Kembali
               </button>
             </Link>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl editorial-title max-w-4xl leading-[1.1]">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl editorial-title max-w-4xl leading-[1.1] text-balance">
               {news.title}
             </h1>
           </div>
@@ -65,7 +67,7 @@ export default function NewsDetailClient({ news, relatedNews }) {
 
       <div className="container mx-auto section-spacing mt-8 md:mt-12 pb-16 md:pb-24">
         <div className="max-w-3xl prose-focus-indigo">
-          <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 py-6 md:py-10 border-b border-slate-100 mb-8 md:mb-10">
+          <div className="card-base flex flex-col md:flex-row md:items-center gap-4 md:gap-6 p-5 md:p-6 border-slate-100 mb-8 md:mb-10">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-600">
                 <User size={20} />
@@ -139,7 +141,7 @@ export default function NewsDetailClient({ news, relatedNews }) {
             <h3 className="text-2xl md:text-3xl editorial-title mb-6 md:mb-8">
               Warta Terkait
             </h3>
-            <div className="news-grid">
+            <div className="news-grid stagger-children">
               {relatedNews.map((item) => (
                 <NewsCard key={item.id} news={item} layout="grid" />
               ))}

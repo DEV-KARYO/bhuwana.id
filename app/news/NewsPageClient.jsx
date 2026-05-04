@@ -156,12 +156,14 @@ export default function NewsPageClient() {
       />
 
       {/* Header */}
-      <div className="page-header bg-white border-b border-slate-200">
-        <div className="container mx-auto section-spacing">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div className="page-header relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 border-b border-slate-200">
+        <div aria-hidden className="absolute -top-20 right-0 h-56 w-56 rounded-full bg-indigo-400/10 blur-3xl animate-float-gentle" />
+        <div aria-hidden className="absolute -bottom-24 left-8 h-64 w-64 rounded-full bg-cyan-400/10 blur-3xl animate-float-gentle [animation-delay:1.2s]" />
+        <div className="container mx-auto section-spacing relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 reveal-up">
             <div className="max-w-2xl">
               <Badge variant="primary">Pusat Warta</Badge>
-              <h1 className="section-title editorial-title mt-4 mb-4">
+              <h1 className="section-title editorial-title mt-4 mb-4 text-balance">
                 Kabar Lang Lang Bhuwana
               </h1>
               <p className="section-subtitle">
@@ -181,8 +183,10 @@ export default function NewsPageClient() {
       </div>
 
       {/* Main Content */}
-      <main className="page-section bg-slate-50">
-        <div className="container mx-auto section-spacing">
+      <main className="page-section bg-slate-50 relative overflow-hidden">
+        <div aria-hidden className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-indigo-400/8 blur-3xl animate-float-gentle" />
+        <div aria-hidden className="absolute bottom-0 left-0 h-56 w-56 rounded-full bg-blue-400/8 blur-3xl animate-float-gentle [animation-delay:1.4s]" />
+        <div className="container mx-auto section-spacing relative z-10">
           <EMagazineSection />
 
           {/* Featured News Highlight */}
@@ -191,9 +195,9 @@ export default function NewsPageClient() {
               <div className="mb-4">
                 <Badge variant="primary">Sorotan Warta</Badge>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 stagger-children">
                 {filteredNews.slice(0, 2).map((news) => (
-                  <Link key={news.id} href={`/news/${news.id}`} className="group block rounded-2xl overflow-hidden border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-xl">
+                  <Link key={news.id} href={`/news/${news.id}`} className="group block rounded-2xl overflow-hidden border border-slate-200 hover:border-indigo-300 transition-all duration-300 hover-lift">
                     {news.image && (
                       <div className="relative h-40 md:h-48 overflow-hidden bg-slate-200">
                         <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -267,7 +271,7 @@ export default function NewsPageClient() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
             {/* News Feed */}
             <div className="lg:col-span-2 list-spaced stagger-children">
-              <div className="text-sm text-slate-500 bg-white border border-slate-100 rounded-xl px-4 py-3">
+              <div className="card-base text-sm text-slate-500 px-4 py-3">
                 Menampilkan <span className="font-bold text-slate-700">{filteredNews.length}</span> warta dalam kategori <span className="font-bold text-slate-700">{selectedCategory}</span>
                 {selectedTag !== 'Semua' && (
                   <>
@@ -303,7 +307,7 @@ export default function NewsPageClient() {
                           handlePageChange(Math.max(1, currentPage - 1))
                         }
                         disabled={currentPage === 1}
-                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled-style transition-all"
+                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled-style transition-all hover-lift"
                       >
                         ← Sebelumnya
                       </button>
@@ -312,7 +316,7 @@ export default function NewsPageClient() {
                           <button
                             key={page}
                             onClick={() => handlePageChange(page)}
-                            className={`w-10 h-10 rounded-lg font-bold transition-all ${
+                            className={`w-10 h-10 rounded-lg font-bold transition-all hover-lift ${
                               currentPage === page
                                 ? 'bg-indigo-950 text-white'
                                 : 'border border-slate-200 text-slate-600 hover:bg-slate-100'
@@ -327,7 +331,7 @@ export default function NewsPageClient() {
                           handlePageChange(Math.min(totalPages, currentPage + 1))
                         }
                         disabled={currentPage === totalPages}
-                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled-style transition-all"
+                        className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-100 disabled-style transition-all hover-lift"
                       >
                         Berikutnya →
                       </button>

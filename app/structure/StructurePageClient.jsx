@@ -27,7 +27,7 @@ function filterLeadership(items, query, status, rank) {
 
 function LeaderCard({ leader }) {
   return (
-    <Link href={`/structure/${leader.id}`} className="group rounded-3xl border border-slate-200 bg-white p-5 md:p-6 transition-all hover:-translate-y-1 hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-950/5">
+    <Link href={`/structure/${leader.id}`} className="group card-elevated p-5 md:p-6 transition-all hover-lift">
       <div className="flex items-start gap-4">
         <LeaderAvatar leader={leader} size="sm" />
         <div className="min-w-0 flex-1">
@@ -70,16 +70,18 @@ export default function StructurePageClient() {
     <div className="page-content">
       <Navbar />
       <Breadcrumb items={[{ label: 'Struktur Pimpinan', href: '/structure' }]} />
-      <div className="page-header bg-white border-b border-slate-100 overflow-hidden">
+      <div className="page-header relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100 border-b border-slate-100">
+        <div aria-hidden className="absolute -top-28 -right-20 w-80 h-80 rounded-full bg-indigo-50 blur-3xl opacity-80 animate-float-gentle" />
+        <div aria-hidden className="absolute -bottom-28 -left-20 w-72 h-72 rounded-full bg-slate-100 blur-3xl opacity-70 animate-float-gentle [animation-delay:1.2s]" />
         <div className="container mx-auto section-spacing py-14 md:py-20 lg:py-24 relative">
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-28 -right-20 w-80 h-80 rounded-full bg-indigo-50 blur-3xl opacity-80" />
             <div className="absolute -bottom-24 -left-20 w-72 h-72 rounded-full bg-slate-100 blur-3xl opacity-70" />
           </div>
-          <div className="relative z-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 items-start">
+          <div className="relative z-10 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12 items-start reveal-up">
             <div className="max-w-2xl">
               <Badge variant="primary">Kepemimpinan Satuan</Badge>
-              <h1 className="section-title mt-4 mb-5">Struktur Pimpinan yang Lebih Jelas</h1>
+              <h1 className="section-title mt-4 mb-5 text-balance">Struktur Pimpinan yang Lebih Jelas</h1>
               <p className="section-subtitle max-w-xl">Halaman ini dirapikan agar pengunjung bisa langsung memahami siapa yang memimpin, siapa yang aktif, dan bagaimana susunan komando satuan tersusun tanpa pengulangan yang membingungkan.</p>
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
@@ -97,7 +99,7 @@ export default function StructurePageClient() {
               </div>
             </div>
             {filteredCommander && (
-              <div className="card-elevated p-6 md:p-8 lg:p-10 relative overflow-hidden">
+              <div className="card-elevated p-6 md:p-8 lg:p-10 relative overflow-hidden hover-lift">
                 <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-indigo-50" />
                 <div className="relative z-10 text-center">
                   <Badge variant="success">Komandan Saat Ini</Badge>
@@ -128,7 +130,7 @@ export default function StructurePageClient() {
       </div>
       <main className="page-section">
         <div className="container mx-auto section-spacing">
-          <div className="card-elevated p-6 md:p-8 mb-8 md:mb-10">
+          <div className="card-elevated p-6 md:p-8 mb-8 md:mb-10 reveal-up">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-2xl">
                 <Badge variant="primary">Pencarian Pimpinan</Badge>
@@ -201,7 +203,7 @@ export default function StructurePageClient() {
                 <p className="max-w-xs text-sm text-slate-500">Kartu pimpinan aktif disajikan satu per satu agar tidak bercampur dengan riwayat komando.</p>
               </div>
               {filteredCurrentLeadership.length > 0 ? (
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-5 sm:grid-cols-2 stagger-children">
                   {filteredCurrentLeadership.map((leader) => (
                     <LeaderCard key={leader.id} leader={leader} />
                   ))}
@@ -211,7 +213,7 @@ export default function StructurePageClient() {
               )}
             </div>
           </section>
-          <section className="card-elevated p-6 md:p-8 lg:p-10">
+          <section className="card-elevated p-6 md:p-8 lg:p-10 reveal-up">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-6 md:mb-8">
               <div>
                 <Badge variant="primary">Riwayat Komando</Badge>

@@ -97,11 +97,13 @@ export default function GalleryPageClient() {
       />
 
       {/* Header */}
-      <div className="page-header bg-gradient-to-br from-slate-50 to-white">
-        <div className="container mx-auto section-spacing">
-          <div className="section-header max-w-2xl mx-auto">
+      <div className="page-header relative overflow-hidden bg-gradient-to-br from-slate-50 to-white">
+        <div aria-hidden className="absolute -top-24 right-0 h-64 w-64 rounded-full bg-indigo-400/10 blur-3xl animate-float-gentle" />
+        <div aria-hidden className="absolute -bottom-24 left-8 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl animate-float-gentle [animation-delay:1.3s]" />
+        <div className="container mx-auto section-spacing relative z-10">
+          <div className="section-header max-w-2xl mx-auto reveal-up">
             <Badge variant="primary">Dokumentasi Visual</Badge>
-            <h1 className="section-title mt-4 mb-6">
+            <h1 className="section-title mt-4 mb-6 text-balance">
               Galeri Dokumentasi Satuan
             </h1>
             <p className="section-subtitle">
@@ -110,7 +112,7 @@ export default function GalleryPageClient() {
           </div>
 
           {/* Category Filter */}
-          <div className="flex justify-center gap-3 flex-wrap mb-8">
+          <div className="flex justify-center gap-3 flex-wrap mb-8 stagger-children">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -155,7 +157,7 @@ export default function GalleryPageClient() {
                 {filteredGallery.map((item) => (
                   <div
                     key={item.id}
-                    className="card-interactive group"
+                      className="card-interactive group hover-lift"
                     onClick={() => setSelectedImage(item)}
                   >
                     <div className="gallery-item">
@@ -197,7 +199,7 @@ export default function GalleryPageClient() {
 
           {/* Empty State */}
           {filteredGallery.length === 0 && (
-            <div className="text-center py-20">
+            <div className="text-center py-20 card-elevated">
               <div className="text-6xl mb-4">📁</div>
               <h3 className="text-2xl font-bold text-slate-900 mb-2">
                 Kategori Kosong
@@ -213,18 +215,18 @@ export default function GalleryPageClient() {
       {/* Lightbox Modal */}
       {selectedImage && (
         <div
-          className="modal-backdrop"
+          className="modal-backdrop animate-fade-in"
           onClick={() => setSelectedImage(null)}
           role="dialog"
           aria-modal="true"
           aria-label="Pratinjau galeri"
         >
-          <div className="modal-content" onClick={(event) => event.stopPropagation()}>
+          <div className="modal-content animate-scale-in" onClick={(event) => event.stopPropagation()}>
             {filteredGallery.length > 1 && (
               <>
                 <button
                   onClick={showPrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 rounded-full flex-center hover:bg-white transition-all shadow-lg"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 rounded-full flex-center hover:bg-white transition-all shadow-lg hover-lift"
                   aria-label="Gambar sebelumnya"
                 >
                   <ChevronLeft size={20} className="text-slate-900" />
@@ -232,7 +234,7 @@ export default function GalleryPageClient() {
 
                 <button
                   onClick={showNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 rounded-full flex-center hover:bg-white transition-all shadow-lg"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white/90 rounded-full flex-center hover:bg-white transition-all shadow-lg hover-lift"
                   aria-label="Gambar berikutnya"
                 >
                   <ChevronRight size={20} className="text-slate-900" />
@@ -243,7 +245,7 @@ export default function GalleryPageClient() {
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex-center hover:bg-slate-100 transition-all shadow-lg"
+              className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex-center hover:bg-slate-100 transition-all shadow-lg hover-lift"
               aria-label="Tutup pratinjau"
             >
               <X size={20} className="text-slate-900" />

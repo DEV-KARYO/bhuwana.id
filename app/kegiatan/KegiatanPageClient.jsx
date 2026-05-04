@@ -16,7 +16,7 @@ function EventCard({ event, featured = false }) {
   
   return (
     <Link href={`/kegiatan/${event.id}`} className="group">
-      <div className={`${featured ? 'card-featured' : 'card-elevated'} hover:border-indigo-300 transition-all h-full flex flex-col overflow-hidden`}>
+      <div className={`${featured ? 'card-featured' : 'card-elevated'} hover:border-indigo-300 transition-all duration-300 h-full flex flex-col overflow-hidden hover-lift`}>
         {/* Image Container */}
         <div className="relative h-40 md:h-48 bg-slate-200 overflow-hidden">
           <Image
@@ -158,11 +158,13 @@ export default function KegiatanPageClient() {
       />
 
       {/* Header */}
-      <div className="page-header bg-gradient-to-br from-slate-50 to-white">
-        <div className="container mx-auto section-spacing">
-          <div className="section-header max-w-2xl mx-auto">
+      <div className="page-header relative overflow-hidden bg-gradient-to-br from-slate-50 to-white">
+        <div aria-hidden className="absolute -top-24 right-0 h-64 w-64 rounded-full bg-indigo-400/10 blur-3xl animate-float-gentle" />
+        <div aria-hidden className="absolute -bottom-24 left-8 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl animate-float-gentle [animation-delay:1.3s]" />
+        <div className="container mx-auto section-spacing relative z-10">
+          <div className="section-header max-w-2xl mx-auto reveal-up">
             <Badge variant="primary">Jadwal Lengkap</Badge>
-            <h1 className="section-title mt-4 mb-6">
+            <h1 className="section-title mt-4 mb-6 text-balance">
               Kegiatan & Acara Satuan
             </h1>
             <p className="section-subtitle">
@@ -180,7 +182,7 @@ export default function KegiatanPageClient() {
               <Badge variant="primary">Unggulan</Badge>
               <h2 className="section-title mt-3">Kegiatan Unggulan</h2>
             </div>
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
+            <div className="grid lg:grid-cols-2 gap-6 md:gap-8 stagger-children">
               {featuredEvents.map((event) => (
                 <EventCard key={event.id} event={event} featured />
               ))}
@@ -190,7 +192,9 @@ export default function KegiatanPageClient() {
       )}
 
       {/* Filter Section */}
-      <div className="page-section bg-slate-50">
+          <div className="page-section bg-slate-50 relative overflow-hidden">
+            <div aria-hidden className="absolute -top-20 right-0 h-56 w-56 rounded-full bg-indigo-400/8 blur-3xl animate-float-gentle" />
+            <div aria-hidden className="absolute bottom-0 left-0 h-48 w-48 rounded-full bg-blue-400/8 blur-3xl animate-float-gentle [animation-delay:1.1s]" />
         <div className="container mx-auto section-spacing">
           {/* Search */}
           <div className="mb-8">
@@ -282,7 +286,7 @@ export default function KegiatanPageClient() {
             <div className="lg:col-span-2">
               {/* Events Grid */}
               {regularEvents.length > 0 ? (
-                <div className="news-grid">
+                <div className="news-grid stagger-children">
                   {regularEvents.map((event) => (
                     <EventCard key={event.id} event={event} />
                   ))}

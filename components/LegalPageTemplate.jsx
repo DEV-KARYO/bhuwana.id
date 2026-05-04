@@ -10,10 +10,10 @@ export default function LegalPageTemplate({
   children 
 }) {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="page-content">
       {/* Breadcrumb */}
       <div className="bg-slate-50 border-b border-slate-200">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto section-spacing py-4">
           <div className="flex items-center gap-2 text-sm">
             <Link href="/" className="text-slate-600 hover:text-indigo-950 transition-colors">
               Beranda
@@ -25,13 +25,14 @@ export default function LegalPageTemplate({
       </div>
 
       {/* Hero Section */}
-      <div className="bg-gradient-to-b from-indigo-950 to-indigo-900 text-white py-12 md:py-20">
-        <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
+      <div className="relative overflow-hidden bg-gradient-to-b from-indigo-950 to-indigo-900 text-white py-12 md:py-20">
+        <div aria-hidden className="absolute -top-20 right-0 h-56 w-56 rounded-full bg-white/10 blur-3xl animate-float-gentle" />
+        <div className="container mx-auto section-spacing relative z-10">
+          <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight text-balance animate-slide-in-from-bottom">
             {title}
           </h1>
           {subtitle && (
-            <p className="text-lg md:text-xl text-indigo-100 max-w-2xl">
+            <p className="text-lg md:text-xl text-indigo-100 max-w-2xl animate-slide-in-from-bottom [animation-delay:120ms]">
               {subtitle}
             </p>
           )}
@@ -39,30 +40,31 @@ export default function LegalPageTemplate({
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="max-w-3xl mx-auto prose prose-slate">
+      <div className="container mx-auto section-spacing py-16 md:py-24">
+        <div className="max-w-3xl mx-auto prose prose-slate prose-focus-indigo">
           {children}
         </div>
       </div>
 
       {/* Related Links */}
-      <div className="bg-slate-50 border-t border-slate-200 py-12 md:py-16">
-        <div className="container mx-auto px-4">
+      <div className="bg-slate-50 border-t border-slate-200 py-12 md:py-16 relative overflow-hidden">
+        <div aria-hidden className="absolute -bottom-20 left-0 h-56 w-56 rounded-full bg-indigo-400/8 blur-3xl animate-float-gentle" />
+        <div className="container mx-auto section-spacing relative z-10">
           <h3 className="text-xl font-bold text-slate-900 mb-6">Informasi Terkait</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Link href="/privacy" className="p-4 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 transition-all group">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 stagger-children">
+            <Link href="/privacy" className="card-elevated p-4 transition-all duration-300 hover-lift group">
               <h4 className="font-semibold text-slate-900 group-hover:text-indigo-950 mb-1">Kebijakan Privasi</h4>
               <p className="text-sm text-slate-600">Cara kami melindungi data Anda</p>
             </Link>
-            <Link href="/disclaimer" className="p-4 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 transition-all group">
+            <Link href="/disclaimer" className="card-elevated p-4 transition-all duration-300 hover-lift group">
               <h4 className="font-semibold text-slate-900 group-hover:text-indigo-950 mb-1">Disclaimer</h4>
               <p className="text-sm text-slate-600">Penafian dan batasan tanggung jawab</p>
             </Link>
-            <Link href="/transparency" className="p-4 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 transition-all group">
+            <Link href="/transparency" className="card-elevated p-4 transition-all duration-300 hover-lift group">
               <h4 className="font-semibold text-slate-900 group-hover:text-indigo-950 mb-1">Transparansi</h4>
               <p className="text-sm text-slate-600">Komitmen kami pada transparansi</p>
             </Link>
-            <Link href="/sitemap" className="p-4 bg-white rounded-lg border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50 transition-all group">
+            <Link href="/sitemap" className="card-elevated p-4 transition-all duration-300 hover-lift group">
               <h4 className="font-semibold text-slate-900 group-hover:text-indigo-950 mb-1">Sitemap</h4>
               <p className="text-sm text-slate-600">Peta situs portal kami</p>
             </Link>
