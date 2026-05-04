@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
 import { galleryData } from '@/lib/content';
 
@@ -88,6 +89,11 @@ export default function GalleryPageClient() {
   return (
     <div className="page-content">
       <Navbar />
+      <Breadcrumb
+        items={[
+          { label: 'Galeri Dokumentasi', href: '/gallery' },
+        ]}
+      />
 
       {/* Header */}
       <div className="page-header bg-gradient-to-br from-slate-50 to-white">

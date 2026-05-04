@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, MapPin, Clock, Users, User, Mail, Phone, CheckCircle } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
 import Button from '@/components/Button';
 import { eventsData } from '@/lib/content';
@@ -37,9 +38,15 @@ export default function EventDetailClient({ params }) {
     <div className="page-content">
       <Navbar />
 
-      {/* Breadcrumb */}
+      <Breadcrumb
+        items={[
+          { label: 'Kegiatan & Acara', href: '/kegiatan' },
+          { label: event.title },
+        ]}
+      />
+
       <div className="bg-slate-50 border-b border-slate-100">
-        <div className="container mx-auto section-spacing">
+        <div className="container mx-auto section-spacing py-4">
           <Link
             href="/kegiatan"
             className="inline-flex items-center gap-2 text-indigo-700 font-bold hover:text-indigo-900 transition-colors"

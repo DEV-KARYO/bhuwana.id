@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
 import { leadershipData } from '@/lib/content';
 
@@ -96,6 +97,11 @@ export default function StructurePageClient() {
   return (
     <div className="page-content">
       <Navbar />
+      <Breadcrumb
+        items={[
+          { label: 'Struktur Pimpinan', href: '/structure' },
+        ]}
+      />
 
       <div className="page-header bg-white border-b border-slate-100 overflow-hidden">
         <div className="container mx-auto section-spacing py-16 md:py-20 lg:py-24 relative">

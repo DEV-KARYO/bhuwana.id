@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react';
 import { Download, Share2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import Button from '@/components/Button';
 import Badge from '@/components/Badge';
 import EMagazineSection from '@/components/EMagazineSection';
@@ -147,6 +148,11 @@ export default function NewsPageClient() {
   return (
     <div className="page-content">
       <Navbar />
+      <Breadcrumb
+        items={[
+          { label: 'Warta & Berita', href: '/news' },
+        ]}
+      />
 
       {/* Header */}
       <div className="page-header bg-white border-b border-slate-200">

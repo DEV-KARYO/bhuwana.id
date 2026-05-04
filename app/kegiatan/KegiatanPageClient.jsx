@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Calendar, MapPin, Users, Clock, Filter } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumb from '@/components/Breadcrumb';
 import Badge from '@/components/Badge';
 import { eventsData } from '@/lib/content';
 
@@ -149,6 +150,11 @@ export default function KegiatanPageClient() {
   return (
     <div className="page-content">
       <Navbar />
+      <Breadcrumb
+        items={[
+          { label: 'Kegiatan & Acara', href: '/kegiatan' },
+        ]}
+      />
 
       {/* Header */}
       <div className="page-header bg-gradient-to-br from-slate-50 to-white">
