@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useToast } from '@/components/Toast';
 
 const initialForm = {
   title: '',
@@ -15,6 +16,43 @@ export default function GalleryManagerPage() {
   const [form, setForm] = useState(initialForm);
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState('');
+
+  async function uploadBase64(dataUrl, filename) {
+    try {
+      const res = await fetch('/api/uploads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename, data: dataUrl }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.message || 'Upload gagal.');
+      }
+      const json = await res.json();
+      return json.url;
+    } catch (e) {
+      setError(e.message);
+      return '';
+    }
+  }
+
+  function handleFileSelect(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const dataUrl = reader.result;
+      const url = await uploadBase64(dataUrl, `${Date.now()}_${file.name}`);
+      if (url) {
+        setForm((prev) => ({ ...prev, image: url }));
+        toast.success('Gambar berhasil diunggah');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  const fileInputRef = useRef(null);
+  const toast = useToast();
 
   async function load() {
     const response = await fetch('/api/gallery');
@@ -41,13 +79,17 @@ export default function GalleryManagerPage() {
 
     if (!response.ok) {
       const data = await response.json();
-      setError(data.message || 'Gagal menyimpan galeri.');
+      const msg = data.message || 'Gagal menyimpan galeri.';
+      setError(msg);
+      toast.error(msg);
       return;
     }
 
     setForm(initialForm);
     setEditingId(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
     await load();
+    toast.success('Galeri tersimpan');
   }
 
   async function handleDelete(id) {
@@ -121,6 +163,12 @@ export default function GalleryManagerPage() {
                 setForm((prev) => ({ ...prev, image: event.target.value }))
               }
             />
+            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileSelect} />
+            {form.image ? (
+              <div className="image-preview">
+                <img src={form.image} alt="preview" />
+              </div>
+            ) : null}
           </div>
         </div>
 
@@ -146,6 +194,7 @@ export default function GalleryManagerPage() {
               onClick={() => {
                 setEditingId(null);
                 setForm(initialForm);
+                if (fileInputRef.current) fileInputRef.current.value = '';
               }}
             >
               Reset

@@ -223,3 +223,29 @@ td {
     grid-template-columns: 1fr;
   }
 }
+
+.image-preview {
+  margin-top: 8px;
+}
+
+.image-preview img {
+  max-width: 220px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.chip {
+  background: #eef7f7;
+  color: var(--brand);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 13px;
+  border: 1px solid rgba(0,0,0,0.04);
+}

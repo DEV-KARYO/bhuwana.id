@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useToast } from '@/components/Toast';
 
 const initialForm = {
   title: '',
@@ -18,6 +19,52 @@ export default function NewsManagerPage() {
   const [form, setForm] = useState(initialForm);
   const [editingId, setEditingId] = useState(null);
   const [error, setError] = useState('');
+
+  async function uploadBase64(dataUrl, filename) {
+    try {
+      const res = await fetch('/api/uploads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename, data: dataUrl }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.message || 'Upload gagal.');
+      }
+      const json = await res.json();
+      return json.url;
+    } catch (e) {
+      setError(e.message);
+      return '';
+    }
+  }
+
+  function handleFileSelect(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const dataUrl = reader.result;
+      const url = await uploadBase64(dataUrl, `${Date.now()}_${file.name}`);
+      if (url) {
+        setForm((prev) => ({ ...prev, image: url }));
+        toast.success('Gambar berhasil diunggah');
+      }
+    };
+    reader.readAsDataURL(file);
+  }
+
+  const fileInputRef = useRef(null);
+  const toast = useToast();
+
+  function removeTag(tag) {
+    const list = form.tags
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean)
+      .filter((t) => t !== tag);
+    setForm((prev) => ({ ...prev, tags: list.join(', ') }));
+  }
 
   async function load() {
     const response = await fetch('/api/news');
@@ -52,13 +99,16 @@ export default function NewsManagerPage() {
 
     if (!response.ok) {
       const data = await response.json();
-      setError(data.message || 'Gagal menyimpan berita.');
+      const msg = data.message || 'Gagal menyimpan berita.';
+      setError(msg);
+      toast.error(msg);
       return;
     }
-
     setForm(initialForm);
     setEditingId(null);
+    if (fileInputRef.current) fileInputRef.current.value = '';
     await load();
+    toast.success('Berita tersimpan');
   }
 
   async function handleDelete(id) {
@@ -147,6 +197,12 @@ export default function NewsManagerPage() {
                 setForm((prev) => ({ ...prev, image: event.target.value }))
               }
             />
+            <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFileSelect} />
+            {form.image ? (
+              <div className="image-preview">
+                <img src={form.image} alt="preview" />
+              </div>
+            ) : null}
           </div>
 
           <div className="field">
@@ -157,6 +213,23 @@ export default function NewsManagerPage() {
                 setForm((prev) => ({ ...prev, tags: event.target.value }))
               }
             />
+            <div className="chips">
+              {form.tags
+                .split(',')
+                .map((t) => t.trim())
+                .filter(Boolean)
+                .map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => removeTag(t)}
+                    className="chip"
+                    aria-label={`Hapus tag ${t}`}
+                  >
+                    {t}
+                  </button>
+                ))}
+            </div>
           </div>
         </div>
 
@@ -193,6 +266,7 @@ export default function NewsManagerPage() {
               onClick={() => {
                 setEditingId(null);
                 setForm(initialForm);
+                if (fileInputRef.current) fileInputRef.current.value = '';
               }}
             >
               Reset
