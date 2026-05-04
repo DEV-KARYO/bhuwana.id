@@ -17,6 +17,8 @@ export default function HeroSection() {
           alt="Formal Meeting"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-indigo-950/70 via-transparent to-slate-900"></div>
+        <div aria-hidden className="absolute -top-24 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-white/10 blur-3xl animate-float-gentle" />
+        <div aria-hidden className="absolute bottom-12 right-10 h-52 w-52 rounded-full bg-blue-400/10 blur-3xl animate-float-gentle [animation-delay:1.5s]" />
       </div>
 
       {/* Content */}
@@ -63,7 +65,7 @@ export default function HeroSection() {
       </div>
 
       {/* Vertical Text - Hidden on mobile */}
-      <div className="absolute bottom-8 left-6 md:bottom-10 md:left-10 text-white text-xs md:text-sm font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] hidden lg:block vertical-text">
+      <div className="absolute bottom-8 left-6 md:bottom-10 md:left-10 text-white text-xs md:text-sm font-bold uppercase tracking-[0.3em] md:tracking-[0.5em] hidden lg:block vertical-text animate-fade-in [animation-delay:500ms]">
         EST. 1945 — INTEGRITY FIRST
       </div>
     </section>

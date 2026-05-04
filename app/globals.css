@@ -199,6 +199,56 @@ body {
   }
 }
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes floatGentle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 /* ========== UTILITY CLASSES ========== */
 @layer utilities {
   /* Animations */
@@ -216,6 +266,10 @@ body {
 
   .animate-fade-in {
     animation: fadeIn 0.4s ease-out;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
   }
 
   .animate-scale-in {
@@ -244,6 +298,24 @@ body {
 
   .animate-glow {
     animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-slide-in-from-bottom {
+    animation: slideInFromBottom 0.6s ease-out both;
+  }
+
+  .animate-slide-out-right {
+    animation: slideOutRight 0.35s ease-out both;
+  }
+
+  .animate-slow-zoom {
+    animation: slowZoom 16s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .animate-float-gentle {
+    animation: floatGentle 6s ease-in-out infinite;
+    will-change: transform;
   }
 
   /* Gradient animations */
@@ -755,6 +827,8 @@ body {
   .stagger-children > *:nth-child(4) { animation-delay: 220ms; }
   .stagger-children > *:nth-child(5) { animation-delay: 280ms; }
   .stagger-children > *:nth-child(6) { animation-delay: 340ms; }
+  .stagger-children > *:nth-child(7) { animation-delay: 400ms; }
+  .stagger-children > *:nth-child(8) { animation-delay: 460ms; }
 }
 
   /* Footer utilities - compact and accessible footer styles */

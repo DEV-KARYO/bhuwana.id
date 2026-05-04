@@ -44,18 +44,20 @@ const coreValues = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="page-section bg-white relative">
+    <section id="services" className="page-section bg-white relative overflow-hidden">
+      <div aria-hidden className="absolute -top-24 right-0 h-72 w-72 rounded-full bg-indigo-50 blur-3xl animate-float-gentle" />
+      <div aria-hidden className="absolute bottom-0 left-0 h-56 w-56 rounded-full bg-sky-50 blur-3xl animate-float-gentle [animation-delay:1.4s]" />
       <div className="container mx-auto section-spacing">
         {/* Profile Highlights - compact layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 relative z-20 reveal-up">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 relative z-20 reveal-up stagger-children">
           {profileHighlights.map((highlight, i) => {
             const Icon = highlight.icon;
             return (
               <div
                 key={i}
-                className="card-elevated p-4 md:p-6 hover-lift flex flex-col items-start"
+                className="card-elevated group p-4 md:p-6 hover-lift flex flex-col items-start"
               >
-                <div className="w-12 h-12 bg-slate-50 text-indigo-950 rounded-lg flex items-center justify-center mb-4 group-hover:bg-indigo-950 group-hover:text-white transition-colors duration-300">
+                <div className="w-12 h-12 bg-slate-50 text-indigo-950 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 group-hover:bg-indigo-950 group-hover:text-white group-hover:scale-105">
                   <Icon size={20} />
                 </div>
                 <h3 className="text-lg font-semibold text-slate-900 mb-2">
@@ -105,7 +107,7 @@ export default function ServicesSection() {
           {/* Right Column - Upcoming Events */}
           <div className="relative">
             <div className="card-elevated p-6 md:p-8 lg:p-10 overflow-hidden relative">
-              <div aria-hidden className="absolute -top-20 -right-16 w-48 h-48 rounded-full bg-indigo-50 blur-3xl opacity-80" />
+              <div aria-hidden className="absolute -top-20 -right-16 w-48 h-48 rounded-full bg-indigo-50 blur-3xl opacity-80 animate-float-gentle" />
               <div className="relative z-10">
                 <Badge variant="primary">Jadwal Kegiatan</Badge>
                 <h3 className="text-2xl md:text-3xl font-black text-slate-900 mt-4">
@@ -115,7 +117,7 @@ export default function ServicesSection() {
                   Informasi kegiatan dan acara yang sedang atau akan berlangsung di satuan kami.
                 </p>
 
-                <div className="mt-6 space-y-3">
+                <div className="mt-6 space-y-3 stagger-children">
                   {eventsData
                     .filter(event => event.status === 'Mendatang' || event.status === 'Berlangsung')
                     .slice(0, 3)
@@ -123,7 +125,7 @@ export default function ServicesSection() {
                       <Link 
                         key={event.id}
                         href={`/kegiatan/${event.id}`} 
-                        className="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 transition-all group"
+                        className="block p-4 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300 transition-all duration-300 group hover-lift"
                       >
                         <div className="flex items-start justify-between gap-2 mb-2">
                           <div className="flex-1">
@@ -160,7 +162,7 @@ export default function ServicesSection() {
 
                 <Link 
                   href="/kegiatan"
-                  className="mt-4 block text-center py-2 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-900 font-semibold text-sm transition-colors border border-indigo-200"
+                  className="mt-4 block text-center py-2 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 hover:text-indigo-900 font-semibold text-sm transition-all duration-300 border border-indigo-200 hover:-translate-y-0.5 hover:shadow-md"
                 >
                   Lihat Semua Kegiatan →
                 </Link>
