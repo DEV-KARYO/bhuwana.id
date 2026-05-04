@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useMemo } from 'react';
 import { Download, Share2 } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -184,6 +185,35 @@ export default function NewsPageClient() {
         <div className="container mx-auto section-spacing">
           <EMagazineSection />
 
+          {/* Featured News Highlight */}
+          {filteredNews.length > 0 && (
+            <div className="mb-10 md:mb-12">
+              <div className="mb-4">
+                <Badge variant="primary">Sorotan Warta</Badge>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {filteredNews.slice(0, 2).map((news) => (
+                  <Link key={news.id} href={`/news/${news.id}`} className="group block rounded-2xl overflow-hidden border border-slate-200 hover:border-indigo-300 transition-all hover:shadow-xl">
+                    {news.image && (
+                      <div className="relative h-40 md:h-48 overflow-hidden bg-slate-200">
+                        <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                      </div>
+                    )}
+                    <div className="p-5 md:p-6 bg-white">
+                      <Badge variant="secondary" className="mb-3">{news.category}</Badge>
+                      <h3 className="text-lg md:text-xl font-black text-slate-900 mb-3 group-hover:text-indigo-700 transition-colors line-clamp-2">{news.title}</h3>
+                      <p className="text-sm text-slate-600 mb-4 line-clamp-2">{news.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-slate-500">
+                        <span>{new Date(news.publishedAt || news.dateObj).toLocaleDateString('id-ID', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                        <span className="text-indigo-700 font-semibold">Baca sekarang →</span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Quick Category Filter for Mobile */}
           <QuickCategoryFilter
             categories={categories}
@@ -234,9 +264,9 @@ export default function NewsPageClient() {
             }
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 md:gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
             {/* News Feed */}
-            <div className="lg:col-span-3 list-spaced stagger-children">
+            <div className="lg:col-span-2 list-spaced stagger-children">
               <div className="text-sm text-slate-500 bg-white border border-slate-100 rounded-xl px-4 py-3">
                 Menampilkan <span className="font-bold text-slate-700">{filteredNews.length}</span> warta dalam kategori <span className="font-bold text-slate-700">{selectedCategory}</span>
                 {selectedTag !== 'Semua' && (
